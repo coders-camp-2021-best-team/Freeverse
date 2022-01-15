@@ -11,6 +11,7 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "format": "prettier --write \"src/**/*.{js,jsx,scss}\" \"**/*.{json,html}\" \".*rc\"",
+        "lint": "eslint src/"
     },
     "dependencies": {
         "@testing-library/jest-dom": "^5.14.1",
