@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Text.scss';
 
 export const Text = ({ children, type, size }) => {
-    return <p className={`atom__text`} type={type} size={size}>{children}</p>;
+    return <span className={`atom__text atom__text${type}`}>{children}</span>;
 };
 
 Text.propTypes = {
