@@ -2,15 +2,17 @@ import PropTypes from 'prop-types';
 
 import './Text.scss';
 
-export const Text = ({ children, variant }) => {
-    return <p className={`atom__text atom__text__${variant}`}>{children}</p>;
+export const Text = ({ children, type, size }) => {
+    return <p className={`atom__text atom__text__${type, size}`}>{children}</p>;
 };
 
 Text.propTypes = {
-    children: PropTypes.node,
-    variant: PropTypes.oneOf(['primary', 'secondary'])
+    children: PropTypes.string,
+    type: PropTypes.oneOf(['primary', 'secondary', 'accent']),
+    size: PropTypes.oneOf(['small', 'medium', 'large', 'extraLarge'])
 };
 
 Text.defaultProps = {
-    variant: 'primary'
+    type: 'primary',
+    size: 'medium'
 };
