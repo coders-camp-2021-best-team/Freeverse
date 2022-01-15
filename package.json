@@ -2,6 +2,16 @@
     "name": "freeverse",
     "version": "0.1.0",
     "private": true,
+    "scripts": {
+        "preinstall": "$npm_execpath --silent run checkyarn",
+        "postinstall": "husky install",
+        "checkyarn": "echo \"$npm_execpath\" | grep -q \"yarn\\.js$\" || (echo '⚠️  Use yarn not npm! ⚠️ ' && echo && exit 1)",
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "format": "prettier --write \"src/**/*.{js,jsx,scss}\" \"**/*.{json,html}\" \".*rc\"",
+    },
     "dependencies": {
         "@testing-library/jest-dom": "^5.14.1",
         "@testing-library/react": "^12.0.0",
@@ -24,14 +34,8 @@
         "sass": "^1.47.0",
         "web-vitals": "^2.1.0"
     },
-    "scripts": {
-        "preinstall": "$npm_execpath --silent run checkyarn",
-        "checkyarn": "echo \"$npm_execpath\" | grep -q \"yarn\\.js$\" || (echo '⚠️  Use yarn not npm! ⚠️ ' && echo && exit 1)",
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject",
-        "format": "prettier --write \"src/**/*.{js,jsx,scss}\" \"**/*.{json,html}\" \".*rc\""
+    "devDependencies": {
+        "husky": "^7.0.4"
     },
     "browserslist": {
         "production": [
