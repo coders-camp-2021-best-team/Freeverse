@@ -14,19 +14,19 @@
     }
 
     &__small {
-        color: $accent-color;
+        font-size: $small-font;
     }
 
     &__medium {
-        color: $accent-color;
+        font-size: $medium-font;
     }
 
     &__large {
-        color: $accent-color;
+        font-size: $large-font;
     }
 
     &__extraLarge {
-        color: $accent-color;
+        font-size: $extraLarge-font;
     }
 
 }
