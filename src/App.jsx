@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import { ProtectedRoute } from './components';
 import { BaseScreen, ChatPage, EditProfilePage, ErrorPage, FeedScreenPage, HomePage, ProfilePage } from './pages';
 
-const someID="jP-2I-E7" //temporary 
+const someID="jP-2I-E7" //TODO This is temporary 
 
 export const App = () => {
     return (
