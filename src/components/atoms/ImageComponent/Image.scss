@@ -1,0 +1,10 @@
+@import '../../../styles/variables.scss';
+
+.atom__image {
+    &__medium {
+        width: $image-width-medium;
+    }
+    &large {
+        width: $image-width-large;
+    }
+}
