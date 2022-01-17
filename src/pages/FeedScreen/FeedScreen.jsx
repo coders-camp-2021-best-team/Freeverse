@@ -1,9 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export const FeedScreenPage = () => {
-  return (
-    <div>
-      This is feed screen
-    </div>
-  )
-}
+    return <div>This is feed screen</div>;
+};

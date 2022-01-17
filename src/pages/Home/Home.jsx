@@ -6,7 +6,7 @@ export const HomePage = () => {
         <div className='page__home'>
             <HelloWorld />
             <Counter initValue={10} />
-            <Link to="/site">Main site</Link>
+            <Link to='/site'>Main site</Link>
         </div>
     );
 };
