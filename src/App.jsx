@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import { ProtectedRoute } from './components';
 import { BaseScreen, ChatPage, EditProfilePage, ErrorPage, FeedScreenPage, HomePage, ProfilePage } from './pages';
 
-export const someID="jP-2I-E7" //TODO This is temporary 
+export const profileID="jP-2I-E7" //TODO This is temporary 
 
 export const App = () => {
     return (
@@ -16,7 +16,7 @@ export const App = () => {
                     <BaseScreen> 
                         <Routes>
                             <Route exact index element={<ProtectedRoute><FeedScreenPage/></ProtectedRoute>} />
-                            <Route exact path="/profile/:id"  element={<ProtectedRoute><ProfilePage id={someID}/></ProtectedRoute>} />
+                            <Route exact path="/profile/:id"  element={<ProtectedRoute><ProfilePage id={profileID}/></ProtectedRoute>} />
                             <Route exact path="/chat" element={<ProtectedRoute><ChatPage/></ProtectedRoute>} />
                             <Route exact path="/edit-profile" element={<ProtectedRoute><EditProfilePage/></ProtectedRoute>} />
                             <Route path="*" element={<Navigate to="/not-found"/>}/>
