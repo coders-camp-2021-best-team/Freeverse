@@ -11,10 +11,7 @@ export const Counter = ({ initValue, minValue, maxValue }) => {
 
     return (
         <div className='organism__counter'>
-            <Text variant='secondary'>
-                {'Counter: '}
-                {count}
-            </Text>
+            <Text variant='secondary'>{`Counter: ${count}`}</Text>
             <Button text='Decrease!' onClick={decrease} />
             <Button text='Increase!' onClick={increase} />
         </div>

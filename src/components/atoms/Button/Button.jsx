@@ -15,7 +15,7 @@ export const Button = ({ type, text, variant, onClick }) => {
 };
 
 Button.propTypes = {
-    type: PropTypes.string.oneOf('submit', 'button', 'reset'),
+    type: PropTypes.oneOf(['submit', 'button', 'reset']),
     text: PropTypes.string.isRequired,
     variant: PropTypes.oneOf(['submit', 'primary', 'secondary', 'cancel']),
     onClick: PropTypes.func
