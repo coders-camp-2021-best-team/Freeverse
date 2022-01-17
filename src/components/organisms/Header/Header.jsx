@@ -5,9 +5,9 @@ export const Header = (props) => {
   return (
     <header>
       <Link to="/">Home</Link>
-      <Link to={`/profile/${props.id}`}>Profile</Link>
-      <Link to="/chat">Chat</Link>
-      <Link to="/edit-profile">Edit Profile</Link>
+      <Link to={`/site/profile/${props.id}`}>Profile</Link>
+      <Link to="/site/chat">Chat</Link>
+      <Link to="/site/edit-profile">Edit Profile</Link>
     </header>
   )
 }

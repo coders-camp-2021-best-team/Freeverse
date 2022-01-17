@@ -1,22 +1,32 @@
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ProtectedRoute } from './components';
 import { Header } from './components/organisms/Header/Header';
-import { ProfilePage, EditProfilePage, ChatPage, FeedScreenPage, ErrorPage } from './pages';
+import { ProfilePage, EditProfilePage, ChatPage, FeedScreenPage, ErrorPage, HomePage } from './pages';
 
 export const App = () => {
     const someID="lolo" //temporary 
 
     return (
         <Router>
-            <Header id={someID}/>
-            <main>
-                <Routes>
-                    <Route path="/" exact element={<FeedScreenPage/>} />
-                    <Route path="/profile/:id"  element={<ProfilePage id={someID}/>} />
-                    <Route path="/chat" element={<ChatPage/>} />
-                    <Route path="/edit-profile" element={<EditProfilePage/>} />
-                    <Route path="*" element={<ErrorPage/>} />
-                </Routes>
-            </main>
+            <Routes>
+                <Route exact path="/" element={<HomePage/>} />
+                <Route exact path="/site/*" element=
+                    {<>
+                        <Header id={someID}/>
+                        <main>
+                            <Routes>
+                                <Route exact path="/feed-screen"  element={<ProtectedRoute><FeedScreenPage/></ProtectedRoute>} />
+                                <Route exact path="/profile/:id"  element={<ProtectedRoute><ProfilePage id={someID}/></ProtectedRoute>} />
+                                <Route exact path="/chat" element={<ProtectedRoute><ChatPage/></ProtectedRoute>} />
+                                <Route exact path="/edit-profile" element={<ProtectedRoute><EditProfilePage/></ProtectedRoute>} />
+                            </Routes>
+                        </main>
+                    </>
+                    }
+                />
+                <Route exact path="*" element={<ErrorPage/>} />
+            </Routes>
         </Router>
     );
 };
