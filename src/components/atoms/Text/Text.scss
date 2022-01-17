@@ -1,11 +1,32 @@
-.atom__text {
-    font-size: medium;
+@import '../../../styles/variables.scss';
 
+.atom__text {
     &__primary {
-        color: black;
+        color: $primary-color;
     }
 
     &__secondary {
-        color: gray;
+        color: $secondary-color;
     }
+
+    &__accent {
+        color: $accent-color;
+    }
+
+    &__small {
+        font-size: $small-font;
+    }
+
+    &__medium {
+        font-size: $medium-font;
+    }
+
+    &__large {
+        font-size: $large-font;
+    }
+
+    &__extraLarge {
+        font-size: $extraLarge-font;
+    }
+
 }
