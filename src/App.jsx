@@ -1,31 +1,28 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { ProtectedRoute } from './components';
-import { Header } from './components/organisms/Header/Header';
-import { ProfilePage, EditProfilePage, ChatPage, FeedScreenPage, ErrorPage, HomePage } from './pages';
+import { BaseScreen, ChatPage, EditProfilePage, ErrorPage, FeedScreenPage, HomePage, ProfilePage } from './pages';
+
+const someID="jP-2I-E7" //temporary 
 
 export const App = () => {
-    const someID="lolo" //temporary 
-
     return (
         <Router>
             <Routes>
                 <Route exact path="/" element={<HomePage/>} />
-                <Route exact path="/site/*" element=
-                    {<>
-                        <Header id={someID}/>
-                        <main>
-                            <Routes>
-                                <Route exact index element={<ProtectedRoute><FeedScreenPage/></ProtectedRoute>} />
-                                <Route exact path="/profile/:id"  element={<ProtectedRoute><ProfilePage id={someID}/></ProtectedRoute>} />
-                                <Route exact path="/chat" element={<ProtectedRoute><ChatPage/></ProtectedRoute>} />
-                                <Route exact path="/edit-profile" element={<ProtectedRoute><EditProfilePage/></ProtectedRoute>} />
-                            </Routes>
-                        </main>
-                    </>
-                    }
-                />
-                <Route exact path="*" element={<ErrorPage/>} />
+                <Route exact path="*" element={<Navigate to="/not-found"/>} />
+                <Route exact path="/not-found" element={<ErrorPage/>} />
+                <Route exact path="/site/*" element={
+                    <BaseScreen id={someID}> 
+                        <Routes>
+                            <Route exact index element={<ProtectedRoute><FeedScreenPage/></ProtectedRoute>} />
+                            <Route exact path="/profile/:id"  element={<ProtectedRoute><ProfilePage id={someID}/></ProtectedRoute>} />
+                            <Route exact path="/chat" element={<ProtectedRoute><ChatPage/></ProtectedRoute>} />
+                            <Route exact path="/edit-profile" element={<ProtectedRoute><EditProfilePage/></ProtectedRoute>} />
+                            <Route path="*" element={<Navigate to="/not-found"/>}/>
+                        </Routes>
+                    </BaseScreen>
+                }/>
             </Routes>
         </Router>
     );
