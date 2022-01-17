@@ -5,6 +5,7 @@ import './Button.scss';
 export const Button = ({ text, variant, onClick }) => {
     return (
         <button
+            type='button'
             className={`atom__button atom__button__${variant}`}
             onClick={onClick}
         >

@@ -12,5 +12,6 @@ Text.propTypes = {
 };
 
 Text.defaultProps = {
+    children: null,
     variant: 'primary'
 };
