@@ -22,6 +22,10 @@
             {
                 "forbidDefaultForRequired": true
             }
+        ],
+        "react/jsx-wrap-multilines": [
+            "error",
+            { "declaration": false, "assignment": false }
         ]
     }
 }
