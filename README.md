@@ -2,7 +2,19 @@
 
 This project was made due to the **[CodersCamp2021](https://www.coderscamp.edu.pl/)**
 
-## For Windows users
+## Important Notices
+
+### Precommit Hook
+
+We are using a great tool called Husky. It runs before every commit automatically linting and formatting your code.
+**Remember that you need to first run `yarn` to install it.**
+
+### .env.example
+
+There is a script that automatically copies `.env.example` to `.env` if `.env` does not already exist.
+If you are a Windows user, please refer to the notice below.
+
+### For Windows users
 
 If you are a Windows user, please use Git Bash or any other linux-like shell.
 Some commands MAY NOT work on default Windows Command Line.
