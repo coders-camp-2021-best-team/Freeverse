@@ -21,51 +21,66 @@ export const App = () => {
     return (
         <Router>
             <Routes>
-                <Route exact path='/'>
-                    <HomePage />
-                </Route>
+                <Route exact path='/' element={<HomePage />} />
 
-                <Route exact path='*'>
-                    <Navigate to='/not-found' />
-                </Route>
+                <Route exact path='*' element={<Navigate to='/not-found' />} />
 
-                <Route exact path='/not-found'>
-                    <ErrorPage />
-                </Route>
+                <Route exact path='/not-found' element={<ErrorPage />} />
 
-                <Route exact path='/site/*'>
-                    <BaseScreen>
-                        <Routes>
-                            <Route exact index>
-                                <ProtectedRoute>
-                                    <FeedScreenPage />
-                                </ProtectedRoute>
-                            </Route>
+                <Route
+                    exact
+                    path='/site/*'
+                    element={
+                        <BaseScreen>
+                            <Routes>
+                                <Route
+                                    exact
+                                    index
+                                    element={
+                                        <ProtectedRoute>
+                                            <FeedScreenPage />
+                                        </ProtectedRoute>
+                                    }
+                                />
 
-                            <Route exact path='/profile/:id'>
-                                <ProtectedRoute>
-                                    <ProfilePage id={profileID} />
-                                </ProtectedRoute>
-                            </Route>
+                                <Route
+                                    exact
+                                    path='/profile/:id'
+                                    element={
+                                        <ProtectedRoute>
+                                            <ProfilePage id={profileID} />
+                                        </ProtectedRoute>
+                                    }
+                                />
 
-                            <Route exact path='/chat'>
-                                <ProtectedRoute>
-                                    <ChatPage />
-                                </ProtectedRoute>
-                            </Route>
+                                <Route
+                                    exact
+                                    path='/chat'
+                                    element={
+                                        <ProtectedRoute>
+                                            <ChatPage />
+                                        </ProtectedRoute>
+                                    }
+                                />
 
-                            <Route exact path='/edit-profile'>
-                                <ProtectedRoute>
-                                    <EditProfilePage />
-                                </ProtectedRoute>
-                            </Route>
+                                <Route
+                                    exact
+                                    path='/edit-profile'
+                                    element={
+                                        <ProtectedRoute>
+                                            <EditProfilePage />
+                                        </ProtectedRoute>
+                                    }
+                                />
 
-                            <Route path='*'>
-                                <Navigate to='/not-found' />
-                            </Route>
-                        </Routes>
-                    </BaseScreen>
-                </Route>
+                                <Route
+                                    path='*'
+                                    element={<Navigate to='/not-found' />}
+                                />
+                            </Routes>
+                        </BaseScreen>
+                    }
+                />
             </Routes>
         </Router>
     );
