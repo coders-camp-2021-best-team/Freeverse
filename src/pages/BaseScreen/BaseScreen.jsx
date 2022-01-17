@@ -1,21 +1,15 @@
 import PropTypes from 'prop-types';
-import { Header } from '../../components/organisms/Header/Header';
+import { Header } from '../../components';
 
-export const BaseScreen = ({ children, id }) => {
+export const BaseScreen = ({ children }) => {
     return (
         <>
-            <Header id={id} />
+            <Header />
             <main>{children}</main>
         </>
     );
 };
 
 BaseScreen.propTypes = {
-    children: PropTypes.node,
-    id: PropTypes.number // TODO: specify type for ID, this is temporary
-};
-
-BaseScreen.defaultProps = {
-    children: null,
-    id: null // TODO: remove default value for ID
+    children: PropTypes.node.isRequired
 };

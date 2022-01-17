@@ -27,6 +27,8 @@
             "error",
             { "declaration": false, "assignment": false }
         ],
-        "linebreak-style": ["error", "unix"]
+        "linebreak-style": ["error", "unix"],
+        "object-curly-newline": "off",
+        "react/button-has-type": "off"
     }
 }

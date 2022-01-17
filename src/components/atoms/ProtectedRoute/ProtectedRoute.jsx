@@ -8,9 +8,5 @@ export const ProtectedRoute = ({ children }) => {
 };
 
 ProtectedRoute.propTypes = {
-    children: PropTypes.node
-};
-
-ProtectedRoute.defaultProps = {
-    children: null
+    children: PropTypes.node.isRequired
 };
