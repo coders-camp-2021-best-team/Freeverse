@@ -16,7 +16,7 @@ export const App = () => {
                         <Header id={someID}/>
                         <main>
                             <Routes>
-                                <Route exact path="/feed-screen"  element={<ProtectedRoute><FeedScreenPage/></ProtectedRoute>} />
+                                <Route exact index element={<ProtectedRoute><FeedScreenPage/></ProtectedRoute>} />
                                 <Route exact path="/profile/:id"  element={<ProtectedRoute><ProfilePage id={someID}/></ProtectedRoute>} />
                                 <Route exact path="/chat" element={<ProtectedRoute><ChatPage/></ProtectedRoute>} />
                                 <Route exact path="/edit-profile" element={<ProtectedRoute><EditProfilePage/></ProtectedRoute>} />
