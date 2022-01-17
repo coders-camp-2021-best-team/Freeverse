@@ -1,11 +1,9 @@
-import React from 'react';
 import {
     BrowserRouter as Router,
     Route,
     Routes,
     Navigate
 } from 'react-router-dom';
-import { ProtectedRoute } from './components';
 import {
     BaseScreen,
     ChatPage,
@@ -15,6 +13,7 @@ import {
     HomePage,
     ProfilePage
 } from './pages';
+import { ProtectedRoute } from './components';
 
 export const profileID = 'jP-2I-E7'; // TODO: This is temporary
 
