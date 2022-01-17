@@ -26,6 +26,7 @@
         "react/jsx-wrap-multilines": [
             "error",
             { "declaration": false, "assignment": false }
-        ]
+        ],
+        "linebreak-style": ["error", "unix"]
     }
 }
