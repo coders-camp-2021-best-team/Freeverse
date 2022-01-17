@@ -3,8 +3,10 @@
 .atom__image {
     &__medium {
         width: $image-width-medium;
+        height: auto;
     }
     &large {
         width: $image-width-large;
+        height: auto;
     }
 }
