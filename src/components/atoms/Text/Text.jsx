@@ -11,12 +11,13 @@ export const Text = ({ children, type, size }) => {
 };
 
 Text.propTypes = {
-    children: PropTypes.string.isRequired,
+    children: PropTypes.node,
     type: PropTypes.oneOf(['primary', 'secondary', 'accent']),
     size: PropTypes.oneOf(['small', 'medium', 'large', 'extraLarge'])
 };
 
 Text.defaultProps = {
+    children: null,
     type: 'primary',
     size: 'medium'
 };
