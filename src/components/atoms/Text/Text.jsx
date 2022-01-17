@@ -7,7 +7,7 @@ export const Text = ({ children, type, size }) => {
 };
 
 Text.propTypes = {
-    children: PropTypes.string,
+    children: PropTypes.string.isRequired,
     type: PropTypes.oneOf(['primary', 'secondary', 'accent']),
     size: PropTypes.oneOf(['small', 'medium', 'large', 'extraLarge'])
 };
