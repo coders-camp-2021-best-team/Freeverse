@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 
 import './Button.scss';
 
-export const Button = ({ text, variant, onClick }) => {
+export const Button = ({ type, text, variant, onClick }) => {
     return (
         <button
+            type={type}
             className={`atom__button atom__button__${variant}`}
             onClick={onClick}
         >
@@ -14,12 +15,14 @@ export const Button = ({ text, variant, onClick }) => {
 };
 
 Button.propTypes = {
+    type: PropTypes.oneOf(['submit', 'button', 'reset']),
     text: PropTypes.string.isRequired,
     variant: PropTypes.oneOf(['submit', 'primary', 'secondary', 'cancel']),
     onClick: PropTypes.func
 };
 
 Button.defaultProps = {
+    type: 'button',
     variant: 'primary',
-    onClick: () => undefined
+    onClick: () => null
 };
