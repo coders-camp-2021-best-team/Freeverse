@@ -75,7 +75,9 @@ export const App = () => {
 
                                 <Route
                                     path='*'
-                                    element={<Navigate to='/not-found' />}
+                                    element={
+                                        <Navigate to='/not-found' replace />
+                                    }
                                 />
                             </Routes>
                         </BaseScreen>
