@@ -1,13 +1,15 @@
-import { Header } from "../../components/organisms/Header/Header"
+import PropTypes from 'prop-types';
+import { Header } from '../../components';
 
+export const BaseScreen = ({ children }) => {
+    return (
+        <>
+            <Header />
+            <main>{children}</main>
+        </>
+    );
+};
 
-export const BaseScreen = ({children, id}) => {
-  return (
-    <>
-      <Header id={id}/>
-      <main>
-        {children}
-      </main>
-    </>
-  )
-}
+BaseScreen.propTypes = {
+    children: PropTypes.node.isRequired
+};
