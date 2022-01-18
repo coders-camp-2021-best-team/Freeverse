@@ -5,13 +5,15 @@ import './Image.scss';
 // TODO Add loading on image onLoad
 
 export const ImageComponent = memo(({ src, size, onClick }) => {
-
     const imageOnClick = useCallback(() => onClick(), [onClick]);
 
     return (
-
-        <img src={src} className={`atom__image atom_image_${size}`} alt="" onClick={imageOnClick} />
-
+        <img
+            src={src}
+            className={`atom__image atom_image_${size}`}
+            alt=''
+            onClick={imageOnClick}
+        />
     );
 });
 
@@ -22,5 +24,6 @@ ImageComponent.propTypes = {
 };
 
 ImageComponent.defaultProps = {
-    size: 'medium'
+    size: 'medium',
+    onClick: () => null
 };
