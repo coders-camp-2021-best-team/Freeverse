@@ -21,7 +21,7 @@ Please enable `Editor: Format On Save` option from `VSCode Settings` to automati
 ### Precommit Hook
 
 We are using a great tool called Husky. It runs before every commit automatically linting and formatting your code.
-**Remember that you need to first run `yarn` to install it.**
+**Remember that you need to first run `yarn install` to install it.**
 
 ### .env.example
 
@@ -30,14 +30,14 @@ If you are a Windows user, please refer to the notice below.
 
 ### For Windows users
 
-If you are a Windows user, please use Git Bash or any other linux-like shell.
-Some commands MAY NOT work on default Windows Command Line.
+If you are a Windows user, please use Git Bash or any other UNIX-like shell (e.g. Git Bash).
+Some commands **MAY NOT** work on default Windows Command Line.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `yarn`
+### `yarn install`
 
 Installs all required packages.
 This is the first command that you should run after cloning this repo.
