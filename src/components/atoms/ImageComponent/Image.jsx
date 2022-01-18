@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useCallback, memo } from 'react';
 import './Image.scss';
 
 // TODO Add loading on image onLoad
@@ -9,13 +10,17 @@ export const ImageComponent = memo(({ src, size, onClick }) => {
 
     return (
 
-        <img src={`${src}`} clasName={`atom__image atom_image_${size}`} onClick={imageOnClick}></img>
+        <img src={src} className={`atom__image atom_image_${size}`} onClick={imageOnClick} />
 
     );
 });
 
 ImageComponent.propTypes = {
     size: PropTypes.oneOf(['medium', 'large']),
-    src: img.propTypes.src.isRequired,
+    src: PropTypes.string.isRequired,
     onClick: PropTypes.func
+};
+
+ImageComponent.defaultProps = {
+    size: 'medium'
 };
