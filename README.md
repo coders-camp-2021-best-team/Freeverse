@@ -4,6 +4,20 @@ This project was made due to the **[CodersCamp2021](https://www.coderscamp.edu.p
 
 ## Important Notices
 
+### VSCode Recommended Extensions
+
+-   [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+-   [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+-   [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+-   [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
+-   [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
+-   [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
+-   [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
+
+### VSCode Format On Save
+
+Please enable `Editor: Format On Save` option from `VSCode Settings` to automatically format your source code.
+
 ### Precommit Hook
 
 We are using a great tool called Husky. It runs before every commit automatically linting and formatting your code.
