@@ -9,7 +9,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "format": "prettier --write \"src/**/*.{js,jsx,scss}\" \"**/*.{json,html}\" \".*rc\"",
+        "format": "prettier --write \"src/**/*.{js,jsx,scss}\" \"**/*.{json,html}\" \".{prettier,eslint}rc\"",
         "lint": "eslint src/ --ext .js,.jsx"
     },
     "dependencies": {
