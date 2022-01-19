@@ -15,7 +15,8 @@ import {
 } from './pages';
 import { ProtectedRoute } from './components';
 
-export const profileID = 'jP-2I-E7'; // TODO: This is temporary
+import './styles/global.scss';
+import 'typeface-roboto';
 
 export const App = () => {
     return (
