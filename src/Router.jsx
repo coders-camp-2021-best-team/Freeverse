@@ -1,12 +1,20 @@
-import { Router } from './Router';
-import { AuthContextProvider } from './utils';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import {
+    BaseScreen,
+    ChatPage,
+    EditProfilePage,
+    ErrorPage,
+    FeedScreenPage,
+    HomePage,
+    ProfilePage
+} from './pages';
+import { ProtectedRoute } from './components';
 
-import './styles/global.scss';
-import 'typeface-roboto';
+export const profileID = 'jP-2I-E7'; // TODO: This is temporary
 
-export const App = () => {
+export const Router = () => {
     return (
-        <Router>
+        <BrowserRouter>
             <Routes>
                 <Route exact path='/' element={<HomePage />} />
 
@@ -71,6 +79,6 @@ export const App = () => {
                     }
                 />
             </Routes>
-        </Router>
+        </BrowserRouter>
     );
 };
