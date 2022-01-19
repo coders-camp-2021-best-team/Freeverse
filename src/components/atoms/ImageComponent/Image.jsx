@@ -10,7 +10,7 @@ export const ImageComponent = memo(({ src, size, onClick }) => {
     return (
         <img
             src={src}
-            className={`atom__image atom_image_${size}`}
+            className={`atom__image atom__image__${size}`}
             alt=''
             onClick={imageOnClick}
         />
