@@ -14,13 +14,11 @@ export const Icon = ({ iconName, size, className, onClick}) => {
   const TheIcon = icons[iconName]
 
   return (
-    <div>
       <TheIcon
         className={`icon icon${size} icon${className}`}
         onClick={handleClick}
       />
 
-    </div>
   )
 };
 
