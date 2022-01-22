@@ -12,14 +12,15 @@ export const ErrorPage = () => {
             <Text customClass='error__text__small'>
                 The Page You Are Looking For
                 <br />
-                Doesn’t Exist Or An Other Error
-                Occurred.
+                Doesn’t Exist Or An Other Error Occurred.
                 <br />
                 Go Back, Or Head Over To Home Page
                 <br />
                 To Choose A New Direction.
             </Text>
-            <Link to='/'><Button text='BACK TO HOME PAGE' /></Link>
+            <Link to='/'>
+                <Button text='BACK TO HOME PAGE' />
+            </Link>
         </div>
     );
 };

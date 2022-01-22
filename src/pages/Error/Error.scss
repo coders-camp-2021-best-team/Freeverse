@@ -8,19 +8,19 @@
     align-items: center;
     font-weight: 800;
     font-size: 2rem;
-    .error__text{
-      &__small{
-        font-size: 2rem;
-        text-align: center;
-      }
-      &__medium{
-        font-size: 4rem;
-      }
-      &__large{
-        font-size: 7rem;
-      }
-      &__extraLarge{
-        font-size: 15rem;
-      }
+    .error__text {
+        &__small {
+            font-size: 2rem;
+            text-align: center;
+        }
+        &__medium {
+            font-size: 4rem;
+        }
+        &__large {
+            font-size: 7rem;
+        }
+        &__extraLarge {
+            font-size: 15rem;
+        }
     }
 }
