@@ -1,22 +1,21 @@
-
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
 import { ReactComponent as Like } from './icons/like.svg';
 import './Icon.scss';
 
 
-// still unused - to be changed
-
 
 const icons = {
   'like': Like
   }
 
-export const Icon = ({ iconName, size, className, onClick }) => {
+export const Icon = ({ iconName, size, className, onClick}) => {
   const handleClick = useCallback(() => onClick(), [onClick]);
+  const TheIcon = icons[iconName]
+
   return (
     <div>
-      <Like
+      <TheIcon
         className={`icon icon${size} icon${className}`}
         onClick={handleClick}
       />
