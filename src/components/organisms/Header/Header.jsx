@@ -1,13 +1,16 @@
 import { Link } from 'react-router-dom';
 import { profileID } from '../../../App';
+import { routes } from '../../../routes/Routes';
 
 export const Header = () => {
     return (
         <header>
-            <Link to='/'>Home</Link>
-            <Link to={`/site/profile/${profileID}`}>Profile</Link>
-            <Link to='/site/chat'>Chat</Link>
-            <Link to='/site/edit-profile'>Edit Profile</Link>
+            <Link to={routes.Home}>Home</Link>
+            <Link to={`${routes.Feed}${routes.Profile}/${profileID}`}>
+                Profile
+            </Link>
+            <Link to={`${routes.Feed}${routes.Chat}`}>Chat</Link>
+            <Link to={`${routes.Feed}${routes.EditProfile}`}>Edit Profile</Link>
         </header>
     );
 };
