@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import { Text } from '../../atoms/Text/Text';
 import '../../atoms/Text/Text.scss';
+import './Comment.scss';
 
 export const Comment = ({ username, date, commentText }) => {
     return (
-        <div>
-            <div>
+        <div className='comment'>
+            <div className='comment__info'>
                 <Text type='primary' size='small'>
                     {date}
                 </Text>
@@ -13,7 +14,7 @@ export const Comment = ({ username, date, commentText }) => {
                     {username}
                 </Text>
             </div>
-            <div>
+            <div className='comment__text'>
                 <Text type='primary' size='medium'>
                     {commentText}
                 </Text>
