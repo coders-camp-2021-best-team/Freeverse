@@ -1,10 +1,15 @@
 import { useNavigate } from 'react-router-dom';
+import { useCallback } from 'react';
 import { Text, Button } from '../../components/index';
+import { routes } from '../../routes/Routes';
 
 import './Error.scss';
 
 export const ErrorPage = () => {
     const navigate = useNavigate();
+    const redirect = useCallback(() => {
+        navigate(routes.Home);
+    }, [navigate]);
 
     return (
         <div className='error__page'>
@@ -16,7 +21,7 @@ export const ErrorPage = () => {
                 Occurred. Go Back, Or Head Over To Home Page To Choose A New
                 Direction.
             </Text>
-            <Button text='BACK TO HOME PAGE' onClick={() => navigate('/')} />
+            <Button text='BACK TO HOME PAGE' onClick={redirect} />
         </div>
     );
 };
