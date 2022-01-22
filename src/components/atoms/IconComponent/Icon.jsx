@@ -1,7 +1,7 @@
+import './Icon.scss';
 import PropTypes from 'prop-types';
 import { useCallback } from 'react';
 import { ReactComponent as Like } from './icons/like.svg';
-import './Icon.scss';
 
 
 
@@ -20,7 +20,7 @@ export const Icon = ({ iconName, size, className, onClick}) => {
         />
 
     )
-    };
+};
 
 
 
