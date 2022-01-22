@@ -6,34 +6,34 @@ import './Icon.scss';
 
 
 const icons = {
-  'like': Like
-  }
+    'like': Like
+    }
 
 export const Icon = ({ iconName, size, className, onClick}) => {
-  const handleClick = useCallback(() => onClick(), [onClick]);
-  const TheIcon = icons[iconName]
+    const handleClick = useCallback(() => onClick(), [onClick]);
+    const TheIcon = icons[iconName]
 
-  return (
-      <TheIcon
-        className={`icon icon${size} icon${className}`}
-        onClick={handleClick}
-      />
+    return (
+        <TheIcon
+            className={`icon icon${size} icon${className}`}
+            onClick={handleClick}
+        />
 
-  )
-};
+    )
+    };
 
 
 
 /* eslint-disable react/no-typos */
 Icon.PropTypes = {
-  iconName: PropTypes.string.isRequired,
-  size: PropTypes.oneOf(['small','medium', 'large']),
-  onClick: PropTypes.func
+    iconName: PropTypes.string.isRequired,
+    size: PropTypes.oneOf(['small','medium', 'large']),
+    onClick: PropTypes.func
 }
 
 Icon.defaultProps = {
-  size: 'medium',
-  onClick: () => null
+    size: 'medium',
+    onClick: () => null
 }
 
 
