@@ -1,26 +1,58 @@
 @import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
 
 .error__page {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
     align-items: center;
     font-weight: 800;
-    font-size: 2rem;
     .error__text {
         &__small {
-            font-size: 2rem;
+            font-size: 0.7rem;
             text-align: center;
+            width: 15rem;
+            margin-bottom: 35px;
         }
         &__medium {
             font-size: 4rem;
+            margin-bottom: 87px;
         }
         &__large {
-            font-size: 7rem;
+            font-size: 2rem;
+            margin-bottom: 22px;
         }
         &__extraLarge {
-            font-size: 15rem;
+            font-size: 2rem;
+            margin-top: 98px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@include for-desktop-up {
+    .error__page {
+        font-size: 2rem;
+        justify-content: space-around;
+        .error__text {
+            &__small {
+                font-size: 2rem;
+                text-align: center;
+                width: 41rem;
+                margin: 0;
+            }
+            &__medium {
+                font-size: 4rem;
+                margin: 0;
+            }
+            &__large {
+                font-size: 7rem;
+                margin: 0;
+            }
+            &__extraLarge {
+                font-size: 15rem;
+                margin: 0;
+            }
         }
     }
 }
