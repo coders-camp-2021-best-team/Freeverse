@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Text, Button } from '../../components/index';
 
 import './Error.scss';
 
 export const ErrorPage = () => {
+    const navigate = useNavigate();
+
     return (
         <div className='error__page'>
             <Text customClass='error__text__extraLarge'>Oops!</Text>
@@ -14,9 +16,7 @@ export const ErrorPage = () => {
                 Occurred. Go Back, Or Head Over To Home Page To Choose A New
                 Direction.
             </Text>
-            <Link to='/'>
-                <Button text='BACK TO HOME PAGE' />
-            </Link>
+            <Button text='BACK TO HOME PAGE' onClick={() => navigate('/')} />
         </div>
     );
 };
