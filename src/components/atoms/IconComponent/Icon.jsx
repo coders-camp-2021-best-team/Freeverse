@@ -59,27 +59,3 @@ Icon.defaultProps = {
     size: 'medium',
     onClick: () => null
 }
-
-
-/*
-AC
-Goal of this task is to prepare Icon component, which would be handling the SVG components
-
-In Icon component we need to define an object which would look like:
-
-import {LikeIcon as ReactComponent} from './like.svg'
-const icons = {
-'like': LikeIcon,
-...
-}
-
-And based on iconName prop it would render the icon, for example
-
-icons[props.iconName]
-
-The component should accept following props:
-iconName: one of the names for icons ('like' for example)
-size?: size variant (medium, small etc.) - default to medium 
-className?: additional class for custom styling 
-onClick?: function which would invoke as user clicks on element 
-*/
