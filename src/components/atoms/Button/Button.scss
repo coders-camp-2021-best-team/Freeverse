@@ -1,10 +1,14 @@
+@import '../../../styles/variables.scss';
+
 .atom__button {
     border-radius: 10px;
     outline: none;
     color: white;
     border: none;
+    font-size: unset;
     padding: 10px;
     margin: 5px;
+    cursor: pointer;
 
     &:hover {
         opacity: 80%;
@@ -15,7 +19,7 @@
     }
 
     &__primary {
-        background-color: rgb(0, 157, 255);
+        background-color: $btn-backgroundColor;
     }
 
     &__secondary {
