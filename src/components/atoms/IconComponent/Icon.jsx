@@ -37,7 +37,7 @@ export const Icon = ({ iconName, size, className, onClick }) => {
 
     return (
         <TheIcon
-            className={`icon icon${size} icon${className}`}
+            className={`icon icon__${size} icon__${className}`}
             onClick={handleClick}
         />
     );
