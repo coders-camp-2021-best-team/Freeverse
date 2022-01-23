@@ -21,8 +21,19 @@
 
 @include for-phone-only {
     .comment {
+        &__info {
+            &__date {
+                font-size: $small-font-phone;
+            }
+            &__username {
+                font-size: $medium-font-phone;
+            }
+        }
         &__text {
             margin: 1rem 1rem;
+            &__p {
+                font-size: $small-font-phone;
+            }
         }
     }
 }
