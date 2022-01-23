@@ -8,10 +8,18 @@ export const Comment = ({ username, date, children }) => {
     return (
         <div className='comment'>
             <div className='comment__info'>
-                <Text type='primary' size='small' customClass='comment__info__date'>
+                <Text
+                    type='primary'
+                    size='small'
+                    customClass='comment__info__date'
+                >
                     <Dayjs format='DD MM YYYY hh:mm'>{date}</Dayjs>
                 </Text>
-                <Text type='accent' size='medium' customClass='comment__info__username'>
+                <Text
+                    type='accent'
+                    size='medium'
+                    customClass='comment__info__username'
+                >
                     {username}
                 </Text>
             </div>
