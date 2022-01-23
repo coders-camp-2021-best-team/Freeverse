@@ -1,13 +1,14 @@
-import { Link } from 'react-router-dom';
-import { HelloWorld, Counter } from '../../components';
-import { routes } from '../../routes/Routes';
+import { ReactComponent as Logo } from '../../Images/logo.svg';
+import { Button } from '../../components/index';
+import './Home.scss';
+
+// TODO we actually need to connect this button with google log in
 
 export const HomePage = () => {
     return (
-        <div className='page__home'>
-            <HelloWorld />
-            <Counter initValue={10} />
-            <Link to={routes.Feed}>Main site</Link>
+        <div className='home__page'>
+            <Logo className='home__page__logo' />
+            <Button text='LOG IN WITH GOOGLE' onClick />
         </div>
     );
 };
