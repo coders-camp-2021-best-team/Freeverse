@@ -2,6 +2,7 @@
 @import '../../styles/mixins.scss';
 
 .error__page {
+    font-size: 2rem;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -9,9 +10,9 @@
     font-weight: 800;
     .error__text {
         &__small {
-            font-size: 0.7rem;
+            font-size: 2rem;
             text-align: center;
-            width: 15rem;
+            width: 41rem;
             margin-bottom: 35px;
         }
         &__medium {
@@ -19,38 +20,42 @@
             margin-bottom: 87px;
         }
         &__large {
-            font-size: 2rem;
+            font-size: 7rem;
             margin-bottom: 22px;
         }
         &__extraLarge {
-            font-size: 2rem;
+            font-size: 15rem;
             margin-top: 98px;
             margin-bottom: 10px;
         }
     }
 }
 
+@include for-phone-only {
+    .error__text {
+        &__medium {
+            margin-bottom: 40px !important;
+        }
+        &__extraLarge {
+            margin-top: 45px !important;
+        }
+    }
+}
+
 @include for-desktop-up {
     .error__page {
-        font-size: 2rem;
         justify-content: space-around;
         .error__text {
             &__small {
-                font-size: 2rem;
-                text-align: center;
-                width: 41rem;
                 margin: 0;
             }
             &__medium {
-                font-size: 4rem;
                 margin: 0;
             }
             &__large {
-                font-size: 7rem;
                 margin: 0;
             }
             &__extraLarge {
-                font-size: 15rem;
                 margin: 0;
             }
         }
