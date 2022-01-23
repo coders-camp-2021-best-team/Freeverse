@@ -1,10 +1,31 @@
 @import './variables.scss';
 @import './mixins.scss';
 
-body {
-    padding: 0;
-    margin: 0;
-    background-color: $primary-backgroundColor;
-    font-family: $font-style;
-    color: $primary-color;
+html {
+    font-size: 50%;
+    body {
+        padding: 0;
+        margin: 0;
+        background-color: $primary-backgroundColor;
+        font-family: $font-style;
+        color: $primary-color;
+    }
+}
+
+@include for-phone-only {
+    html {
+        font-size: 30%;
+    }
+}
+
+@include for-tablet-landscape-up {
+    html {
+        font-size: 75%;
+    }
+}
+
+@include for-desktop-up {
+    html {
+        font-size: 100%;
+    }
 }

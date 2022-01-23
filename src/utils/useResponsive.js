@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 export const useResponsive = () => {
     const [res, setRes] = useState(window.innerWidth);
 
+    const changeRes = () => setRes(window.innerWidth);
+
     useEffect(() => {
-        window.addEventListener('resize', () => setRes(window.innerWidth));
+        window.addEventListener('resize', changeRes());
         return () => {
-            window.removeEventListener('resize', () => setRes(window.innerWidth));
+            window.removeEventListener('resize', () => changeRes());
         };
     }, []);
     return {
