@@ -1,0 +1,13 @@
+@import '../../../styles/variables.scss';
+
+.atom__image {
+    height: auto;
+
+    &__medium {
+        width: $image-width-medium;
+    }
+
+    &__large {
+        width: $image-width-large;
+    }
+}

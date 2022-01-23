@@ -1,9 +1,12 @@
-import React from 'react'
+import PropTypes from 'prop-types';
+import { Navigate } from 'react-router-dom';
 
-import { Navigate } from 'react-router-dom'
+const auth = true; // TODO: temporary
 
-const auth = true; //temporary
+export const ProtectedRoute = ({ children }) => {
+    return auth ? children : <Navigate to='/' />;
+};
 
-export const ProtectedRoute = ({children}) => {
-  return  auth ? children : <Navigate to="/"/>;
-}
+ProtectedRoute.propTypes = {
+    children: PropTypes.node.isRequired
+};
