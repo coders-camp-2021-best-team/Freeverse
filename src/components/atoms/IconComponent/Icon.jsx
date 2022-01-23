@@ -42,14 +42,13 @@ export const Icon = ({ iconName, size, className, onClick}) => {
             className={`icon icon${size} icon${className}`}
             onClick={handleClick}
         />
-
     )
 };
 
 
 
-/* eslint-disable react/no-typos */
-Icon.PropTypes = {
+
+Icon.propTypes = {
     iconName: PropTypes.oneOf(Object.keys(icons)),
     size: PropTypes.oneOf(['small','medium', 'large']),
     onClick: PropTypes.func
