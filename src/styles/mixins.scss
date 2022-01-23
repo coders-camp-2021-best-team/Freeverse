@@ -1,5 +1,5 @@
 @mixin for-phone-only {
-    @media (max-width: 425px) {
+    @media (max-width: 483px) {
         @content;
     }
 }
