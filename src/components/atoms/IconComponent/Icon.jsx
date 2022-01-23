@@ -15,46 +15,43 @@ import { ReactComponent as Power } from './icons/power.svg';
 import { ReactComponent as Send } from './icons/send.svg';
 import { ReactComponent as User } from './icons/user.svg';
 
-
-
 const icons = {
-    'like': Like,
-    'avatar': Avatar,
-    'birthday': Birthday,
-    'circleX': CircleX,
-    'comment': Comment,
-    'dislike': Dislike,
-    'fortuneCookie': FortuneCookie,
-    'googleController': GoogleController,
-    'home': Home,
-    'logo': Logo,
-    'power': Power,
-    'send': Send,
-    'user': User 
-    }
+    like: Like,
+    avatar: Avatar,
+    birthday: Birthday,
+    circleX: CircleX,
+    comment: Comment,
+    dislike: Dislike,
+    fortuneCookie: FortuneCookie,
+    googleController: GoogleController,
+    home: Home,
+    logo: Logo,
+    power: Power,
+    send: Send,
+    user: User
+};
 
-export const Icon = ({ iconName, size, className, onClick}) => {
+export const Icon = ({ iconName, size, className, onClick }) => {
     const handleClick = useCallback(() => onClick(), [onClick]);
-    const TheIcon = icons[iconName]
+    const TheIcon = icons[iconName];
 
     return (
         <TheIcon
             className={`icon icon${size} icon${className}`}
             onClick={handleClick}
         />
-    )
+    );
 };
 
-
-
-
 Icon.propTypes = {
-    iconName: PropTypes.oneOf(Object.keys(icons)),
-    size: PropTypes.oneOf(['small','medium', 'large']),
+    iconName: PropTypes.oneOf(Object.keys(icons)).isRequired,
+    size: PropTypes.oneOf(['small', 'medium', 'large']),
+    className: PropTypes.string,
     onClick: PropTypes.func
-}
+};
 
 Icon.defaultProps = {
     size: 'medium',
+    className: '',
     onClick: () => null
-}
+};
