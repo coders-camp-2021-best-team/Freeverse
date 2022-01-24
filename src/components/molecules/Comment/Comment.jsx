@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Dayjs } from 'dayjs';
+import { Date } from '../../atoms/Date/Date';
 import { Text } from '../../atoms/Text/Text';
 import '../../atoms/Text/Text.scss';
 import './Comment.scss';
@@ -13,7 +13,7 @@ export const Comment = ({ username, date, children }) => {
                     size='small'
                     customClass='comment__info__date'
                 >
-                    <Dayjs format='DD MM YYYY hh:mm'>{date}</Dayjs>
+                    <Date>{date}</Date>
                 </Text>
                 <Text
                     type='accent'
@@ -39,5 +39,5 @@ export const Comment = ({ username, date, children }) => {
 Comment.propTypes = {
     children: PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired
+    date: PropTypes.instanceOf(Date).isRequired
 };
