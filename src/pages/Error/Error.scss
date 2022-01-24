@@ -1,0 +1,63 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.error__page {
+    font-size: 2rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 800;
+    .error__text {
+        &__small {
+            font-size: 2rem;
+            text-align: center;
+            width: 41rem;
+            margin-bottom: 35px;
+        }
+        &__medium {
+            font-size: 4rem;
+            margin-bottom: 87px;
+        }
+        &__large {
+            font-size: 7rem;
+            margin-bottom: 22px;
+        }
+        &__extraLarge {
+            font-size: 15rem;
+            margin-top: 98px;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@include for-phone-only {
+    .error__text {
+        &__medium {
+            margin-bottom: 40px !important;
+        }
+        &__extraLarge {
+            margin-top: 45px !important;
+        }
+    }
+}
+
+@include for-desktop-up {
+    .error__page {
+        justify-content: space-around;
+        .error__text {
+            &__small {
+                margin: 0;
+            }
+            &__medium {
+                margin: 0;
+            }
+            &__large {
+                margin: 0;
+            }
+            &__extraLarge {
+                margin: 0;
+            }
+        }
+    }
+}

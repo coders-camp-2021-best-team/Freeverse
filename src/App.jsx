@@ -14,6 +14,7 @@ import {
     ProfilePage
 } from './pages';
 import { ProtectedRoute } from './components';
+import { routes } from './routes/Routes';
 
 export const profileID = 'jP-2I-E7'; // TODO: This is temporary
 
@@ -21,15 +22,19 @@ export const App = () => {
     return (
         <Router>
             <Routes>
-                <Route exact path='/' element={<HomePage />} />
-
-                <Route exact path='*' element={<Navigate to='/not-found' />} />
-
-                <Route exact path='/not-found' element={<ErrorPage />} />
+                <Route exact path={routes.Home} element={<HomePage />} />
 
                 <Route
                     exact
-                    path='/site/*'
+                    path={routes.Error}
+                    element={<Navigate to={routes.NotFound} />}
+                />
+
+                <Route exact path={routes.NotFound} element={<ErrorPage />} />
+
+                <Route
+                    exact
+                    path={`${routes.Feed}/*`}
                     element={
                         <BaseScreen>
                             <Routes>
@@ -45,7 +50,7 @@ export const App = () => {
 
                                 <Route
                                     exact
-                                    path='/profile/:id'
+                                    path={`${routes.Profile}/:id`}
                                     element={
                                         <ProtectedRoute>
                                             <ProfilePage id={profileID} />
@@ -55,7 +60,7 @@ export const App = () => {
 
                                 <Route
                                     exact
-                                    path='/chat'
+                                    path={routes.Chat}
                                     element={
                                         <ProtectedRoute>
                                             <ChatPage />
@@ -65,7 +70,7 @@ export const App = () => {
 
                                 <Route
                                     exact
-                                    path='/edit-profile'
+                                    path={routes.EditProfile}
                                     element={
                                         <ProtectedRoute>
                                             <EditProfilePage />
@@ -74,9 +79,12 @@ export const App = () => {
                                 />
 
                                 <Route
-                                    path='*'
+                                    path={routes.Error}
                                     element={
-                                        <Navigate to='/not-found' replace />
+                                        <Navigate
+                                            to={routes.NotFound}
+                                            replace
+                                        />
                                     }
                                 />
                             </Routes>
