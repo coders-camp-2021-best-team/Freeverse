@@ -1,17 +1,16 @@
 import PropTypes from 'prop-types';
-import { useCallback } from 'react';
 import { Text } from '../../atoms/Text/Text';
 import { Icon } from '../../atoms/IconComponent/Icon';
 import './InformationRow.scss';
 
 export const InformationRow = ({ onClick, children, src }) => {
-    const rowClick = useCallback(() => onClick(), [onClick]);
-
     return (
-        <div src={src} className='InformationRow'>
-            <Icon onClick={rowClick} />
-            <Text onClick={rowClick}>{children}</Text>
-        </div>
+        <button onClick={onClick} className='information__row'>
+            <Icon size='medium' iconName={src} />
+            <Text type='primary' size='medium'>
+                {children}
+            </Text>
+        </button>
     );
 };
 

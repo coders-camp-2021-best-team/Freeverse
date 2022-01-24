@@ -1,1 +1,1 @@
-export * from './Comment/Comment';
+export * from './InformationRow/InformationRow';

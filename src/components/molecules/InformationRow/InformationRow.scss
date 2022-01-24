@@ -1,4 +1,9 @@
 @import '../../../styles/variables.scss';
-@import '../../../styles/mixins.scss';
-@import '../../atoms/IconComponent/Icon.scss';
-@import '../../atoms/Text/Text.scss';
+
+.information__row {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    gap: 1.5rem;
+}
