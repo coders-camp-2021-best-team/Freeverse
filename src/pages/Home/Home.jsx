@@ -1,14 +1,20 @@
+import { Navigate } from 'react-router';
+import { routes } from '../../routes/Routes';
+import { Button } from '../../components';
+import { useAuth } from '../../hooks';
+
 import { ReactComponent as Logo } from '../../Images/logo.svg';
-import { Button } from '../../components/index';
 import './Home.scss';
 
-// TODO we actually need to connect this button with google log in
-
 export const HomePage = () => {
-    return (
+    const { user, login } = useAuth();
+
+    return user ? (
+        <Navigate to={routes.Feed} />
+    ) : (
         <div className='home__page'>
             <Logo className='home__page__logo' />
-            <Button text='LOG IN WITH GOOGLE' onClick />
+            <Button text='LOG IN WITH GOOGLE' onClick={login} />
         </div>
     );
 };
