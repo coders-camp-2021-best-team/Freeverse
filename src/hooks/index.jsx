@@ -1,2 +1,2 @@
 export * from './useAuth';
-export * from './useDummy';
+export * from './useResponsive';
