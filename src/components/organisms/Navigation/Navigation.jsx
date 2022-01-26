@@ -20,7 +20,11 @@ export const Navigation = () => {
     return (
         <>
             {NAV_ITEMS.map((navItem) => (
-                <InformationRow src={navItem.src} onClick={navItem.onClick} key={navItem.src}>
+                <InformationRow
+                    src={navItem.src}
+                    onClick={navItem.onClick}
+                    key={navItem.src}
+                >
                     {navItem.label}
                 </InformationRow>
             ))}
