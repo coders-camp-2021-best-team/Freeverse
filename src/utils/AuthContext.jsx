@@ -3,8 +3,6 @@
 import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
     onAuthStateChanged,
     signOut,
     UserCredential,
@@ -21,23 +19,9 @@ export const AuthContext = createContext({
     user: null,
 
     /**
-     * @param {string} email
-     * @param {string} password
      * @returns {Promise<UserCredential>}
      */
-    register: (email, password) => Promise,
-
-    /**
-     * @param {string} email
-     * @param {string} password
-     * @returns {Promise<UserCredential>}
-     */
-    login: (email, password) => Promise,
-
-    /**
-     * @returns {Promise<UserCredential>}
-     */
-    loginWithGoogle: () => Promise,
+    login: () => Promise,
 
     /**
      * @returns {Promise<void>}
@@ -55,29 +39,18 @@ export const AuthContextProvider = ({ children }) => {
         return unsubscribe;
     }, []);
 
-    const register = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password);
-    };
-
-    const login = (email, password) => {
-        return signInWithEmailAndPassword(auth, email, password);
-    };
-
-    const loginWithGoogle = () => {
+    const login = () => {
         const provider = new GoogleAuthProvider();
         return signInWithPopup(auth, provider);
     };
 
     const logout = () => {
-        signOut(auth);
+        return signOut(auth);
     };
 
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     const object = {
-        user,
-        register,
         login,
-        loginWithGoogle,
         logout
     };
 
