@@ -1,10 +1,15 @@
 import { useAuth } from '../../hooks';
-import { Text } from '../../components';
 
 export const ProfilePage = () => {
     const { user } = useAuth();
-    if (user) {
-        return <Text>{JSON.stringify(user)}</Text>;
-    }
-    return <Text>You are not logged in!</Text>;
+
+    return (
+        <>
+            <div>This is profile page</div>
+            <div>{`Hello, ${user.displayName}!`}</div>
+            <pre>
+                <code>{JSON.stringify(user, null, 4)}</code>
+            </pre>
+        </>
+    );
 };
