@@ -50,6 +50,7 @@ export const AuthContextProvider = ({ children }) => {
 
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     const object = {
+        user,
         login,
         logout
     };
