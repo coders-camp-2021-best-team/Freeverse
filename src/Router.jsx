@@ -10,14 +10,17 @@ import {
 } from './pages';
 import { ProtectedRoute } from './components';
 import { routes } from './routes/Routes';
-
-export const profileID = 'jP-2I-E7'; // TODO: This is temporary
+import { useAuth } from './hooks';
 
 export const Router = () => {
+    const { user } = useAuth();
+
     return (
         <BrowserRouter>
             <Routes>
                 <Route exact path={routes.Home} element={<HomePage />} />
+
+                <Route exact path={routes.NotFound} element={<ErrorPage />} />
 
                 <Route
                     exact
@@ -25,67 +28,47 @@ export const Router = () => {
                     element={<Navigate to={routes.NotFound} />}
                 />
 
-                <Route exact path={routes.NotFound} element={<ErrorPage />} />
+                <Route exact path={routes.Home} element={<BaseScreen />}>
+                    <Route
+                        exact
+                        path={routes.Feed}
+                        element={
+                            <ProtectedRoute>
+                                <FeedScreenPage />
+                            </ProtectedRoute>
+                        }
+                    />
 
-                <Route
-                    exact
-                    path={`${routes.Feed}/*`}
-                    element={
-                        <BaseScreen>
-                            <Routes>
-                                <Route
-                                    exact
-                                    index
-                                    element={
-                                        <ProtectedRoute>
-                                            <FeedScreenPage />
-                                        </ProtectedRoute>
-                                    }
-                                />
+                    <Route
+                        exact
+                        path={`${routes.Profile}/:id`}
+                        element={
+                            <ProtectedRoute>
+                                <ProfilePage id={user?.uid || ''} />
+                            </ProtectedRoute>
+                        }
+                    />
 
-                                <Route
-                                    exact
-                                    path={`${routes.Profile}/:id`}
-                                    element={
-                                        <ProtectedRoute>
-                                            <ProfilePage id={profileID} />
-                                        </ProtectedRoute>
-                                    }
-                                />
+                    <Route
+                        exact
+                        path={routes.Chat}
+                        element={
+                            <ProtectedRoute>
+                                <ChatPage />
+                            </ProtectedRoute>
+                        }
+                    />
 
-                                <Route
-                                    exact
-                                    path={routes.Chat}
-                                    element={
-                                        <ProtectedRoute>
-                                            <ChatPage />
-                                        </ProtectedRoute>
-                                    }
-                                />
-
-                                <Route
-                                    exact
-                                    path={routes.EditProfile}
-                                    element={
-                                        <ProtectedRoute>
-                                            <EditProfilePage />
-                                        </ProtectedRoute>
-                                    }
-                                />
-
-                                <Route
-                                    path={routes.Error}
-                                    element={
-                                        <Navigate
-                                            to={routes.NotFound}
-                                            replace
-                                        />
-                                    }
-                                />
-                            </Routes>
-                        </BaseScreen>
-                    }
-                />
+                    <Route
+                        exact
+                        path={routes.EditProfile}
+                        element={
+                            <ProtectedRoute>
+                                <EditProfilePage />
+                            </ProtectedRoute>
+                        }
+                    />
+                </Route>
             </Routes>
         </BrowserRouter>
     );
