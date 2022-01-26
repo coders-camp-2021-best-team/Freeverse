@@ -1,10 +1,12 @@
 import PropTypes from 'prop-types';
 import { Navigate } from 'react-router-dom';
-
-const auth = true; // TODO: temporary
+import { useAuth } from '../../../hooks';
+import { routes } from '../../../routes/Routes';
 
 export const ProtectedRoute = ({ children }) => {
-    return auth ? children : <Navigate to='/' />;
+    const { user } = useAuth();
+
+    return user ? children : <Navigate to={routes.Home} replace />;
 };
 
 ProtectedRoute.propTypes = {
