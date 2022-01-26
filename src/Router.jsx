@@ -28,45 +28,31 @@ export const Router = () => {
                     element={<Navigate to={routes.NotFound} />}
                 />
 
-                <Route exact path={routes.Home} element={<BaseScreen />}>
+                <Route
+                    element={
+                        <BaseScreen>
+                            <ProtectedRoute />
+                        </BaseScreen>
+                    }
+                >
                     <Route
                         exact
                         path={routes.Feed}
-                        element={
-                            <ProtectedRoute>
-                                <FeedScreenPage />
-                            </ProtectedRoute>
-                        }
+                        element={<FeedScreenPage />}
                     />
 
                     <Route
                         exact
                         path={`${routes.Profile}/:id`}
-                        element={
-                            <ProtectedRoute>
-                                <ProfilePage id={user?.uid || ''} />
-                            </ProtectedRoute>
-                        }
+                        element={<ProfilePage id={user?.uid || ''} />}
                     />
 
-                    <Route
-                        exact
-                        path={routes.Chat}
-                        element={
-                            <ProtectedRoute>
-                                <ChatPage />
-                            </ProtectedRoute>
-                        }
-                    />
+                    <Route exact path={routes.Chat} element={<ChatPage />} />
 
                     <Route
                         exact
                         path={routes.EditProfile}
-                        element={
-                            <ProtectedRoute>
-                                <EditProfilePage />
-                            </ProtectedRoute>
-                        }
+                        element={<EditProfilePage />}
                     />
                 </Route>
             </Routes>
