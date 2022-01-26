@@ -1,0 +1,16 @@
+@import '../../../styles/variables.scss';
+
+.icon {
+    height: auto;
+    &__small {
+        width: $icon-width-small;
+    }
+    &__medium {
+        width: $icon-width;
+    }
+
+    &__large {
+        width: $icon-width-large;
+    }
+    //TODO add custom styling
+}

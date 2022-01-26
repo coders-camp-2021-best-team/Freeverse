@@ -1,5 +1,5 @@
-import { Router } from './Router';
 import { AuthContextProvider } from './utils';
+import { Router } from './Router';
 
 import './styles/global.scss';
 import 'typeface-roboto';
