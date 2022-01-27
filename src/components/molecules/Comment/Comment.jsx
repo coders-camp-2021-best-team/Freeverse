@@ -13,7 +13,7 @@ export const Comment = ({ username, date, children }) => {
                     size='small'
                     customClass='comment__info__date'
                 >
-                    <Text>{dateFormat(date)}</Text>
+                    {dateFormat(date)}
                 </Text>
                 <Text
                     type='accent'
