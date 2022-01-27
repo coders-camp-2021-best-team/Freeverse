@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { Date } from '../../atoms/Date/Date';
 import { Text } from '../../atoms/Text/Text';
+import { dateFormat } from '../../../utils/format';
 import '../../atoms/Text/Text.scss';
 import './Comment.scss';
 
@@ -13,7 +13,7 @@ export const Comment = ({ username, date, children }) => {
                     size='small'
                     customClass='comment__info__date'
                 >
-                    <Date>{date}</Date>
+                    <Text>{dateFormat(date)}</Text>
                 </Text>
                 <Text
                     type='accent'

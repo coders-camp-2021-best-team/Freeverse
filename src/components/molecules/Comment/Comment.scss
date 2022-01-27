@@ -18,11 +18,3 @@
         box-shadow: $box-shadow;
     }
 }
-
-@include for-phone-only {
-    .comment {
-        &__text {
-            margin: 1rem 1rem;
-        }
-    }
-}
