@@ -5,7 +5,7 @@ import { InformationRow } from '../../molecules/InformationRow/InformationRow';
 const NAV_ITEMS = [
     {
         src: 'avatar',
-        label: 'Edit profile',
+        label: 'Profile',
         onClick: () => console.log('path edit')
     },
     {
