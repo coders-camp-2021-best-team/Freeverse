@@ -1,6 +1,8 @@
 import { Timestamp } from 'firebase/firestore';
 
 export interface User {
+    admin: boolean;
+
     displayName: string;
 
     profile_picture_url: string;
@@ -24,9 +26,9 @@ export interface Post {
 }
 
 export interface PostFull extends Post {
+    id: string;
     likes: number;
     dislikes: number;
-    comments: Comment[];
 }
 
 export type ReactionType = 'LIKE' | 'DISLIKE';
@@ -40,11 +42,11 @@ export interface Comment {
 
 export interface ChatRoom {
     members: string[];
+    admins: string[];
 }
 
 export interface ChatRoomFull extends ChatRoom {
-    id: string;
-    messages: Message[];
+    name: string;
 }
 
 export interface Message extends Comment {}
