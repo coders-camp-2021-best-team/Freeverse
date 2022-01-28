@@ -1,4 +1,3 @@
-/* eslint-disable lines-between-class-members */
 import {
     collection,
     deleteDoc,
@@ -26,7 +25,7 @@ class ApiProvider {
 
     /**
      * @param {string} userID
-     * @returns {Promise<{ background_picture_url?: string, birthday?: Date, hobbies?: string[], posts?: string[], profile_picture_url?: string, displayName: string }>}
+     * @returns {Promise<import('./ApiProvider').User>}
      */
     async getUser(userID) {
         const user = doc(this.users, userID);
@@ -43,7 +42,7 @@ class ApiProvider {
 
     /**
      * @param {string} userID
-     * @param {{ background_picture_url?: string, birthday?: Date, hobbies?: string[], posts?: string[], profile_picture_url?: string, displayName?: string }} userData
+     * @param {import('./ApiProvider').User} userData
      */
     async updateUser(userID, userData) {
         const user = doc(this.users, userID);
@@ -52,7 +51,6 @@ class ApiProvider {
 
     /**
      * @param {string} userID
-     * @returns {Promise<{ members?: string[], messages: string[] }>}
      */
     async getUserChatRooms(userID) {
         const q = query(
@@ -68,10 +66,11 @@ class ApiProvider {
 
     /**
      * @param {string} chatRoomID
+     * @param {import('./ApiProvider').ChatRoom} alreadyFetchedData
      */
     async getChatRoom(chatRoomID, alreadyFetchedData) {
         /**
-         * @type {{ members: string[] }}
+         * @type {import('./ApiProvider').ChatRoom}
          */
         // eslint-disable-next-line operator-linebreak
         const chat_room =
@@ -88,7 +87,7 @@ class ApiProvider {
 
     /**
      * @param {string} chatRoomID
-     * @returns {Promise<{authorID: string, createdOn: Date, text_content: string }[]>}
+     * @returns {Promise<import('./ApiProvider').Message[]>}
      */
     async getChatRoomMessages(chatRoomID) {
         return (
@@ -98,7 +97,7 @@ class ApiProvider {
 
     /**
      * @param {string} chatRoomID
-     * @param {{ authorID: string, createdOn: Date, text_content: string }} messageData
+     * @param {import('./ApiProvider').Message} messageData
      */
     async createChatRoomMessage(chatRoomID, messageData) {
         const message = doc(this.chat_room_messages(chatRoomID));
@@ -117,11 +116,12 @@ class ApiProvider {
 
     /**
      * @param {string} chatRoomID
-     * @param {{ members: string[] }} chatRoomData
+     * @param {import('./ApiProvider').ChatRoom} chatRoomData
      */
     async createChatRoom(chatRoomID, chatRoomData) {
         const chat_room = doc(this.chat_rooms, chatRoomID);
-        return setDoc(chat_room, chatRoomData);
+        await setDoc(chat_room, chatRoomData);
+        return chat_room.id;
     }
 
     /**
@@ -133,7 +133,7 @@ class ApiProvider {
     }
 
     /**
-     * @param {{ authorID: string, createdOn: Date, media_url?: string, reactions: string[], text_content: string }} postData
+     * @param {import('./ApiProvider').Post} postData
      */
     async createPost(postData) {
         const post = doc(this.posts);
@@ -156,7 +156,7 @@ class ApiProvider {
         const post = doc(this.posts, postID);
 
         /**
-         * @type {{ authorID: string, createdOn: Date, media_url?: string, reactions: string[], text_content: string }}
+         * @type {import('./ApiProvider').Post}
          */
         const data = (await getDoc(post)).data();
 
@@ -176,21 +176,17 @@ class ApiProvider {
 
     /**
      * @param {string} postID
+     * @returns {import('./ApiProvider').Comment[]}
      */
     async getPostComments(postID) {
-        /**
-         * @type {{ authorID: string, createdOn: Date, text_content: string }[]}
-         */
-        const comments = (await getDocs(this.post_comments(postID))).docs.map(
-            (d) => d.data()
+        return (await getDocs(this.post_comments(postID))).docs.map((d) =>
+            d.data()
         );
-
-        return comments;
     }
 
     /**
      * @param {string} postID
-     * @param {{ authorID: string, createdOn: Date, text_content: string }} commentData
+     * @param {import('./ApiProvider').Comment} commentData
      */
     async createPostComment(postID, commentData) {
         const comment = doc(this.post_comments(postID));
@@ -199,6 +195,10 @@ class ApiProvider {
         return comment.id;
     }
 
+    /**
+     * @param {string} postID
+     * @param {string} commentID
+     */
     async deletePostComment(postID, commentID) {
         const comment = doc(this.post_comments(postID), commentID);
         return deleteDoc(comment);
