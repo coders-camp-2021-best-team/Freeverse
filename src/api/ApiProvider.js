@@ -25,7 +25,7 @@ class ApiProvider {
 
     /**
      * @param {string} userID
-     * @returns {Promise<import('./ApiProvider').User>}
+     * @returns {Promise<import('./types').User>}
      */
     async getUser(userID) {
         const user = doc(this.users, userID);
@@ -36,13 +36,18 @@ class ApiProvider {
      * @param {string} userID
      */
     async getUserPosts(userID) {
-        const user = await this.getUser(userID);
-        return Promise.all(user.posts.map(async (p) => this.getPost(p)));
+        const q = query(this.posts, where('authorID', '==', userID));
+        const posts = await Promise.all(
+            (
+                await getDocs(q)
+            ).docs.map(async (d) => this.getPost(d.id, d.data()))
+        );
+        return posts;
     }
 
     /**
      * @param {string} userID
-     * @param {import('./ApiProvider').User} userData
+     * @param {import('./types').User} userData
      */
     async updateUser(userID, userData) {
         const user = doc(this.users, userID);
@@ -66,11 +71,11 @@ class ApiProvider {
 
     /**
      * @param {string} chatRoomID
-     * @param {import('./ApiProvider').ChatRoom} alreadyFetchedData
+     * @param {import('./types').ChatRoom} alreadyFetchedData
      */
     async getChatRoom(chatRoomID, alreadyFetchedData) {
         /**
-         * @type {import('./ApiProvider').ChatRoom}
+         * @type {import('./types').ChatRoom}
          */
         // eslint-disable-next-line operator-linebreak
         const chat_room =
@@ -78,16 +83,21 @@ class ApiProvider {
             alreadyFetchedData ||
             (await getDoc(doc(this.chat_rooms, chatRoomID))).data();
 
-        return {
+        /**
+         * @type {import('./types').ChatRoomFull}
+         */
+        const chat_room_full = {
             ...chat_room,
             id: chatRoomID,
             messages: await this.getChatRoomMessages(chatRoomID)
         };
+
+        return chat_room_full;
     }
 
     /**
      * @param {string} chatRoomID
-     * @returns {Promise<import('./ApiProvider').Message[]>}
+     * @returns {Promise<import('./types').Message[]>}
      */
     async getChatRoomMessages(chatRoomID) {
         return (
@@ -97,7 +107,7 @@ class ApiProvider {
 
     /**
      * @param {string} chatRoomID
-     * @param {import('./ApiProvider').Message} messageData
+     * @param {import('./types').Message} messageData
      */
     async createChatRoomMessage(chatRoomID, messageData) {
         const message = doc(this.chat_room_messages(chatRoomID));
@@ -116,7 +126,7 @@ class ApiProvider {
 
     /**
      * @param {string} chatRoomID
-     * @param {import('./ApiProvider').ChatRoom} chatRoomData
+     * @param {import('./types').ChatRoom} chatRoomData
      */
     async createChatRoom(chatRoomID, chatRoomData) {
         const chat_room = doc(this.chat_rooms, chatRoomID);
@@ -133,7 +143,7 @@ class ApiProvider {
     }
 
     /**
-     * @param {import('./ApiProvider').Post} postData
+     * @param {import('./types').Post} postData
      */
     async createPost(postData) {
         const post = doc(this.posts);
@@ -151,32 +161,38 @@ class ApiProvider {
 
     /**
      * @param {string} postID
+     * @param {import('./types').Post} alreadyFetchedData
      */
-    async getPost(postID) {
+    async getPost(postID, alreadyFetchedData) {
         const post = doc(this.posts, postID);
 
         /**
-         * @type {import('./ApiProvider').Post}
+         * @type {import('./types').Post}
          */
-        const data = (await getDoc(post)).data();
+        const data = alreadyFetchedData || (await getDoc(post)).data();
 
-        return {
+        /**
+         * @type {import('./types').PostFull}
+         */
+        const full_post = {
             ...data,
-            likes: data.reactions.reduce(
-                (c, item) => (item.includes('-LIKE') ? c + 1 : c),
+            likes: Object.values(data.reactions).reduce(
+                (c, item) => (item === 'LIKE' ? c + 1 : c),
                 0
             ),
-            dislikes: data.reactions.reduce(
-                (c, item) => (item.includes('-DISLIKE') ? c + 1 : c),
+            dislikes: Object.values(data.reactions).reduce(
+                (c, item) => (item === 'DISLIKE' ? c + 1 : c),
                 0
             ),
             comments: await this.getPostComments(postID)
         };
+
+        return full_post;
     }
 
     /**
      * @param {string} postID
-     * @returns {import('./ApiProvider').Comment[]}
+     * @returns {Promise<import('./types').Comment[]>}
      */
     async getPostComments(postID) {
         return (await getDocs(this.post_comments(postID))).docs.map((d) =>
@@ -186,7 +202,7 @@ class ApiProvider {
 
     /**
      * @param {string} postID
-     * @param {import('./ApiProvider').Comment} commentData
+     * @param {import('./types').Comment} commentData
      */
     async createPostComment(postID, commentData) {
         const comment = doc(this.post_comments(postID));

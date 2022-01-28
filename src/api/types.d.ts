@@ -23,6 +23,12 @@ export interface Post {
     };
 }
 
+export interface PostFull extends Post {
+    likes: number;
+    dislikes: number;
+    comments: Comment[];
+}
+
 export type ReactionType = 'LIKE' | 'DISLIKE';
 
 export interface Comment {
@@ -34,6 +40,11 @@ export interface Comment {
 
 export interface ChatRoom {
     members: string[];
+}
+
+export interface ChatRoomFull extends ChatRoom {
+    id: string;
+    messages: Message[];
 }
 
 export interface Message extends Comment {}
