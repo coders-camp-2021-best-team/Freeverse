@@ -58,28 +58,28 @@ service cloud.firestore {
 				&& (isString(mc.text_content));
 		}
 
-		allow read, list, create, update, delete: if getUserData().admin == true;
+		allow read, create, update, delete: if getUserData().admin == true;
 
 		match /chat_rooms/{chat_room} {
 			function isValidChatRoom(cr) {
 				return
-					(!isDefined(cr.members) || isList(cr.members));
+				(!isDefined(cr.members) || isList(cr.members))
+				&& (isList(cr.admins));
 			}
 
 			function getChatRoomData() {
-				return get (/databases/$(database)/documents/chat_rooms/$(chat_room)).data;
+				return get (/databases/$(database)/documents/chat_rooms/$(chat_room));
 			}
 
-			allow list: if isLoggedIn();
 			allow read: if isMemberOf(resource);
-			allow create: if isAdminOf(request.resource) && isMemberOf(request.resource) && isValidChatRoom(request.resource);
-			allow update: if isAdminOf(resource) && isAdminOf(request.resource) && isValidChatRoom(request.resource);
+			allow create: if isAdminOf(request.resource) && isMemberOf(request.resource) && isValidChatRoom(request.resource.data);
+			allow update: if isAdminOf(resource) && isAdminOf(request.resource) && isValidChatRoom(request.resource.data);
 			allow delete: if isAdminOf(resource);
 
-			match /messages/{document} {
-				allow list, read: if isMemberOf(getChatRoomData());
-				allow create: if isMemberOf(getChatRoomData()) && isValidMessageOrComment(request.resource);
-				allow update: if isMemberOf(getChatRoomData()) && isAuthorOf(resource) && isAuthorOf(request.resource) && isValidMessageOrComment(request.resource);
+			match /messages/{message} {
+				allow read: if isMemberOf(getChatRoomData());
+				allow create: if isMemberOf(getChatRoomData()) && isValidMessageOrComment(request.resource.data);
+				allow update: if isMemberOf(getChatRoomData()) && isAuthorOf(resource) && isAuthorOf(request.resource) && isValidMessageOrComment(request.resource.data);
 				allow delete: if isAdminOf(getChatRoomData()) || isAuthorOf(resource);
 			}
 		}
@@ -89,8 +89,8 @@ service cloud.firestore {
 				return
 					(isString(post.authorID))
 					&& (isTimestamp(post.createdOn))
-					&& (!isDefined(post.media_url) || isString(post.media_url))
-					&& (!isDefined(post.text_content) || isString(post.text_content))
+					&& (!('media_url' in post) || !isDefined(post.media_url) || isString(post.media_url))
+					&& (!('text_content' in post) || !isDefined(post.text_content) || isString(post.text_content))
 					&& (isMap(post.reactions));
 			}
 
@@ -98,33 +98,33 @@ service cloud.firestore {
 				return get(/databases/$(database)/documents/posts/$(post)).data;
 			}
 
-			allow list, read: if isLoggedIn();
-			allow create: if isAuthorOf(request.resource) && isValidPost(request.resource);
-			allow update: if isAuthorOf(resource) && isAuthorOf(request.resource) && isValidPost(request.resource);
+			allow read: if isLoggedIn();
+			allow create: if isAuthorOf(request.resource) && isValidPost(request.resource.data);
+			allow update: if isAuthorOf(resource) && isAuthorOf(request.resource) && isValidPost(request.resource.data);
 			allow delete: if isAuthorOf(resource);
 
 			match /comments/{comment} {
 				allow read: if isLoggedIn();
-				allow create: if isAuthorOf(request.resource) && isValidMessageOrComment(request.resource);
-				allow update: if isAuthorOf(resource) && isAuthorOf(request.resource) && isValidMessageOrComment(request.resource);
+				allow create: if isAuthorOf(request.resource) && isValidMessageOrComment(request.resource.data);
+				allow update: if isAuthorOf(resource) && isAuthorOf(request.resource) && isValidMessageOrComment(request.resource.data);
 				allow delete: if isAuthorOf(resource) || isAuthorOf(getPostData());
 			}
 		}
 
 		match /users/{user} {
-			function isValidUser(user, action) {
+			function isValidUser(user) {
 				return
-					((isBool(user.admin) && user.admin == false) || action == 'update')
-					&& (!isDefined(user.background_picture_url) || isString(user.background_picture_url))
-					&& (!isDefined(user.birthday) || isTimestamp(user.birthday))
+					(resource.data.admin == true || (isBool(user.admin) && user.admin == false))
+					&& (!('background_picture_url' in user) || !isDefined(user.background_picture_url) || isString(user.background_picture_url))
+					&& (!('birthday' in user) || !isDefined(user.birthday) || isTimestamp(user.birthday))
 					&& (isString(user.displayName))
-					&& (isList(user.hobbies))
+					&& (!('hobbies' in user) || !isDefined(user.hobbies) || isList(user.hobbies))
 					&& (isString(user.profile_picture_url));
 			}
 
 			allow read: if isLoggedIn();
-			allow create: if doesOwn(request.resource) && isValidUser(request.resource.data, 'create');
-			allow update: if doesOwn(resource) && doesOwn(request.resource) && isValidUser(request.resource.data, 'update');
+			allow create: if doesOwn(request.resource) && isValidUser(request.resource.data);
+			allow update: if doesOwn(resource) && doesOwn(request.resource) && isValidUser(request.resource.data);
 		}
 	}
 }
