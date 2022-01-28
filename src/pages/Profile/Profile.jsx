@@ -14,13 +14,13 @@ export const ProfilePage = () => {
                 <code>{JSON.stringify(user, null, 4)}</code>
             </pre> */}
             <pre>
-                <code>{JSON.stringify(userDetails, null, 4)}</code>
-            </pre>
-            <pre>
-                <code>{JSON.stringify(userPosts, null, 4)}</code>
-            </pre>
-            <pre>
-                <code>{JSON.stringify(userChatRooms, null, 4)}</code>
+                <code>
+                    {JSON.stringify(
+                        { userDetails, userPosts, userChatRooms },
+                        null,
+                        4
+                    )}
+                </code>
             </pre>
             <div role='form'>
                 <Button
