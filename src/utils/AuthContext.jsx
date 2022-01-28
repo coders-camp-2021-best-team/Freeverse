@@ -10,7 +10,7 @@ import {
     GoogleAuthProvider,
     signInWithPopup
 } from 'firebase/auth';
-import { auth } from '../api';
+import { apiProvider, auth } from '../api';
 
 export const AuthContext = createContext({
     /**
@@ -30,14 +30,31 @@ export const AuthContext = createContext({
 });
 
 export const AuthContextProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    /**
+     * @type {User}
+     */
+    const initialUser = null;
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (u) => {
-            setUser(u);
-        });
-        return unsubscribe;
-    }, []);
+    const [user, setUser] = useState(initialUser);
+
+    useEffect(
+        () =>
+            onAuthStateChanged(auth, async (u) => {
+                setUser(u);
+
+                if (u?.uid) {
+                    const ud = await apiProvider.getUser(u.uid);
+
+                    await apiProvider.setUser(u.uid, {
+                        admin: false,
+                        displayName: u.displayName,
+                        profile_picture_url: u.photoURL,
+                        ...ud
+                    });
+                }
+            }),
+        []
+    );
 
     const login = () => {
         const provider = new GoogleAuthProvider();
