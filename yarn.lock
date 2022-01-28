@@ -7555,10 +7555,10 @@ react-fast-compare@^2.0.1:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
-react-firebase-hooks@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/react-firebase-hooks/-/react-firebase-hooks-4.0.2.tgz#60e98f5bacc4550920444c0667a710e4670d39f5"
-  integrity sha512-DwykuPHfnGIHbJYgRxh3sacfdeEyRxlqwBOdwClkA07s9Shi9gqcOWgMzOPbXPbP6o94YDnNW2yP42opgQs7Nw==
+react-firebase-hooks@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/react-firebase-hooks/-/react-firebase-hooks-5.0.0.tgz#039acec4647a105f3d31940cc7078836246fd7b4"
+  integrity sha512-kfsUCAQTE4vHVaSKFA4WDTo0bC3keLTVccLha3m0CW7MnW2L4U7RCiHc5F8YY5H0X9eRsS86zzzkW1SvGBgwMg==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"
@@ -7925,10 +7925,10 @@ sass-loader@^12.3.0:
     klona "^2.0.4"
     neo-async "^2.6.2"
 
-sass@^1.48.0:
-  version "1.48.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.48.0.tgz#b53cfccc1b8ab4be375cc54f306fda9d4711162c"
-  integrity sha512-hQi5g4DcfjcipotoHZ80l7GNJHGqQS5LwMBjVYB/TaT0vcSSpbgM8Ad7cgfsB2M0MinbkEQQPO9+sjjSiwxqmw==
+sass@^1.49.0:
+  version "1.49.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.49.0.tgz#65ec1b1d9a6bc1bae8d2c9d4b392c13f5d32c078"
+  integrity sha512-TVwVdNDj6p6b4QymJtNtRS2YtLJ/CqZriGg0eIAbAKMlN8Xy6kbv33FsEZSF7FufFFM705SQviHjjThfaQ4VNw==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
@@ -8913,10 +8913,10 @@ wbuf@^1.1.0, wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
-web-vitals@^2.1.3:
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-2.1.3.tgz#6dca59f41dbc3fcccdb889da06191b437b18f534"
-  integrity sha512-+ijpniAzcnQicXaXIN0/eHQAiV/jMt1oHGHTmz7VdAJPPkzzDhmoYPSpLgJTuFtUh+jCjxCoeTZPg7Ic+g8o7w==
+web-vitals@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/web-vitals/-/web-vitals-2.1.4.tgz#76563175a475a5e835264d373704f9dde718290c"
+  integrity sha512-sVWcwhU5mX6crfI5Vd2dC4qchyTqxV8URinzt25XqVh+bHEPGH4C3NPrNionCP7Obx59wrYEbNlw4Z8sjALzZg==
 
 webidl-conversions@^3.0.0:
   version "3.0.1"
