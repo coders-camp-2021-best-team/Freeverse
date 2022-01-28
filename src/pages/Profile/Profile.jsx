@@ -1,44 +1,57 @@
-import { useEffect, useState } from 'react';
-import { useAuth } from '../../hooks';
+import { useAuth, useUser } from '../../hooks';
 import { apiProvider } from '../../api';
+import { Button } from '../../components';
 
 export const ProfilePage = () => {
     const { user } = useAuth();
-
-    /**
-     * @type {import('../../api/types').ChatRoomFull[]}
-     */
-    const initialChatRooms = null;
-
-    /**
-     * @type {import('../../api/types').PostFull[]}
-     */
-    const initialPosts = null;
-
-    const [chatRooms, setChatRooms] = useState(initialChatRooms);
-    const [posts, setPosts] = useState(initialPosts);
-
-    useEffect(() => {
-        const fetch = async () => {
-            setChatRooms(await apiProvider.getUserChatRooms(user.uid));
-            setPosts(await apiProvider.getUserPosts(user.uid));
-        };
-        fetch();
-    });
+    const { userDetails, userPosts, userChatRooms } = useUser();
 
     return (
         <>
             <div>This is profile page</div>
             <div>{`Hello, ${user.displayName}!`}</div>
-            <pre>
+            {/* <pre>
                 <code>{JSON.stringify(user, null, 4)}</code>
+            </pre> */}
+            <pre>
+                <code>{JSON.stringify(userDetails, null, 4)}</code>
             </pre>
             <pre>
-                <code>{JSON.stringify(chatRooms, null, 4)}</code>
+                <code>{JSON.stringify(userPosts, null, 4)}</code>
             </pre>
             <pre>
-                <code>{JSON.stringify(posts, null, 4)}</code>
+                <code>{JSON.stringify(userChatRooms, null, 4)}</code>
             </pre>
+            <div role='form'>
+                <Button
+                    text='create new chat room'
+                    onClick={() => {
+                        // eslint-disable-next-line no-alert
+                        const name = prompt(
+                            'Chat room name:',
+                            `new-chat-room-${Date.now()}`
+                        );
+
+                        apiProvider.createChatRoom(name, {
+                            admins: [user.uid],
+                            members: [user.uid]
+                        });
+                    }}
+                />
+
+                <Button
+                    text='delete chat room'
+                    onClick={() => {
+                        // eslint-disable-next-line no-alert
+                        const name = prompt(
+                            'Chat room name:',
+                            `new-chat-room-${Date.now()}`
+                        );
+
+                        apiProvider.deleteChatRoom(name);
+                    }}
+                />
+            </div>
         </>
     );
 };
