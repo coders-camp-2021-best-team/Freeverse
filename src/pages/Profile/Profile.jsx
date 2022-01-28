@@ -5,8 +5,18 @@ import { apiProvider } from '../../api';
 export const ProfilePage = () => {
     const { user } = useAuth();
 
-    const [chatRooms, setChatRooms] = useState();
-    const [posts, setPosts] = useState();
+    /**
+     * @type {import('../../api/types').ChatRoomFull[]}
+     */
+    const initialChatRooms = null;
+
+    /**
+     * @type {import('../../api/types').PostFull[]}
+     */
+    const initialPosts = null;
+
+    const [chatRooms, setChatRooms] = useState(initialChatRooms);
+    const [posts, setPosts] = useState(initialPosts);
 
     useEffect(() => {
         const fetch = async () => {
