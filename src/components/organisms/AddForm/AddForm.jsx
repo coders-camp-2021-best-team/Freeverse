@@ -17,7 +17,6 @@ export const AddForm = ({ placeholder, type }) => {
 
     const onSubmit = (values, action) => {
         // TODO temporary, connect with API
-        console.log(values);
         action.resetForm({
             values: {
                 [`${type}`]: ''
