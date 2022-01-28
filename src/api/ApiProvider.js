@@ -4,9 +4,9 @@ import {
     doc,
     getDoc,
     getDocs,
+    onSnapshot,
     query,
     setDoc,
-    updateDoc,
     where
 } from 'firebase/firestore';
 import { db } from './Firebase';
@@ -33,6 +33,19 @@ class ApiProvider {
     }
 
     /**
+     * @callback getUserCallback
+     * @param {import('./types').User} user
+     */
+    /**
+     * @param {string} userID
+     * @param {getUserCallback} cb
+     */
+    trackGetUser(userID, cb) {
+        const user = doc(this.users, userID);
+        return onSnapshot(user, (d) => cb(d.data()));
+    }
+
+    /**
      * @param {string} userID
      */
     async getUserPosts(userID) {
@@ -46,12 +59,31 @@ class ApiProvider {
     }
 
     /**
+     * @callback getUserPostsCallback
+     * @param {import('./types').PostFull[]} posts
+     */
+    /**
+     * @param {string} userID
+     * @param {getUserPostsCallback} cb
+     */
+    trackGetUserPosts(userID, cb) {
+        const q = query(this.posts, where('authorID', '==', userID));
+        return onSnapshot(q, async (d) =>
+            cb(
+                await Promise.all(
+                    d.docs.map(async (e) => this.getPost(e.id, e.data()))
+                )
+            )
+        );
+    }
+
+    /**
      * @param {string} userID
      * @param {import('./types').User} userData
      */
-    async updateUser(userID, userData) {
+    async setUser(userID, userData) {
         const user = doc(this.users, userID);
-        return updateDoc(user, userData);
+        return setDoc(user, userData);
     }
 
     /**
@@ -70,8 +102,31 @@ class ApiProvider {
     }
 
     /**
+     * @callback getUserChatRoomsCallback
+     * @param {import('./types').ChatRoomFull[]} rooms
+     */
+    /**
+     * @param {string} userID
+     * @param {getUserChatRoomsCallback} cb
+     */
+    trackGetUserChatRooms(userID, cb) {
+        const q = query(
+            this.chat_rooms,
+            where('members', 'array-contains', userID)
+        );
+        return onSnapshot(q, async (d) =>
+            cb(
+                await Promise.all(
+                    d.docs.map(async (e) => this.getChatRoom(e.id, e.data()))
+                )
+            )
+        );
+    }
+
+    /**
      * @param {string} chatRoomID
      * @param {import('./types').ChatRoom} alreadyFetchedData
+     * @returns {import('./types').ChatRoomFull}
      */
     async getChatRoom(chatRoomID, alreadyFetchedData) {
         /**
@@ -83,16 +138,10 @@ class ApiProvider {
             alreadyFetchedData ||
             (await getDoc(doc(this.chat_rooms, chatRoomID))).data();
 
-        /**
-         * @type {import('./types').ChatRoomFull}
-         */
-        const chat_room_full = {
+        return {
             ...chat_room,
-            id: chatRoomID,
-            messages: await this.getChatRoomMessages(chatRoomID)
+            name: chatRoomID
         };
-
-        return chat_room_full;
     }
 
     /**
@@ -100,9 +149,24 @@ class ApiProvider {
      * @returns {Promise<import('./types').Message[]>}
      */
     async getChatRoomMessages(chatRoomID) {
-        return (
-            await getDocs(query(this.chat_room_messages(chatRoomID)))
-        ).docs.map((d) => d.data());
+        return (await getDocs(this.chat_room_messages(chatRoomID))).docs.map(
+            (d) => d.data()
+        );
+    }
+
+    /**
+     * @callback getChatRoomMsgsCallback
+     * @param {import('./types').Message[]} messages
+     */
+    /**
+     * @param {string} chatRoomID
+     * @param {getChatRoomMsgsCallback} cb
+     */
+    trackGetChatRoomMessages(chatRoomID, cb) {
+        const q = this.chat_room_messages(chatRoomID);
+        onSnapshot(q, async (d) =>
+            cb(await Promise.all(d.docs.map(async (e) => e.data())))
+        );
     }
 
     /**
@@ -176,6 +240,7 @@ class ApiProvider {
          */
         const full_post = {
             ...data,
+            id: postID,
             likes: Object.values(data.reactions).reduce(
                 (c, item) => (item === 'LIKE' ? c + 1 : c),
                 0
@@ -183,8 +248,7 @@ class ApiProvider {
             dislikes: Object.values(data.reactions).reduce(
                 (c, item) => (item === 'DISLIKE' ? c + 1 : c),
                 0
-            ),
-            comments: await this.getPostComments(postID)
+            )
         };
 
         return full_post;
@@ -197,6 +261,21 @@ class ApiProvider {
     async getPostComments(postID) {
         return (await getDocs(this.post_comments(postID))).docs.map((d) =>
             d.data()
+        );
+    }
+
+    /**
+     * @callback getPostCommentsCallback
+     * @param {import('./types').Comment[]} comments
+     */
+    /**
+     * @param {string} postID
+     * @param {getPostCommentsCallback} cb
+     */
+    trackGetPostComments(postID, cb) {
+        const q = this.chat_room_messages(postID);
+        return onSnapshot(q, async (d) =>
+            cb(await Promise.all(d.docs.map(async (e) => e.data())))
         );
     }
 
