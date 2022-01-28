@@ -34,7 +34,11 @@ export const AddForm = ({ placeholder, type }) => {
     });
 
     return (
-        <div className={`form form__${type}`} role='directory' onClick={focusOnInput}>
+        <div
+            className={`form form__${type}`}
+            role='directory'
+            onClick={focusOnInput}
+        >
             <Formik
                 initialValues={{ name: type }}
                 validationSchema={validation}
