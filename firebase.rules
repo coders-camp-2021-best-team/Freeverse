@@ -1,116 +1,130 @@
 rules_version = '2';
 service cloud.firestore {
-    match /databases/{database}/documents {
-        function isDefined(what) {
-            return what != null;
-        }
+	match /databases/{database}/documents {
+		function getUserData() {
+			return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+		}
 
-        function isTimestamp(what) {
-            return isDefined(what) && what is timestamp;
-        }
+		function isDefined(what) {
+			return what != null;
+		}
 
-        function isString(what) {
-            return isDefined(what) && what is string;
-        }
+		function isTimestamp(what) {
+			return isDefined(what) && what is timestamp;
+		}
 
-        function isList(what) {
-            return isDefined(what) && what is list;
-        }
+		function isString(what) {
+			return isDefined(what) && what is string;
+		}
 
-        function isMap(what) {
-            return isDefined(what) && what is map;
-        }
+		function isList(what) {
+			return isDefined(what) && what is list;
+		}
 
-        function isLoggedIn() {
-            return isDefined(request.auth);
-        }
+		function isMap(what) {
+			return isDefined(what) && what is map;
+		}
 
-        function doesOwn(what) {
-            return isDefined(what) && isLoggedIn() && request.auth.uid == what.id;
-        }
+		function isBool(what) {
+			return isDefined(what) && what is bool;
+		}
 
-        function isAuthorOf(what) {
-            return isDefined(what) && isLoggedIn() && request.auth.uid == what.data.authorID;
-        }
+		function isLoggedIn() {
+			return isDefined(request.auth);
+		}
 
-        function isMemberOf(what) {
-            return isDefined(what) && isLoggedIn() && (!isDefined(what.data.members) || request.auth.uid in what.data.members);
-        }
+		function doesOwn(what) {
+			return isDefined(what) && isLoggedIn() && request.auth.uid == what.id;
+		}
 
-        function isAdminOf(what) {
-            return isDefined(what) && isMemberOf(what) && request.auth.uid in what.data.admins;
-        }
+		function isAuthorOf(what) {
+			return isDefined(what) && isLoggedIn() && request.auth.uid == what.data.authorID;
+		}
 
-        function isValidMessageOrComment(mc) {
-        return
-            (isString(mc.authorID))
-            && (isTimestamp(mc.createdOn))
-            && (isString(mc.text_content));
-        }
+		function isMemberOf(what) {
+			return isDefined(what) && isLoggedIn() && (!isDefined(what.data.members) || request.auth.uid in what.data.members);
+		}
 
-        match /chat_rooms/{chat_room} {
-            function isValidChatRoom(cr) {
-                return
-                    (!isDefined(cr.members) || isList(cr.members));
-            }
+		function isAdminOf(what) {
+			return 
+				(getUserData().admin == true)
+				|| (isDefined(what) && isMemberOf(what) && request.auth.uid in what.data.admins);
+		}
 
-            function getChatRoomData() {
-                return get (/databases/$(database)/documents/chat_rooms/$(chat_room)).data;
-            }
+		function isValidMessageOrComment(mc) {
+			return
+				(isString(mc.authorID))
+				&& (isTimestamp(mc.createdOn))
+				&& (isString(mc.text_content));
+		}
 
-            allow read: if isMemberOf(resource);
-            allow create: if isAdminOf(request.resource) && isMemberOf(request.resource);
-            allow update: if isAdminOf(resource) && isAdminOf(request.resource);
-            allow delete: if isAdminOf(resource);
+		allow read, list, create, update, delete: if getUserData().admin == true;
 
-            match /messages/{document} {
-                allow read: if isMemberOf(getChatRoomData());
-                allow create: if isMemberOf(getChatRoomData()) && isValidMessageOrComment(request.resource);
-                allow update: if isMemberOf(getChatRoomData()) && isAuthorOf(resource) && isAuthorOf(request.resource) && isValidMessageOrComment(request.resource);
-                allow delete: if isAdminOf(getChatRoomData()) || isAuthorOf(resource);
-            }
-        }
+		match /chat_rooms/{chat_room} {
+			function isValidChatRoom(cr) {
+				return
+					(!isDefined(cr.members) || isList(cr.members));
+			}
 
-        match /posts/{post} {
-            function isValidPost(post) {
-                return
-                    (isString(post.authorID))
-                    && (isTimestamp(post.createdOn))
-                    && (!isDefined(post.media_url) || isString(post.media_url))
-                    && (!isDefined(post.text_content) || isString(post.text_content))
-                    && (isMap(post.reactions));
-            }
+			function getChatRoomData() {
+				return get (/databases/$(database)/documents/chat_rooms/$(chat_room)).data;
+			}
 
-            function getPostData() {
-                return get(/databases/$(database)/documents/posts/$(post)).data;
-            }
+			allow list: if isLoggedIn();
+			allow read: if isMemberOf(resource);
+			allow create: if isAdminOf(request.resource) && isMemberOf(request.resource) && isValidChatRoom(request.resource);
+			allow update: if isAdminOf(resource) && isAdminOf(request.resource) && isValidChatRoom(request.resource);
+			allow delete: if isAdminOf(resource);
 
-            allow read: if isLoggedIn();
-            allow create: if isAuthorOf(request.resource) && isValidPost(request.resource);
-            allow update: if isAuthorOf(resource) && isAuthorOf(request.resource) && isValidPost(request.resource);
-            allow delete: if isAuthorOf(resource);
+			match /messages/{document} {
+				allow list, read: if isMemberOf(getChatRoomData());
+				allow create: if isMemberOf(getChatRoomData()) && isValidMessageOrComment(request.resource);
+				allow update: if isMemberOf(getChatRoomData()) && isAuthorOf(resource) && isAuthorOf(request.resource) && isValidMessageOrComment(request.resource);
+				allow delete: if isAdminOf(getChatRoomData()) || isAuthorOf(resource);
+			}
+		}
 
-            match /comments/{comment} {
-                allow read: if isLoggedIn();
-                allow create: if isAuthorOf(request.resource) && isValidMessageOrComment(request.resource);
-                allow update: if isAuthorOf(resource) && isAuthorOf(request.resource) && isValidMessageOrComment(request.resource);
-                allow delete: if isAuthorOf(resource) || isAuthorOf(getPostData());
-            }
-        }
+		match /posts/{post} {
+			function isValidPost(post) {
+				return
+					(isString(post.authorID))
+					&& (isTimestamp(post.createdOn))
+					&& (!isDefined(post.media_url) || isString(post.media_url))
+					&& (!isDefined(post.text_content) || isString(post.text_content))
+					&& (isMap(post.reactions));
+			}
 
-        match /users/{user} {
-            function isValidUser(user) {
-                return
-                    (!isDefined(user.background_picture_url) || isString(user.background_picture_url))
-                    && (!isDefined(user.birthday) || isTimestamp(user.birthday))
-                    && (isString(user.displayName))
-                    && (isList(hobbies))
-                    && (isString(profile_picture_url));
-            }
+			function getPostData() {
+				return get(/databases/$(database)/documents/posts/$(post)).data;
+			}
 
-            allow read: if isLoggedIn();
-            allow create: if doesOwn(request.resource) && isValidUser(request.resource.data);
-            allow update: if doesOwn(resource) && doesOwn(request.resource) && isValidUser(request.resource.data);
-        }
-    }
+			allow list, read: if isLoggedIn();
+			allow create: if isAuthorOf(request.resource) && isValidPost(request.resource);
+			allow update: if isAuthorOf(resource) && isAuthorOf(request.resource) && isValidPost(request.resource);
+			allow delete: if isAuthorOf(resource);
+
+			match /comments/{comment} {
+				allow read: if isLoggedIn();
+				allow create: if isAuthorOf(request.resource) && isValidMessageOrComment(request.resource);
+				allow update: if isAuthorOf(resource) && isAuthorOf(request.resource) && isValidMessageOrComment(request.resource);
+				allow delete: if isAuthorOf(resource) || isAuthorOf(getPostData());
+			}
+		}
+
+		match /users/{user} {
+			function isValidUser(user, action) {
+				return
+					((isBool(user.admin) && user.admin == false) || action == 'update')
+					&& (!isDefined(user.background_picture_url) || isString(user.background_picture_url))
+					&& (!isDefined(user.birthday) || isTimestamp(user.birthday))
+					&& (isString(user.displayName))
+					&& (isList(user.hobbies))
+					&& (isString(user.profile_picture_url));
+			}
+
+			allow read: if isLoggedIn();
+			allow create: if doesOwn(request.resource) && isValidUser(request.resource.data, 'create');
+			allow update: if doesOwn(resource) && doesOwn(request.resource) && isValidUser(request.resource.data, 'update');
+		}
+	}
 }
