@@ -9,18 +9,16 @@ html {
         background-color: $primary-backgroundColor;
         font-family: $font-style;
         color: $primary-color;
-    }
-}
-
-@include for-phone-only {
-    html {
-        font-size: 30%;
+        font-size: 1.5rem;
     }
 }
 
 @include for-tablet-landscape-up {
     html {
         font-size: 75%;
+        body {
+            font-size: 1rem;
+        }
     }
 }
 

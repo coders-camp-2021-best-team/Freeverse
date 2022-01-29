@@ -25,7 +25,9 @@ export const AddForm = ({ placeholder, type }) => {
     };
 
     const focusOnInput = (event) => {
-        event.target[0].focus();
+        if (!event.target) {
+            event.target[0].focus();
+        }
     };
 
     const validation = Yup.object().shape({

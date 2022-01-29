@@ -7,7 +7,7 @@ export const BaseScreen = ({ children }) => {
         <>
             <Header />
             <main>{children}</main>
-            <AddForm placeholder='Write something...' type='post' />
+            <AddForm placeholder='Add comment' type='chat' />
         </>
     );
 };

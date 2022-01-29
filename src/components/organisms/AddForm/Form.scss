@@ -1,26 +1,46 @@
 @import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
 
 .form {
+    cursor: text;
     background-color: $secondary-backgroundColor;
     border-radius: 2.9rem;
-    cursor: text;
     &__post {
-        width: 70.8rem;
-        height: 14rem;
+        width: 95%;
+        height: 6rem;
         textarea {
             width: calc(100% - 4rem);
             height: calc(100% - 4rem);
             margin: 2rem;
         }
-    }
-    &__comment,
-    &__chat {
-        width: 53rem;
-        height: 4rem;
-        textarea {
-            width: calc(100% - 2rem);
-            height: calc(100% - 2rem);
+        svg {
             margin: 1rem;
+            width: 4.5rem;
+        }
+    }
+    &__comment {
+        width: 40%;
+        height: 3.5rem;
+        textarea {
+            width: calc(100% - 1rem);
+            height: calc(100% - 1rem);
+            margin: 0.5rem;
+        }
+        svg {
+            margin: 0.7rem 1rem;
+        }
+    }
+    &__chat {
+        width: 80%;
+        height: 6rem;
+        textarea {
+            width: calc(100% - 3rem);
+            height: calc(100% - 3rem);
+            margin: 1.5rem;
+        }
+        svg {
+            margin: 0.7rem 1.3rem 1.3rem;
+            width: 4rem;
         }
     }
     form {
@@ -30,7 +50,7 @@
         justify-content: flex-start;
         textarea {
             outline: none;
-            font-size: 1rem;
+            font-size: 1.5rem;
             font-family: $font-style;
             resize: none;
             color: $primary-color;
@@ -39,8 +59,38 @@
         }
     }
     svg {
-        margin: 1rem;
         cursor: pointer;
         align-self: flex-end;
+    }
+}
+
+@include for-tablet-landscape-up {
+    .form {
+        &__post {
+            width: 60%;
+            height: 14rem;
+            svg {
+                margin: 1rem;
+            }
+        }
+        &__comment,
+        &__chat {
+            width: 44%;
+            height: 4rem;
+            textarea {
+                width: calc(100% - 2rem);
+                height: calc(100% - 2rem);
+                margin: 1rem;
+            }
+            svg {
+                margin: 1rem;
+                width: 2.5rem;
+            }
+        }
+        form {
+            textarea {
+                font-size: 1rem;
+            }
+        }
     }
 }
