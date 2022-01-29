@@ -3,7 +3,7 @@ import { routes } from '../../routes/Routes';
 import { Button } from '../../components';
 import { useAuth } from '../../hooks';
 
-import { ReactComponent as Logo } from '../../Images/logo.svg';
+import { ReactComponent as Logo } from '../../images/logo.svg';
 import './Home.scss';
 
 export const HomePage = () => {
