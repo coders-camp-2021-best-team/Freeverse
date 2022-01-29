@@ -11,7 +11,7 @@ import {
 } from 'firebase/firestore';
 import { db } from './Firebase';
 
-class ApiProvider {
+class ApiService {
     chat_rooms = collection(db, 'chat_rooms');
 
     chat_room_messages = (chatRoomID) =>
@@ -300,5 +300,5 @@ class ApiProvider {
     }
 }
 
-const apiProvider = new ApiProvider();
-export { apiProvider };
+const apiService = new ApiService();
+export { apiService };

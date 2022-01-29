@@ -1,2 +1,2 @@
-export * from './ApiProvider';
+export * from './ApiService';
 export * from './Firebase';

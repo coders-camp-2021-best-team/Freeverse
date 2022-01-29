@@ -10,7 +10,7 @@ import {
     GoogleAuthProvider,
     signInWithPopup
 } from 'firebase/auth';
-import { apiProvider, auth } from '../api';
+import { apiService, auth } from '../api';
 
 export const AuthContext = createContext({
     /**
@@ -43,9 +43,9 @@ export const AuthContextProvider = ({ children }) => {
                 setUser(u);
 
                 if (u?.uid) {
-                    const ud = await apiProvider.getUser(u.uid);
+                    const ud = await apiService.getUser(u.uid);
 
-                    await apiProvider.setUser(u.uid, {
+                    await apiService.setUser(u.uid, {
                         admin: false,
                         displayName: u.displayName,
                         profile_picture_url: u.photoURL,

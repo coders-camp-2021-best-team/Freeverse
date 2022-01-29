@@ -1,5 +1,5 @@
 import { useAuth, useUser } from '../../hooks';
-import { apiProvider } from '../../api';
+import { apiService } from '../../api';
 import { Button } from '../../components';
 
 export const ProfilePage = () => {
@@ -32,7 +32,7 @@ export const ProfilePage = () => {
                             `new-chat-room-${Date.now()}`
                         );
 
-                        apiProvider.createChatRoom(name, {
+                        apiService.createChatRoom(name, {
                             admins: [user.uid],
                             members: [user.uid]
                         });
@@ -48,7 +48,7 @@ export const ProfilePage = () => {
                             `new-chat-room-${Date.now()}`
                         );
 
-                        apiProvider.deleteChatRoom(name);
+                        apiService.deleteChatRoom(name);
                     }}
                 />
             </div>

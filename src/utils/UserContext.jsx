@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { apiProvider } from '../api';
+import { apiService } from '../api';
 import { useAuth } from '../hooks';
 
 export const UserContext = createContext({
@@ -47,9 +47,9 @@ export const UserContextProvider = ({ children }) => {
 
         if (user?.uid) {
             unsubs.push(
-                apiProvider.trackGetUser(user.uid, setUserDetails),
-                apiProvider.trackGetUserPosts(user.uid, setUserPosts),
-                apiProvider.trackGetUserChatRooms(user.uid, setUserChatRooms)
+                apiService.trackGetUser(user.uid, setUserDetails),
+                apiService.trackGetUserPosts(user.uid, setUserPosts),
+                apiService.trackGetUserChatRooms(user.uid, setUserChatRooms)
             );
         }
 
