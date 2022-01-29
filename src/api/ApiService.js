@@ -7,6 +7,7 @@ import {
     onSnapshot,
     query,
     setDoc,
+    updateDoc,
     where
 } from 'firebase/firestore';
 import { db } from './Firebase';
@@ -215,6 +216,15 @@ class ApiService {
 
     /**
      * @param {string} postID
+     * @param {import('./types').Post} postData
+     */
+    async updatePost(postID, postData) {
+        const post = doc(this.posts, postID);
+        return updateDoc(post, postData);
+    }
+
+    /**
+     * @param {string} postID
      */
     async deletePost(postID) {
         const post = doc(this.posts, postID);
@@ -286,6 +296,16 @@ class ApiService {
 
         await setDoc(comment, commentData);
         return comment.id;
+    }
+
+    /**
+     * @param {string} postID
+     * @param {string} commentID
+     * @param {import('./types').Comment} commentData
+     */
+    async updatePostComment(postID, commentID, commentData) {
+        const comment = doc(this.post_comments(postID), commentID);
+        return updateDoc(comment, commentData);
     }
 
     /**
