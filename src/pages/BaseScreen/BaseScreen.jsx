@@ -5,7 +5,7 @@ export const BaseScreen = ({ children }) => {
     return (
         <>
             <Header />
-            {children}
+            <main>{children}</main>
         </>
     );
 };
