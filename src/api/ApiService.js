@@ -132,9 +132,7 @@ class ApiService {
         /**
          * @type {import('./types').ChatRoom}
          */
-        // eslint-disable-next-line operator-linebreak
         const chat_room =
-            // eslint-disable-next-line operator-linebreak
             alreadyFetchedData ||
             (await getDoc(doc(this.chat_rooms, chatRoomID))).data();
 

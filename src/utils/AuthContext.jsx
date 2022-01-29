@@ -1,12 +1,8 @@
-/* eslint-disable no-unused-vars */
-
 import { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
     onAuthStateChanged,
     signOut,
-    UserCredential,
-    User,
     GoogleAuthProvider,
     signInWithPopup
 } from 'firebase/auth';
@@ -19,7 +15,7 @@ export const AuthContext = createContext({
     user: null,
 
     /**
-     * @returns {Promise<UserCredential>}
+     * @returns {Promise<import('firebase/auth').UserCredential>}
      */
     login: () => Promise,
 
@@ -31,7 +27,7 @@ export const AuthContext = createContext({
 
 export const AuthContextProvider = ({ children }) => {
     /**
-     * @type {User}
+     * @type {import('firebase/auth').User}
      */
     const initialUser = null;
 
