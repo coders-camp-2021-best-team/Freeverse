@@ -1,17 +1,14 @@
 {
-    "extends": ["prettier", "react-app", "react-app/jest", "airbnb", "import"],
+    "extends": ["react-app", "react-app/jest", "airbnb", "import", "prettier"],
+    "plugins": ["prettier"],
     "rules": {
-        "comma-dangle": "off",
-        "indent": ["error", 4],
-        "react/jsx-indent": ["error", 4],
-        "react/jsx-indent-props": ["error", 4],
+        "prettier/prettier": "error",
         "import/prefer-default-export": "off",
         "import/no-default-export": "error",
+        "import/no-cycle": "off",
         "react/react-in-jsx-scope": "off",
         "react/jsx-uses-react": "off",
-        "import/no-cycle": "off",
         "camelcase": "off",
-        "jsx-quotes": ["error", "prefer-single"],
         "react/function-component-definition": [
             "error",
             { "namedComponents": "arrow-function" }
@@ -27,7 +24,6 @@
             "error",
             { "declaration": false, "assignment": false }
         ],
-        "linebreak-style": ["error", "unix"],
         "object-curly-newline": "off",
         "react/button-has-type": "off",
         "jsx-a11y/click-events-have-key-events": "off",
