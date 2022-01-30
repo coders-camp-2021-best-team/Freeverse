@@ -29,7 +29,7 @@ export const Modal = ({ showModal, setShowModal, children }) => {
                 onClick={toggleModal}
                 className='comment'
             />
-            {showModal ? (
+            {showModal && (
                 <div className='modal__background'>
                     <div className='modal__wrapper'>
                         <div className='modal__button'>
@@ -43,7 +43,7 @@ export const Modal = ({ showModal, setShowModal, children }) => {
                         {children}
                     </div>
                 </div>
-            ) : null}
+            )}
         </>
     );
 };
