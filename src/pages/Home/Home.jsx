@@ -1,5 +1,5 @@
-import { ReactComponent as Logo } from '../../Images/logo.svg';
-import { Button } from '../../components/index';
+import { ReactComponent as Logo } from '../../images/logo.svg';
+import { Button } from '../../components';
 import './Home.scss';
 
 // TODO we actually need to connect this button with google log in
