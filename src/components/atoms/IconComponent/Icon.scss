@@ -12,5 +12,17 @@
     &__large {
         width: $icon-width-large;
     }
+    &__comment {
+        &:hover {
+            cursor: pointer;
+            opacity: 50%;
+        }
+    }
+    &__close-button {
+        &:hover {
+            cursor: pointer;
+            opacity: 50%;
+        }
+    }
     //TODO add custom styling
 }

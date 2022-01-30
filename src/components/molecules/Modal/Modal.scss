@@ -1,0 +1,24 @@
+@import '../../../styles/variables.scss';
+
+.modal {
+    &__background {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        background: $primary-backgroundColor;
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+    }
+    &__wrapper {
+        position: relative;
+        height: 90%;
+        width: 60%;
+        background: $secondary-backgroundColor;
+        border-radius: 10px;
+    }
+    &__button {
+        float: right;
+        margin: 5px;
+    }
+}
