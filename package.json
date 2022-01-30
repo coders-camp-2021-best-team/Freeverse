@@ -13,6 +13,7 @@
         "lint": "eslint src/ --ext .js,.jsx"
     },
     "dependencies": {
+        "@react-query-firebase/auth": "^0.3.4",
         "@react-query-firebase/firestore": "^0.4.2",
         "@testing-library/jest-dom": "^5.16.1",
         "@testing-library/react": "^12.1.2",
