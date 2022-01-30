@@ -1,11 +1,9 @@
 import './Modal.scss';
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from '../../atoms/IconComponent/Icon';
 
-export const Modal = ({ children }) => {
-    const [showModal, setShowModal] = useState(false);
-
+export const Modal = ({ showModal, setShowModal, children }) => {
     const keyPress = useCallback(
         (e) => {
             if (e.key === 'Escape' && showModal) {
@@ -51,5 +49,7 @@ export const Modal = ({ children }) => {
 };
 
 Modal.propTypes = {
+    showModal: PropTypes.bool.isRequired,
+    setShowModal: PropTypes.func.isRequired,
     children: PropTypes.string.isRequired
 };
