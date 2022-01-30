@@ -23,28 +23,21 @@ export const Modal = ({ showModal, setShowModal, children }) => {
     });
 
     return (
-        <>
-            <Icon
-                iconName='comment'
-                onClick={toggleModal}
-                className='comment'
-            />
-            {showModal && (
-                <div className='modal__background'>
-                    <div className='modal__wrapper'>
-                        <div className='modal__button'>
-                            <Icon
-                                iconName='circleX'
-                                onClick={toggleModal}
-                                size='small'
-                                className='close-button'
-                            />
-                        </div>
-                        {children}
+        showModal && (
+            <div className='modal__background'>
+                <div className='modal__wrapper'>
+                    <div className='modal__button'>
+                        <Icon
+                            iconName='circleX'
+                            onClick={toggleModal}
+                            size='small'
+                            className='close-button'
+                        />
                     </div>
+                    {children}
                 </div>
-            )}
-        </>
+            </div>
+        )
     );
 };
 
