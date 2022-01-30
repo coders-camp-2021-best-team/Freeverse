@@ -20,7 +20,7 @@ export const Modal = ({ showModal, setShowModal, children }) => {
     useEffect(() => {
         document.addEventListener('keydown', keyPress);
         return () => document.removeEventListener('keydown', keyPress);
-    });
+    }, [keyPress]);
 
     return (
         showModal && (
