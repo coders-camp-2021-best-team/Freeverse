@@ -55,7 +55,7 @@
             resize: none;
             color: $primary-color;
             border: none;
-            background-color: $transparent;
+            background-color: transparent;
         }
     }
     svg {
@@ -81,6 +81,7 @@
                 width: calc(100% - 2rem);
                 height: calc(100% - 2rem);
                 margin: 1rem;
+                padding-top: 0.4rem;
             }
             svg {
                 margin: 1rem;

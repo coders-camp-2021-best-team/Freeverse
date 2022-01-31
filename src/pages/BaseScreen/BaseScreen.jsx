@@ -1,13 +1,21 @@
 import PropTypes from 'prop-types';
 import { Header } from '../../components';
-import { AddForm } from '../../components/organisms/AddForm/AddForm';
+import { Form } from '../../components/organisms/Form/Form';
 
 export const BaseScreen = ({ children }) => {
+    const onSubmit = (values) => {
+        // TODO temporary, connect with API
+        console.log(values);
+    };
     return (
         <>
             <Header />
             <main>{children}</main>
-            <AddForm placeholder='Add comment' type='chat' />
+            <Form
+                placeholder='Write something'
+                type='comment'
+                onSubmit={onSubmit}
+            />
         </>
     );
 };
