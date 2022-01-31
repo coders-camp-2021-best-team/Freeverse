@@ -62,7 +62,7 @@ export const Form = ({ placeholder, type, onSubmit }) => {
                 </FormikForm>
             );
         },
-        [error, placeholder, type]
+        [placeholder, type]
     );
     return (
         <div
