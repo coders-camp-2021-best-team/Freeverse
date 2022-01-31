@@ -1,20 +1,30 @@
 import PropTypes from 'prop-types';
-import { ImageComponent } from '../../atoms/ImageComponent/Image';
-import { Text } from '../../atoms/Text/Text';
+import { Icon, Text } from '../..';
+
 import './UserInfo.scss';
 
-export const UserInfo = ({ children, src }) => {
+export const UserInfo = ({ date, city, hobbies }) => {
     return (
-        <div>
-            <ImageComponent src={src} size='large' />
-            <Text type='primary' size='large'>
-                {children}
-            </Text>
+        <div className='molecule__user__info'>
+            <Text type='primary' size='extraLarge'>User Details</Text>
+            <div>
+                <Icon iconName='birthday' size='medium' />
+                <Text type='primary' size='large'>{date}</Text>
+            </div>
+            <div>
+                <Icon iconName='home' size='medium' />
+                <Text type='primary' size='large'>{city}</Text>
+            </div>
+            <div>
+                <Icon iconName='googleController' size='medium' />
+                <Text type='primary' size='large'>{hobbies}</Text>
+            </div>
         </div>
     );
 };
 
 UserInfo.propTypes = {
-    children: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired
+    date: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    hobbies: PropTypes.string.isRequired
 };

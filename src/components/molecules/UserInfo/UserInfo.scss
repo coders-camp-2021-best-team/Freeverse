@@ -1,0 +1,13 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.molecule__user__info{
+    background-color: $secondary-backgroundColor;
+    width: 403px;
+    height: 427px;
+    border-radius: 47px;
+    -webkit-border-radius: 47px;
+    -moz-border-radius: 47px;
+    -ms-border-radius: 47px;
+    -o-border-radius: 47px;
+}
