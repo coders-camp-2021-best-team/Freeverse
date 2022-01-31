@@ -1,0 +1,10 @@
+@import '../../../styles/variables.scss';
+
+.information__row {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    gap: 1.5rem;
+    cursor: pointer;
+}
