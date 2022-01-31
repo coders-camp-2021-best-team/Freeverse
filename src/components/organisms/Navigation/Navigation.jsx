@@ -14,7 +14,7 @@ const NAV_ITEMS = [
         src: 'comment',
         label: 'Chat room',
         path: routes.Chat
-    },
+    }
     // { src: 'power', label: 'Log out', onClick: () => console.log('power') }
 ];
 
