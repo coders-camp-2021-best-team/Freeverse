@@ -5,7 +5,7 @@ import { Form } from '../../components/organisms/Form/Form';
 export const BaseScreen = ({ children }) => {
     const onSubmit = (values) => {
         // TODO temporary, connect with API
-        console.log(values);
+        return values;
     };
     return (
         <>

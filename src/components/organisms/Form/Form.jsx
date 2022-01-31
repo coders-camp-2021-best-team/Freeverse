@@ -22,53 +22,56 @@ export const Form = ({ placeholder, type, onSubmit }) => {
         }
     };
 
-    const formSubmitEvent = useCallback((values, action) => {
-        onSubmit(values);
-        action.resetForm({
-            values: {
-                [`${type}`]: ''
-            }
-        });
-    }, [onSubmit, type]);
+    const formSubmitEvent = useCallback(
+        (values, action) => {
+            onSubmit(values);
+            action.resetForm({
+                values: {
+                    [`${type}`]: ''
+                }
+            });
+        },
+        [onSubmit, type]
+    );
 
-    const renderForm = useCallback(({ handleSubmit, validateField }) => {
-        const inputValidate = (value) => {
-            if (!value) {
-                setError(true);
-            } else {
-                setError(false);
-            }
-            console.log(error);
-        };
-        return (
-            <FormikForm>
-                <Field
-                    name={type}
-                    as='textarea'
-                    placeholder={placeholder}
-                    onKeyDown={submitOnEnter}
-                    validate={inputValidate}
-                />
-                <Icon
-                    iconName='send'
-                    onClick={() => {
-                        handleSubmit();
-                        validateField(type);
-                    }}
-                />
-            </FormikForm>
-        );
-    }, [error, placeholder, type]);
+    const renderForm = useCallback(
+        ({ handleSubmit, validateField }) => {
+            const inputValidate = (value) => {
+                if (!value) {
+                    setError(true);
+                } else {
+                    setError(false);
+                }
+                console.log(error);
+            };
+            return (
+                <FormikForm>
+                    <Field
+                        name={type}
+                        as='textarea'
+                        placeholder={placeholder}
+                        onKeyDown={submitOnEnter}
+                        validate={inputValidate}
+                    />
+                    <Icon
+                        iconName='send'
+                        onClick={() => {
+                            handleSubmit();
+                            validateField(type);
+                        }}
+                    />
+                </FormikForm>
+            );
+        },
+        [error, placeholder, type]
+    );
     return (
         <div
             className={`form form__${type} ${error ? 'error' : ''}`}
             role='directory'
             onClick={focusOnInput}
         >
-            <Formik
-                initialValues={{ name: '' }}
-                onSubmit={formSubmitEvent}
-            >
+            <Formik initialValues={{ name: '' }} onSubmit={formSubmitEvent}>
                 {renderForm}
             </Formik>
         </div>
