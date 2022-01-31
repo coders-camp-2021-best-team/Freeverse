@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
 import { Text } from '../../atoms/Text/Text';
-import { Icon } from '../../atoms/IconComponent/Icon';
+import { Icon, icons } from '../../atoms/IconComponent/Icon';
 import './InformationRow.scss';
 
-export const InformationRow = ({ onClick, children, nameIcon }) => {
+export const InformationRow = ({ onClick, children, iconName }) => {
     return (
         <div
             onClick={onClick}
             role='complementary'
             className='information__row'
         >
-            <Icon size='medium' iconName={nameIcon} />
+            <Icon size='medium' iconName={iconName} />
             <Text type='primary' size='medium'>
                 {children}
             </Text>
@@ -20,7 +20,7 @@ export const InformationRow = ({ onClick, children, nameIcon }) => {
 
 InformationRow.propTypes = {
     children: PropTypes.string.isRequired,
-    nameIcon: PropTypes.symbol.isRequired,
+    iconName: PropTypes.oneOf(Object.keys(icons)).isRequired,
     onClick: PropTypes.func
 };
 
