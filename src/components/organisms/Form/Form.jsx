@@ -42,6 +42,7 @@ export const Form = ({ placeholder, type, onSubmit }) => {
                 } else {
                     setError(false);
                 }
+                return error;
             };
             return (
                 <FormikForm>
@@ -55,14 +56,15 @@ export const Form = ({ placeholder, type, onSubmit }) => {
                     <Icon
                         iconName='send'
                         onClick={() => {
-                            handleSubmit();
-                            validateField(type);
+                            if (validateField(type)) {
+                                handleSubmit();
+                            }
                         }}
                     />
                 </FormikForm>
             );
         },
-        [placeholder, type]
+        [error, placeholder, type]
     );
     return (
         <div
@@ -70,7 +72,10 @@ export const Form = ({ placeholder, type, onSubmit }) => {
             role='directory'
             onClick={focusOnInput}
         >
-            <Formik initialValues={{ name: '' }} onSubmit={formSubmitEvent}>
+            <Formik
+                initialValues={{ name: '' }}
+                onSubmit={formSubmitEvent}
+            >
                 {renderForm}
             </Formik>
         </div>
