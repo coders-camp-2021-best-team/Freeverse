@@ -13,9 +13,9 @@ export const Modal = ({ showModal, setShowModal, children }) => {
         [setShowModal, showModal]
     );
 
-    const toggleModal = () => {
+    const toggleModal = useCallback(() => {
         setShowModal((prev) => !prev);
-    };
+    }, [setShowModal]);
 
     useEffect(() => {
         document.addEventListener('keydown', keyPress);
