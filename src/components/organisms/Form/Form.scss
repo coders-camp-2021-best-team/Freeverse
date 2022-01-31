@@ -68,16 +68,16 @@
 }
 @keyframes shake {
     0% {
-        margin-left: 0rem;
+        transform: translateX(0rem);
     }
     25% {
-        margin-left: 0.5rem;
+        transform: translateX(0.5rem);
     }
     75% {
-        margin-left: -0.5rem;
+        transform: translateX(-0.5rem);
     }
     100% {
-        margin-left: 0rem;
+        transform: translateX(0rem);
     }
 }
 

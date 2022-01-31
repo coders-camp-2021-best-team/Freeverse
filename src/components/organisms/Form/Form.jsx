@@ -72,10 +72,7 @@ export const Form = ({ placeholder, type, onSubmit }) => {
             role='directory'
             onClick={focusOnInput}
         >
-            <Formik
-                initialValues={{ name: '' }}
-                onSubmit={formSubmitEvent}
-            >
+            <Formik initialValues={{ name: '' }} onSubmit={formSubmitEvent}>
                 {renderForm}
             </Formik>
         </div>
