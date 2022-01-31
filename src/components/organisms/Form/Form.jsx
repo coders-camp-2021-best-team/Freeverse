@@ -42,7 +42,6 @@ export const Form = ({ placeholder, type, onSubmit }) => {
                 } else {
                     setError(false);
                 }
-                console.log(error);
             };
             return (
                 <FormikForm>
