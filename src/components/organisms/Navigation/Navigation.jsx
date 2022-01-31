@@ -1,32 +1,35 @@
+import { NavLink } from 'react-router-dom';
 import { InformationRow } from '../../molecules/InformationRow/InformationRow';
+import { routes } from '../../../routes/Routes';
 
-// Add onClick function (go to the page)
+// Add onClick function (log out function)
 
 const NAV_ITEMS = [
     {
         src: 'avatar',
         label: 'Profile',
-        onClick: () => console.log('path edit')
+        path: routes.EditProfile
     },
     {
         src: 'comment',
         label: 'Chat room',
-        onClick: () => console.log('path chat')
+        path: routes.Chat
     },
-    { src: 'power', label: 'Log out', onClick: () => console.log('power') }
+    // { src: 'power', label: 'Log out', onClick: () => console.log('power') }
 ];
 
 export const Navigation = () => {
     return (
         <>
             {NAV_ITEMS.map((navItem) => (
-                <InformationRow
-                    src={navItem.src}
-                    onClick={navItem.onClick}
-                    key={navItem.src}
-                >
-                    {navItem.label}
-                </InformationRow>
+                <NavLink to={navItem.path} key={navItem.src}>
+                    <InformationRow
+                        iconName={navItem.src}
+                        onClick={navItem.onClick}
+                    >
+                        {navItem.label}
+                    </InformationRow>
+                </NavLink>
             ))}
         </>
     );

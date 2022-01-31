@@ -15,7 +15,7 @@ import { ReactComponent as Power } from './icons/power.svg';
 import { ReactComponent as Send } from './icons/send.svg';
 import { ReactComponent as User } from './icons/user.svg';
 
-const icons = {
+export const icons = {
     like: Like,
     avatar: Avatar,
     birthday: Birthday,
