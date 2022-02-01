@@ -9,15 +9,13 @@ export const Form = ({ placeholder, type, onSubmit }) => {
     const [error, setError] = useState(false);
 
     const timeoutId = useRef(null);
+
     const timeoutFunction = useCallback(() => {
         timeoutId.current = setTimeout(() => {
             setError(false);
         }, 1000);
     }, []);
 
-    useEffect(() => {
-        return () => timeoutId.current && clearTimeout(timeoutId.current);
-    }, []);
     const focusOnInput = (event) => {
         if (event.target[0]) {
             event.target[0].focus();
@@ -74,6 +72,11 @@ export const Form = ({ placeholder, type, onSubmit }) => {
         },
         [error, placeholder, timeoutFunction, type]
     );
+
+    useEffect(() => {
+        return () => timeoutId.current && clearTimeout(timeoutId.current);
+    }, []);
+
     return (
         <div
             className={`form form__${type} ${error ? 'error' : ''}`}
