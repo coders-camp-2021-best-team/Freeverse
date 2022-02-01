@@ -1,0 +1,34 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+.message__field{
+  height: auto;
+  width: 50rem;
+  display: grid;
+  grid-template-columns: 5rem 1fr 1fr;
+  grid-template-rows: 1rem 4rem;
+  grid-template-areas:
+    "avatar name date"
+    "avatar message message";
+    img{
+      grid-area: avatar;
+      align-self: end;
+    }
+    .name{
+      grid-area: name;
+    }
+    .date{
+      grid-area: date;
+      justify-self: end;
+      padding-right: 5rem;
+    }
+    .message{
+      width: calc(100% - 1.5rem);
+      height: calc(100% - 1.23rem);
+      padding: 0.625rem 0.75rem;
+      grid-area: message;
+      align-self: center;
+      border-radius: 10px;
+      background-color: $comment-backgroundColor;
+    }
+}
