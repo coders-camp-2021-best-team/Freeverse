@@ -37,7 +37,9 @@ export const MessageComponent = ({
             <ImageComponent
                 src={avatar}
                 size='small'
-                onClick={() => { redirect(`${routes.Feed}${routes.Profile}/${profileID}`); }}
+                onClick={() => {
+                    redirect(`${routes.Feed}${routes.Profile}/${profileID}`);
+                }}
             />
             <Text size='small' customClass='name'>
                 {name}
