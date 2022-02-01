@@ -28,7 +28,7 @@
     }
     .message {
         font-size: 1.5rem;
-        width: calc(100% - 1.5rem);
+        width: calc(100% - 2rem);
         height: calc(100% - 1.23rem);
         padding: 0.625rem 0.75rem;
         margin-left: 0.5rem;
@@ -38,22 +38,66 @@
         background-color: $comment-backgroundColor;
     }
 }
+.ownMessage{
+    grid-template-columns: 1fr 1fr 7.5rem !important;
+    grid-template-rows: 1.5rem 6rem;
+    grid-template-areas:
+        'date name avatar'
+        'message message avatar';
+    .date{
+        padding-right: 0;
+        padding-left: 5rem;
+        justify-self: start;
+    }
+    .name{
+        justify-self: end;
+        margin-left: 0rem;
+        margin-right: 0.5rem;
+    }
+    .message{
+        margin-left: 0;
+        margin-right: 0.5rem;
+        background-color: $my-comment-backgroundColor;
+    }
+}
 
-@include for-tablet-landscape-up{
-    .message__field{
+@include for-tablet-landscape-up {
+    .message__field {
         grid-template-columns: 5rem 1fr 1fr;
         grid-template-rows: 1rem 4rem;
-        img{
-            width: 5rem;
+        img {
+            width: $image-width-small;
+        }
+        .name {
+            font-size: $small-font;
+        }
+        .date {
+            font-size: $small-font;
+        }
+        .message {
+            font-size: $medium-font;
+        }
+    }
+    .ownMessage{
+        grid-template-columns: 1fr 1fr 5rem !important;
+        grid-template-rows: 1rem 4rem;
+        grid-template-areas:
+            'date name avatar'
+            'message message avatar';
+        .date{
+            padding-right: 0;
+            padding-left: 5rem;
+            justify-self: start;
         }
         .name{
-            font-size: 1rem;
-        }
-        .date{
-            font-size: 1rem;
+            justify-self: end;
+            margin-left: 0rem;
+            margin-right: 0.5rem;
         }
         .message{
-            font-size: 1rem;
+            margin-left: 0;
+            margin-right: 0.5rem;
+            background-color: $my-comment-backgroundColor;
         }
     }
 }
