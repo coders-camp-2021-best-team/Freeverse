@@ -5,30 +5,55 @@
     height: auto;
     width: 50rem;
     display: grid;
-    grid-template-columns: 5rem 1fr 1fr;
-    grid-template-rows: 1rem 4rem;
+    grid-template-columns: 7.5rem 1fr 1fr;
+    grid-template-rows: 1.5rem 6rem;
     grid-template-areas:
         'avatar name date'
         'avatar message message';
     img {
+        width: 7.5rem;
         grid-area: avatar;
         align-self: end;
     }
     .name {
+        font-size: 1.5rem;
         grid-area: name;
+        margin-left: 0.5rem;
     }
     .date {
+        font-size: 1.5rem;
         grid-area: date;
         justify-self: end;
         padding-right: 5rem;
     }
     .message {
+        font-size: 1.5rem;
         width: calc(100% - 1.5rem);
         height: calc(100% - 1.23rem);
         padding: 0.625rem 0.75rem;
+        margin-left: 0.5rem;
         grid-area: message;
         align-self: center;
         border-radius: 10px;
         background-color: $comment-backgroundColor;
+    }
+}
+
+@include for-tablet-landscape-up{
+    .message__field{
+        grid-template-columns: 5rem 1fr 1fr;
+        grid-template-rows: 1rem 4rem;
+        img{
+            width: 5rem;
+        }
+        .name{
+            font-size: 1rem;
+        }
+        .date{
+            font-size: 1rem;
+        }
+        .message{
+            font-size: 1rem;
+        }
     }
 }

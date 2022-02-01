@@ -6,11 +6,7 @@ import './Message.scss';
 export const MessageComponent = ({ children, date, name, avatar }) => {
     return (
         <div className='message__field'>
-            <ImageComponent
-                src={avatar}
-                size='small'
-                onClick
-            />
+            <ImageComponent src={avatar} size='small' onClick />
             <Text size='small' customClass='name'>
                 {name}
             </Text>
