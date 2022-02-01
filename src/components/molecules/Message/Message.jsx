@@ -10,11 +10,17 @@ export const MessageComponent = ({ children, date, name, avatar, isYours }) => {
         const dd = date.getDate();
         const hh = date.getHours();
         const min = date.getMinutes();
-        const result = [[(dd > 9 ? '' : '0') + dd,
-            (mm > 9 ? '' : '0') + mm,
-            date.getFullYear()
-        ].join('.'), [(hh > 10 ? '' : '0') + hh,
-            (min > 9 ? '' : '0') + min].join(':')].join(' ');
+        const result = [
+            [
+                (dd > 9 ? '' : '0') + dd,
+                (mm > 9 ? '' : '0') + mm,
+                date.getFullYear()
+            ].join('.'),
+            [
+                (hh > 10 ? '' : '0') + hh,
+                (min > 9 ? '' : '0') + min
+            ].join(':')
+        ].join(' ');
         return result;
     };
 
