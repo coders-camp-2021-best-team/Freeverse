@@ -6,7 +6,11 @@ import './Message.scss';
 export const MessageComponent = ({ children, date, name, avatar }) => {
     return (
         <div className='message__field'>
-            <ImageComponent src={avatar} size='small' onClick={() => console.log('dupa')} />
+            <ImageComponent
+                src={avatar}
+                size='small'
+                onClick
+            />
             <Text size='small' customClass='name'>
                 {name}
             </Text>
@@ -16,12 +20,13 @@ export const MessageComponent = ({ children, date, name, avatar }) => {
             <Text type='primary' customClass='message'>
                 {children}
             </Text>
-        </div>);
+        </div>
+    );
 };
 
 MessageComponent.propTypes = {
     children: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    avatar: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired
 };
