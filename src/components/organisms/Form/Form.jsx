@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useRef, useEffect } from 'react';
 import { Formik, Form as FormikForm, Field } from 'formik';
 import PropTypes from 'prop-types';
 import { Icon } from '../..';
@@ -7,16 +7,17 @@ import './Form.scss';
 
 export const Form = ({ placeholder, type, onSubmit }) => {
     const [error, setError] = useState(false);
-    const submitOnEnter = (event) => {
-        if (event.key === 'Enter' && !event.shiftKey) {
-            event.preventDefault();
-            event.target.form.dispatchEvent(
-                new Event('submit', { cancelable: true, bubbles: true })
-            );
-            setTimeout(() => setError(false), 1000);
-        }
-    };
 
+    const timeoutId = useRef(null);
+    const timeoutFunction = useCallback(() => {
+        timeoutId.current = setTimeout(() => {
+            setError(false);
+        }, 1000);
+    }, []);
+
+    useEffect(() => {
+        return () => timeoutId.current && clearTimeout(timeoutId.current);
+    }, []);
     const focusOnInput = (event) => {
         if (event.target[0]) {
             event.target[0].focus();
@@ -37,12 +38,17 @@ export const Form = ({ placeholder, type, onSubmit }) => {
 
     const renderForm = useCallback(
         ({ handleSubmit, validateField }) => {
-            const inputValidate = (value) => {
-                if (!value) {
-                    setError(true);
-                } else {
-                    setError(false);
+            const submitOnEnter = (event) => {
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault();
+                    event.target.form.dispatchEvent(
+                        new Event('submit', { cancelable: true, bubbles: true })
+                    );
+                    timeoutFunction();
                 }
+            };
+            const inputValidate = (value) => {
+                setError(!value);
                 return error;
             };
             return (
@@ -59,14 +65,14 @@ export const Form = ({ placeholder, type, onSubmit }) => {
                         onClick={() => {
                             if (validateField(type)) {
                                 handleSubmit();
-                                setTimeout(() => setError(false), 1000);
+                                timeoutFunction();
                             }
                         }}
                     />
                 </FormikForm>
             );
         },
-        [error, placeholder, type]
+        [error, placeholder, timeoutFunction, type]
     );
     return (
         <div
