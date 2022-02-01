@@ -13,6 +13,7 @@ export const Form = ({ placeholder, type, onSubmit }) => {
             event.target.form.dispatchEvent(
                 new Event('submit', { cancelable: true, bubbles: true })
             );
+            setTimeout(() => setError(false), 1000);
         }
     };
 
@@ -58,6 +59,7 @@ export const Form = ({ placeholder, type, onSubmit }) => {
                         onClick={() => {
                             if (validateField(type)) {
                                 handleSubmit();
+                                setTimeout(() => setError(false), 1000);
                             }
                         }}
                     />
