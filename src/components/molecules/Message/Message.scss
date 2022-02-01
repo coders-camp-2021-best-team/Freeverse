@@ -6,14 +6,14 @@
     width: 50rem;
     display: grid;
     grid-template-columns: 7.5rem 1fr 1fr;
-    grid-template-rows: 1.5rem 6rem;
+    grid-template-rows: 1.5rem auto;
     grid-template-areas:
         'avatar name date'
         'avatar message message';
     img {
         width: 7.5rem;
         grid-area: avatar;
-        align-self: end;
+        align-self: start;
     }
     .name {
         font-size: 1.5rem;
@@ -28,43 +28,45 @@
     }
     .message {
         font-size: 1.5rem;
-        width: calc(100% - 2rem);
+        max-width: calc(100% - 2rem);
         height: calc(100% - 1.23rem);
         padding: 0.625rem 0.75rem;
         margin-left: 0.5rem;
         grid-area: message;
         align-self: center;
+        justify-self: start;
         border-radius: 10px;
         background-color: $comment-backgroundColor;
     }
 }
-.ownMessage{
+.ownMessage {
     grid-template-columns: 1fr 1fr 7.5rem !important;
-    grid-template-rows: 1.5rem 6rem;
+    grid-template-rows: 1fr auto;
     grid-template-areas:
         'date name avatar'
         'message message avatar';
-    .date{
+    .date {
         padding-right: 0;
         padding-left: 5rem;
         justify-self: start;
     }
-    .name{
+    .name {
         justify-self: end;
         margin-left: 0rem;
         margin-right: 0.5rem;
     }
-    .message{
+    .message {
         margin-left: 0;
         margin-right: 0.5rem;
         background-color: $my-comment-backgroundColor;
+        justify-self: end;
     }
 }
 
 @include for-tablet-landscape-up {
     .message__field {
         grid-template-columns: 5rem 1fr 1fr;
-        grid-template-rows: 1rem 4rem;
+        grid-template-rows: 1rem auto;
         img {
             width: $image-width-small;
         }
@@ -78,23 +80,23 @@
             font-size: $medium-font;
         }
     }
-    .ownMessage{
+    .ownMessage {
         grid-template-columns: 1fr 1fr 5rem !important;
-        grid-template-rows: 1rem 4rem;
+        grid-template-rows: 1rem auto;
         grid-template-areas:
             'date name avatar'
             'message message avatar';
-        .date{
+        .date {
             padding-right: 0;
             padding-left: 5rem;
             justify-self: start;
         }
-        .name{
+        .name {
             justify-self: end;
             margin-left: 0rem;
             margin-right: 0.5rem;
         }
-        .message{
+        .message {
             margin-left: 0;
             margin-right: 0.5rem;
             background-color: $my-comment-backgroundColor;

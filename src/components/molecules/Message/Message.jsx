@@ -5,6 +5,19 @@ import chatAvatar from '../../../images/avatar.png';
 import './Message.scss';
 
 export const MessageComponent = ({ children, date, name, avatar, isYours }) => {
+    const stringDate = () => {
+        const mm = date.getMonth() + 1;
+        const dd = date.getDate();
+        const hh = date.getHours();
+        const min = date.getMinutes();
+        const result = [[(dd > 9 ? '' : '0') + dd,
+            (mm > 9 ? '' : '0') + mm,
+            date.getFullYear()
+        ].join('.'), [(hh > 10 ? '' : '0') + hh,
+            (min > 9 ? '' : '0') + min].join(':')].join(' ');
+        return result;
+    };
+
     return (
         <div className={`message__field ${isYours ? 'ownMessage' : ''}`}>
             <ImageComponent src={avatar} size='small' onClick />
@@ -12,7 +25,7 @@ export const MessageComponent = ({ children, date, name, avatar, isYours }) => {
                 {name}
             </Text>
             <Text size='small' customClass='date'>
-                {date}
+                {stringDate()}
             </Text>
             <Text type='primary' customClass='message'>
                 {children}
@@ -26,7 +39,7 @@ MessageComponent.propTypes = {
     date: PropTypes.instanceOf(Date).isRequired,
     name: PropTypes.string.isRequired,
     avatar: PropTypes.string,
-    isYours: PropTypes.bool,
+    isYours: PropTypes.bool
 };
 
 MessageComponent.defaultProps = {

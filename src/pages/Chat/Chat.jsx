@@ -1,17 +1,18 @@
 import { MessageComponent } from '../../components';
 
 export const ChatPage = () => {
+    const currentDate = new Date();
     const user = {
         name: 'Batman',
         you: false
     };
     return (
         <MessageComponent
-            date='21.12.2021  10:40 AM'
+            date={currentDate}
             name={user.name}
             isYours={user.you}
         >
-            elo elo elo wiadoność 1,2,3
+            Lorem ipsum
         </MessageComponent>
     );
 };
