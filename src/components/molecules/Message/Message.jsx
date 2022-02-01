@@ -16,10 +16,7 @@ export const MessageComponent = ({ children, date, name, avatar, isYours }) => {
                 (mm > 9 ? '' : '0') + mm,
                 date.getFullYear()
             ].join('.'),
-            [
-                (hh > 10 ? '' : '0') + hh,
-                (min > 9 ? '' : '0') + min
-            ].join(':')
+            [(hh > 10 ? '' : '0') + hh, (min > 9 ? '' : '0') + min].join(':')
         ].join(' ');
         return result;
     };
