@@ -10,11 +10,8 @@ import {
 } from './pages';
 import { ProtectedRoute } from './components';
 import { routes } from './routes/Routes';
-import { useAuth } from './hooks';
 
 export const Router = () => {
-    const { user } = useAuth();
-
     return (
         <BrowserRouter>
             <Routes>
@@ -44,7 +41,7 @@ export const Router = () => {
                     <Route
                         exact
                         path={`${routes.Profile}/:id`}
-                        element={<ProfilePage id={user?.uid || ''} />}
+                        element={<ProfilePage />}
                     />
 
                     <Route exact path={routes.Chat} element={<ChatPage />} />
