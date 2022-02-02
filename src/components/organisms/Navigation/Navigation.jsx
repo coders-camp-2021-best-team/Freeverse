@@ -6,7 +6,7 @@ import { routes } from '../../../routes/Routes';
 
 const NAV_ITEMS = [
     {
-        src: 'avatar',
+        src: 'user',
         label: 'Profile',
         path: routes.EditProfile
     },
@@ -14,8 +14,8 @@ const NAV_ITEMS = [
         src: 'comment',
         label: 'Chat room',
         path: routes.Chat
-    }
-    // { src: 'power', label: 'Log out', onClick: () => console.log('power') }
+    },
+    { src: 'power', label: 'Log out', path: routes.Home }
 ];
 
 export const Navigation = () => {

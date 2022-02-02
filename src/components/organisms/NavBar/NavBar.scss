@@ -1,0 +1,62 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.nav__bar {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    background-color: $secondary-backgroundColor;
+    padding: 1rem 0;
+
+    &__logo {
+        width: $image-width-large;
+        height: 70px;
+    }
+
+    &__userinfo {
+        display: flex;
+        p {
+            display: none;
+        }
+        img {
+            width: $image-width-medium;
+            height: auto;
+        }
+    }
+}
+
+@include for-tablet-landscape-up {
+    .nav__bar {
+        width: 8%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 0 1rem;
+
+        &__logo {
+            width: $image-width-medium;
+            height: 200px;
+        }
+
+        &__userinfo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            img {
+                width: $image-width-medium;
+                height: auto;
+            }
+
+            p {
+                display: unset;
+                font-size: $large-font;
+                text-align: center;
+                line-height: 2.5rem;
+            }
+        }
+    }
+}

@@ -3,7 +3,8 @@ import { ReactComponent as Logo } from '../../../Images/logo.svg';
 // import { UserInfo } from '../../molecules/UserInfo/UserInfo';
 import { Navigation } from '../Navigation/Navigation';
 import { ImageComponent } from '../../atoms/ImageComponent/Image';
-import COOKIE from '../../../Images/cookie-min.jpg';
+import COOKIE from '../../../Images/cookie.png';
+import AVATAR from '../../../Images/avatar.png';
 
 import './NavBar.scss';
 
@@ -12,12 +13,20 @@ export const NavBar = () => {
         <div className='nav__bar'>
             <Logo className='nav__bar__logo' />
             {/* <UserInfo>Robert Klon</UserInfo> */}
+            <div className='nav__bar__userinfo'>
+                <img src={AVATAR} alt='' />
+                <p>
+                    Kamil
+                    <br />
+                    Kameleon
+                </p>
+            </div>
             <Navigation />
             {/* button to log out */}
             <ImageComponent
                 src={COOKIE}
                 alt=''
-                size='medium'
+                size='large'
                 onClick={() => console.log('cos')}
             />
         </div>
