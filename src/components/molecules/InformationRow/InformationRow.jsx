@@ -5,12 +5,16 @@ import './InformationRow.scss';
 
 export const InformationRow = ({ onClick, children, iconName }) => {
     return (
-        <button onClick={onClick} className='information__row'>
+        <div
+            onClick={onClick}
+            role='complementary'
+            className='information__row'
+        >
             <Icon size='medium' iconName={iconName} />
             <Text type='primary' size='medium'>
                 {children}
             </Text>
-        </button>
+        </div>
     );
 };
 

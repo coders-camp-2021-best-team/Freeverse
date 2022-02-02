@@ -1,10 +1,10 @@
 // import PropTypes from 'prop-types';
-import { ReactComponent as Logo } from '../../../Images/logo.svg';
+import { ReactComponent as Logo } from '../../../images/logo.svg';
 // import { UserInfo } from '../../molecules/UserInfo/UserInfo';
 import { Navigation } from '../Navigation/Navigation';
 import { ImageComponent } from '../../atoms/ImageComponent/Image';
-import COOKIE from '../../../Images/cookie.png';
-import AVATAR from '../../../Images/avatar.png';
+import COOKIE from '../../../images/cookie.png';
+import AVATAR from '../../../images/avatar.png';
 
 import './NavBar.scss';
 

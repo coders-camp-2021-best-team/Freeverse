@@ -1,3 +1,6 @@
+import { MessageCollection } from '../../components';
+import { usersMsgs } from '../../utils/Mocks';
+
 export const ChatPage = () => {
-    return <div>This is chat page</div>;
+    return <MessageCollection usersMsgs={usersMsgs} />;
 };

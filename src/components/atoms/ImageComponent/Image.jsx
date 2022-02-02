@@ -18,7 +18,7 @@ export const ImageComponent = memo(({ src, size, onClick }) => {
 });
 
 ImageComponent.propTypes = {
-    size: PropTypes.oneOf(['medium', 'large']),
+    size: PropTypes.oneOf(['small', 'medium', 'large']),
     src: PropTypes.string.isRequired,
     onClick: PropTypes.func
 };

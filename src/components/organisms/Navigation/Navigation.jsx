@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import { InformationRow } from '../../molecules/InformationRow/InformationRow';
 import { routes } from '../../../routes/Routes';
+import './Navigation.scss';
 
 // Add onClick function (log out function)
 
