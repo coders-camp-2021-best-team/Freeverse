@@ -5,7 +5,9 @@ import { routes } from '../../../routes/Routes';
 import './Header.scss';
 
 export const Header = () => {
-    const { user } = useAuth();
+    const {
+        user: { data: user }
+    } = useAuth();
 
     return (
         <header>
