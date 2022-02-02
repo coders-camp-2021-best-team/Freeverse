@@ -1,18 +1,17 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
-
-.baseScreen{
-  display: flex;
-  flex-direction: column;
+.baseScreen {
+    display: flex;
+    flex-direction: column;
 }
 
-@include for-tablet-landscape-up{
-  .baseScreen{
-    display: flex;
-    flex-direction: row;
-    main {
-      width: 85%;
+@include for-tablet-landscape-up {
+    .baseScreen {
+        display: flex;
+        flex-direction: row;
+        main {
+            width: 85%;
+        }
     }
-  }
 }
