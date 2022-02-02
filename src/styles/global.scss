@@ -3,13 +3,23 @@
 
 html {
     font-size: 50%;
+    height: 100%;
     body {
+        height: 100%;
         padding: 0;
         margin: 0;
         background-color: $primary-backgroundColor;
         font-family: $font-style;
         color: $primary-color;
         font-size: 1.5rem;
+        .root{
+            height: 100%;
+            display: flex;
+            main{
+                width: 85%;
+                height: 100%;
+            }
+        }
     }
 }
 

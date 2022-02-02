@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.page__chat{
+  height: 100%;
+  margin-top: 8rem;
+  .title{
+    margin-left: 7.5rem;
+  }
+  .chat{
+    display: flex;
+    flex-direction: column;
+    .form{
+      margin: 2rem 0;
+      bottom: 0px;
+      right: 20%;
+      align-self: center;
+    }
+  }
+}

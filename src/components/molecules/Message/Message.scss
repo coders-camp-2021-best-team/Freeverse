@@ -2,16 +2,16 @@
 @import '../../../styles/variables.scss';
 
 .message__field {
-    margin-bottom: 1rem;
+    margin: 1rem 7rem 0 3rem;
     height: auto;
-    width: 50rem;
     display: grid;
-    grid-template-columns: 7.5rem 1fr 1fr;
+    grid-template-columns: 7.5rem auto auto;
     grid-template-rows: 1.5rem auto;
     grid-template-areas:
         'avatar name date'
         'avatar message message';
     img {
+        border-radius: 50%;
         width: 7.5rem;
         grid-area: avatar;
         align-self: start;
@@ -30,7 +30,7 @@
     }
     .message {
         font-size: 1.5rem;
-        max-width: calc(100% - 2rem);
+        max-width: 50rem;
         height: calc(100% - 1.23rem);
         padding: 0.625rem 0.75rem;
         margin-left: 0.5rem;
