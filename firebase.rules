@@ -63,8 +63,9 @@ service cloud.firestore {
 		match /chat_rooms/{chat_room} {
 			function isValidChatRoom(cr) {
 				return
-				(!isDefined(cr.members) || isList(cr.members))
-				&& (isList(cr.admins));
+					(isString(cr.name))
+					&& (!isDefined(cr.members) || isList(cr.members))
+					&& (isList(cr.admins));
 			}
 
 			function getChatRoomData() {
