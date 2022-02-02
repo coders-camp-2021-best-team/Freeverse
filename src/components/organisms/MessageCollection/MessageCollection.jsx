@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import { MessageComponent } from '../..';
 
-export const MessageCollection = (usersMsgs) => {
-    return usersMsgs.usersMsgs.map((user) => (
+export const MessageCollection = ({ usersMsgs }) => {
+    return usersMsgs.map((user) => (
         <MessageComponent
             date={user.date}
             name={user.name}
@@ -17,5 +17,5 @@ export const MessageCollection = (usersMsgs) => {
 };
 
 MessageCollection.propTypes = {
-    usersMsgs: PropTypes.instanceOf(Object).isRequired
+    usersMsgs: PropTypes.arrayOf(Object).isRequired
 };
