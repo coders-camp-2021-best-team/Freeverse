@@ -6,13 +6,15 @@ import './Chat.scss';
 export const ChatPage = () => {
     return (
         <div className='page__chat'>
-            <Text size='extraLarge' customClass='title'>
-                Public chat room
-            </Text>
             <div className='chat'>
-                <MessageCollection usersMsgs={usersMsgs} />
-                <Form placeholder='Write message...' type='chat' onSubmit />
+                <Text size='extraLarge' customClass='title'>
+                    Public chat room
+                </Text>
+                <div className='messages'>
+                    <MessageCollection usersMsgs={usersMsgs} />
+                </div>
             </div>
+            <Form placeholder='Write message...' type='chat' onSubmit />
         </div>
     );
 };

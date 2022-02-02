@@ -1,20 +1,45 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
-.page__chat {
-    height: 100%;
-    margin-top: 8rem;
-    .title {
-        margin-left: 7.5rem;
-    }
-    .chat {
-        display: flex;
-        flex-direction: column;
-        .form {
-            margin: 2rem 0;
-            bottom: 0px;
-            right: 20%;
-            align-self: center;
+html{
+  overflow: hidden;
+  main{
+    height: 100vh;
+    width: 100%;
+    .page__chat {
+      display: flex;
+      flex-direction: column;
+      margin-top: 4rem;
+      height: 100vh;
+      .title {
+          margin-left: 7.5rem;
+          display: none;
+      }
+      .chat {
+          display: flex;
+          flex-direction: column;
+          height: calc(100vh - 22rem);
+          .messages{
+            overflow: auto;
+          }
         }
+      .form {
+          margin: 2rem 0;
+          bottom: 0px;
+          right: 20%;
+          align-self: center;
+      }
     }
+  }
+}
+@include for-tablet-landscape-up{
+  main{
+    width: 85%;
+    .title{
+      display: block !important;
+    }
+    .chat{
+      height: calc(100vh - 12rem) !important;
+    }
+  }
 }
