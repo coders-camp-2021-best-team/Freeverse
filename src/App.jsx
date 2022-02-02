@@ -1,5 +1,5 @@
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { ToastContainer, toast } from 'react-toastify';
-import { AuthContextProvider, UserContextProvider } from './utils';
 import { Router } from './Router';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,13 +18,9 @@ export const App = () => {
     };
 
     return (
-        <>
+        <QueryClientProvider client={new QueryClient()}>
             <ToastContainer theme='dark' autoClose={5000} />
-            <AuthContextProvider>
-                <UserContextProvider>
-                    <Router />
-                </UserContextProvider>
-            </AuthContextProvider>
-        </>
+            <Router />
+        </QueryClientProvider>
     );
 };
