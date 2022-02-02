@@ -31,8 +31,8 @@ export const ChatPage = () => {
             >
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Architecto velit vero incidunt eligendi sit modi unde delectus
-                distinctio ex recusandae amet,
-                expedita nihil harum natus voluptas, necessitatibus voluptates, asperiores commodi.
+                distinctio ex recusandae amet, expedita nihil harum natus
+                voluptas, necessitatibus voluptates, asperiores commodi.
             </MessageComponent>
         </>
     );

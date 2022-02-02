@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ImageComponent, Text } from '../..';
 import { routes } from '../../../routes/Routes';
@@ -22,9 +23,9 @@ export const MessageComponent = ({
             <ImageComponent
                 src={avatar}
                 size='small'
-                onClick={() => {
+                onClick={useCallback(() => {
                     redirect(`${routes.Feed}${routes.Profile}/${profileID}`);
-                }}
+                }, [profileID, redirect])}
             />
             <Text size='small' customClass='name'>
                 {name}
