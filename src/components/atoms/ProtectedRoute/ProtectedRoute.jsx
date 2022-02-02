@@ -6,14 +6,20 @@ import { routes } from '../../../routes/Routes';
 export const ProtectedRoute = ({ children }) => {
     const { user } = useAuth();
 
-    return user ? (
-        <>
-            {children}
-            <Outlet />
-        </>
-    ) : (
-        <Navigate to={routes.Home} replace />
-    );
+    if (user.isLoading) {
+        return null;
+    }
+
+    if (user.data) {
+        return (
+            <>
+                {children}
+                <Outlet />
+            </>
+        );
+    }
+
+    return <Navigate to={routes.Home} replace />;
 };
 
 ProtectedRoute.propTypes = {
