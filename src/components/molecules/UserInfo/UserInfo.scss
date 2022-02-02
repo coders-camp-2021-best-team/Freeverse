@@ -2,9 +2,9 @@
 @import '../../../styles/mixins.scss';
 
 .userinfo {
-&__text {
-    display: none;
-}
+    &__text {
+        display: none;
+    }
 }
 
 @include for-tablet-landscape-up {
@@ -12,8 +12,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-            &__text {
-                display: block;
-            }
+        .atom__image {
+            padding-bottom: 1.5rem;
         }
+    }
 }

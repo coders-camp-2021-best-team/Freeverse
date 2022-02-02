@@ -7,12 +7,14 @@ import './UserInfo.scss';
 export const UserInfo = ({ children }) => {
     return (
         <div className='userinfo'>
-            <ImageComponent src={PROFILE} size='medium' />
-            <Text customClass='userinfo__text' type='primary' size='large'>{children}</Text>
+            <ImageComponent className='atom__image' src={PROFILE} size='medium' />
+            <Text type='primary' size='large'>
+                {children}
+            </Text>
         </div>
     );
 };
 
 UserInfo.propTypes = {
-    children: PropTypes.string.isRequired,
+    children: PropTypes.string.isRequired
 };
