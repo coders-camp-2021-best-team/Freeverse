@@ -9,13 +9,7 @@ import { dateFormat } from '../../../utils/format';
 
 import './Post.scss';
 
-export const Post = ({
-    children,
-    date,
-    name,
-    avatar,
-    profileID
-}) => {
+export const Post = ({ children, date, name, avatar, profileID }) => {
     const navigate = useNavigate();
     const redirect = useCallback(() => {
         navigate(routes.Profile);

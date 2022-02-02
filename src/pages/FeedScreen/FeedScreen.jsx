@@ -15,7 +15,14 @@ export const FeedScreenPage = () => {
             <Modal showModal={showModal} setShowModal={setShowModal}>
                 <div>Children element</div>
             </Modal>
-            <Post date={new Date()} name='atr' avatar='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png' profileID='1'>{Children}</Post>
+            <Post
+                date={new Date()}
+                name='atr'
+                avatar='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+                profileID='1'
+            >
+                {Children}
+            </Post>
         </>
     );
 };
