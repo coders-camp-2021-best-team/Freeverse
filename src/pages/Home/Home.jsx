@@ -7,7 +7,10 @@ import { ReactComponent as Logo } from '../../images/logo.svg';
 import './Home.scss';
 
 export const HomePage = () => {
-    const { user, login } = useAuth();
+    const {
+        user: { data: user },
+        login
+    } = useAuth();
 
     return user ? (
         <Navigate to={routes.Feed} />
