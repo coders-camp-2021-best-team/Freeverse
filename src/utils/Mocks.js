@@ -25,5 +25,59 @@ export const usersMsgs = [
         date: new Date(),
         message:
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eius necessitatibus accusantium vero a maiores nobis fugit provident saepe, reiciendis sit assumenda iusto facilis voluptates cumque reprehenderit vel qui eaque?'
+    },
+    {
+        ID: '4',
+        profileId: '3',
+        name: 'Mariusz',
+        isYour: false,
+        date: new Date(),
+        message:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eius necessitatibus accusantium vero a maiores nobis fugit provident saepe, reiciendis sit assumenda iusto facilis voluptates cumque reprehenderit vel qui eaque?'
+    },
+    {
+        ID: '5',
+        profileId: '3',
+        name: 'Mariusz',
+        isYour: false,
+        date: new Date(),
+        message:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eius necessitatibus accusantium vero a maiores nobis fugit provident saepe, reiciendis sit assumenda iusto facilis voluptates cumque reprehenderit vel qui eaque?'
+    },
+    {
+        ID: '6',
+        profileId: '3',
+        name: 'Mariusz',
+        isYour: false,
+        date: new Date(),
+        message:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eius necessitatibus accusantium vero a maiores nobis fugit provident saepe, reiciendis sit assumenda iusto facilis voluptates cumque reprehenderit vel qui eaque?'
+    },
+    {
+        ID: '7',
+        profileId: '3',
+        name: 'Mariusz',
+        isYour: false,
+        date: new Date(),
+        message:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eius necessitatibus accusantium vero a maiores nobis fugit provident saepe, reiciendis sit assumenda iusto facilis voluptates cumque reprehenderit vel qui eaque?'
+    },
+    {
+        ID: '8',
+        profileId: '3',
+        name: 'Mariusz',
+        isYour: false,
+        date: new Date(),
+        message:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eius necessitatibus accusantium vero a maiores nobis fugit provident saepe, reiciendis sit assumenda iusto facilis voluptates cumque reprehenderit vel qui eaque?'
+    },
+    {
+        ID: '9',
+        profileId: '3',
+        name: 'Mariusz',
+        isYour: false,
+        date: new Date(),
+        message:
+            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eius necessitatibus accusantium vero a maiores nobis fugit provident saepe, reiciendis sit assumenda iusto facilis voluptates cumque reprehenderit vel qui eaque?'
     }
 ];

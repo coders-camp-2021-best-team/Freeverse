@@ -1,0 +1,9 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+header {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
