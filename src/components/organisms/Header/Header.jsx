@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import { profileID } from '../../../App';
 import { routes } from '../../../routes/Routes';
 
+import './Header.scss';
+
 export const Header = () => {
     return (
         <header>
