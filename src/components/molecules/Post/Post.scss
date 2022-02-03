@@ -1,0 +1,81 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/variables.scss';
+
+.post__field {
+    margin: 1rem 3rem 0 3rem;
+    height: auto;
+    display: grid;
+    grid-template-columns: 7.5rem 6rem 6rem 6rem auto;
+    grid-template-rows: 1.5rem 6rem auto;
+    grid-template-areas:
+        'avatar names names names date'
+        'avatar message message message message'
+        'avatar icons1 icons2 icons3 icons';
+    img {
+        border-radius: 50%;
+        width: 7.5rem;
+        grid-area: avatar;
+        align-self: start;
+        cursor: pointer;
+    }
+    .message {
+        font-size: 1rem;
+        max-width: 50rem;
+        height: calc(100% - 1.23rem);
+        padding: 0.625rem 0.75rem;
+        margin-left: 0.5rem;
+        grid-area: message;
+        align-self: center;
+        justify-self: start;
+        border-radius: 10px;
+        background-color: $primary-backgroundColor;
+    }
+    .date {
+        font-size: 1rem;
+        grid-area: date;
+        justify-self: start;
+        align-self: flex-end;
+        padding-right: 5rem;
+        opacity: 0.6;
+    }
+    .username {
+        font-size: 1.5rem;
+        border-radius: 10px;
+        margin-left: 0.5rem;
+        padding-left: 0.75rem;
+        grid-area: names;
+    }
+    .icon {
+        &__like_button{
+            grid-area: icons1;
+            margin-left: 0.5rem;
+            padding-left: 0.75rem;
+        }
+        &__dislike_button{
+            grid-area: icons2;
+            margin-left: 0.5rem;
+        }
+        &__comment_button{
+            grid-area: icons3;
+        }
+    }
+}
+
+// @include for-tablet-landscape-up {
+//     .post__field {
+//         grid-template-columns: 5rem 1fr 1fr;
+//         grid-template-rows: 1rem auto;
+//         img {
+//             width: $image-width-small;
+//         }
+//         .name {
+//             font-size: $small-font;
+//         }
+//         .date {
+//             font-size: $small-font;
+//         }
+//         .message {
+//             font-size: $medium-font;
+//         }
+//     }
+// }

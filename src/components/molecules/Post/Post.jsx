@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { Form } from 'formik';
+// import { Form } from 'formik';
 import { Text, ImageComponent } from '../..';
 import { routes } from '../../../routes/Routes';
 import { Icon } from '../../atoms/IconComponent/Icon';
@@ -16,7 +16,7 @@ export const Post = ({ children, date, name, avatar, profileID }) => {
     }, [navigate]);
 
     return (
-        <div>
+        <div className='post__field'>
             <ImageComponent
                 src={avatar}
                 size='small'
@@ -37,21 +37,21 @@ export const Post = ({ children, date, name, avatar, profileID }) => {
                 iconName='like'
                 // onClick={}
                 size='medium'
-                className='like-button'
+                className='like_button'
             />
             <Icon
                 iconName='dislike'
                 // onClick={}
                 size='medium'
-                className='dislike-button'
+                className='dislike_button'
             />
             <Icon
                 iconName='comment'
                 // onClick={}
                 size='medium'
-                className='dislike-button'
+                className='comment_button'
             />
-            <Form placeholder='Add comment' type='comment' onSubmit />
+            {/* <Form placeholder='Add comment' type='comment' onSubmit /> */}
         </div>
     );
 };
