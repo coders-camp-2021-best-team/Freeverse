@@ -19,7 +19,6 @@ export const FeedScreenPage = () => {
                 name='atr'
                 avatar='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
                 profileID='1'
-
             >
                 Children element
             </Post>
