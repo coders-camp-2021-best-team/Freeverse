@@ -4,17 +4,27 @@ import PROFILE from '../../../images/profile.png';
 
 import './UserInfo.scss';
 
-export const UserInfo = ({ children }) => {
+export const UserInfo = ({ onClick }) => {
     return (
         <div className='userinfo'>
-            <ImageComponent className='atom__image' src={PROFILE} size='medium' />
-            <Text type='primary' size='large'>
-                {children}
+            <ImageComponent
+                className='atom__image'
+                src={PROFILE}
+                size='medium'
+                onClick={onClick}
+            />
+            <Text type='primary' size='large' customClass='userinfo__text'>
+                Kamil Zawieszka
             </Text>
         </div>
     );
 };
 
 UserInfo.propTypes = {
-    children: PropTypes.string.isRequired
+    // children: PropTypes.string.isRequired
+    onClick: PropTypes.func
+};
+
+UserInfo.defaultProps = {
+    onClick: () => null
 };

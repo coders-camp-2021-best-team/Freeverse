@@ -17,7 +17,7 @@ const NAV_ITEMS = [
         label: 'Chat room',
         path: routes.Chat
     },
-    { src: 'power', label: 'Log out', path: routes.Home }
+    { src: 'power', label: 'Log out', path: routes.Home } // change path to onClick for logout
 ];
 
 export const Navigation = ({ isOpen }) => {

@@ -10,11 +10,20 @@
 }
 
 .navigation {
-    padding-bottom: 1rem;
+    position: absolute;
+    top: 10rem;
+    right: 1rem;
+    padding: 1.5rem 1rem;
+    background-color: $comment-backgroundColor;
+    border-radius: 10px;
 }
 
 @include for-tablet-landscape-up {
     .navigation {
         display: block;
+        position: unset;
+        background-color: unset;
+        padding: 0;
+        border-radius: unset;
     }
 }

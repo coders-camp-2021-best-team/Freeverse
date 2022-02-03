@@ -7,24 +7,18 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    position: relative;
     background-color: $secondary-backgroundColor;
     padding: 1rem 0;
+    justify-content: space-between;
 
     &__logo {
         width: $image-width-large;
         height: 70px;
     }
 
-    &__userinfo {
+    &__section {
         display: flex;
-        p {
-            display: none;
-        }
-        img {
-            width: $image-width-medium;
-            height: auto;
-        }
+        padding-right: 3rem;
     }
 }
 
@@ -34,29 +28,19 @@
         height: 100vh;
         display: flex;
         flex-direction: column;
-        padding: 0 1rem;
+        padding: 0 2.5rem;
+        justify-content: unset;
 
         &__logo {
             width: $image-width-medium;
-            height: 200px;
+            height: 150px;
         }
 
-        &__userinfo {
+        &__section {
             display: flex;
             flex-direction: column;
             align-items: center;
-
-            img {
-                width: $image-width-medium;
-                height: auto;
-            }
-
-            p {
-                display: unset;
-                font-size: $large-font;
-                text-align: center;
-                line-height: 2.5rem;
-            }
+            padding-right: 0;
         }
     }
 }
