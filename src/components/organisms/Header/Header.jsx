@@ -15,13 +15,13 @@ export const Header = () => {
     );
 
     return (
-        <div className='nav__bar'>
+        <header className='nav__bar'>
             <Logo className='nav__bar__logo' />
             <div className='nav__bar__section'>
                 <UserInfo onClick={handleOnImgClick} />
                 <Navigation isOpen={isNavigationOpen} />
                 <ImageComponent src={COOKIE} alt='' size='large' onClick />
             </div>
-        </div>
+        </header>
     );
 };
