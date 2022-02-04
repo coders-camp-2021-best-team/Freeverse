@@ -1,4 +1,4 @@
-import { collection, doc, query, where } from 'firebase/firestore';
+import { collection, doc, query, where, orderBy } from 'firebase/firestore';
 import { db } from './Firebase';
 
 class ApiService {
