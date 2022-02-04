@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-import { Text, ImageComponent } from '../..';
+import { Text, ImageComponent, Form } from '../..';
 import { routes } from '../../../routes/Routes';
 import { Icon } from '../../atoms/IconComponent/Icon';
 import { dateFormat } from '../../../utils/format';
@@ -12,6 +12,7 @@ export const Post = ({ children, date, name, avatar, profileID }) => {
     const navigate = useNavigate();
     const redirect = useCallback(() => {
         navigate(routes.Profile);
+        //  TODO: PASS AN PROFILEID
     }, [navigate]);
 
     return (
@@ -32,24 +33,23 @@ export const Post = ({ children, date, name, avatar, profileID }) => {
             <Text type='primary' customClass='message' size='medium'>
                 {children}
             </Text>
+            <Form placeholder='Add comment' type='comment' onSubmit />
             <Icon
                 iconName='like'
-                // onClick={}
                 size='medium'
                 className='like_button'
             />
             <Icon
                 iconName='dislike'
-                // onClick={}
                 size='medium'
                 className='dislike_button'
             />
             <Icon
                 iconName='comment'
-                // onClick={}
                 size='medium'
                 className='comment_button'
             />
+            <hr />
         </div>
     );
 };
