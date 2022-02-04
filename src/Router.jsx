@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import {
     BaseScreen,
-    ChatPage,
     EditProfilePage,
     ErrorPage,
     FeedScreenPage,
