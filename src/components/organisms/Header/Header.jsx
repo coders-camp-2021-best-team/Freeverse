@@ -9,12 +9,35 @@ import COOKIE from '../../../images/cookie.png';
 
 import './Header.scss';
 
+const getRandomFortune = async () => {
+    let data;
+    try {
+        const response = await fetch('/fortune/wisdom');
+        data = await response.json();
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('error');
+    }
+    return data;
+};
+
 export const Header = () => {
     const [isNavigationOpen, setIsNavigationOpen] = useState(false);
-    const handleOnImgClick = useCallback(
+    const [text, setText] = useState('');
+
+    const handleOnAvatarClick = useCallback(
         () => setIsNavigationOpen((previousState) => !previousState),
         []
     );
+
+    const handleOnCookieClick = useCallback(async () => {
+        const data = await getRandomFortune();
+        setText(data.fortune);
+    }, []);
+
+    const handleCloseClick = useCallback(async () => {
+        setText('');
+    }, []);
 
     return (
         <header className='nav__bar'>
@@ -22,9 +45,27 @@ export const Header = () => {
                 <Logo className='nav__bar__logo' />
             </NavLink>
             <div className='nav__bar__section'>
-                <UserInfo onClick={handleOnImgClick} />
+                <UserInfo onClick={handleOnAvatarClick} />
                 <Navigation isOpen={isNavigationOpen} />
-                <ImageComponent src={COOKIE} alt='' size='large' onClick />
+                <div className='cookie'>
+                    {!!text && (
+                        <div className='cookie__popup'>
+                            <button
+                                className='cookie__popup__button'
+                                onClick={handleCloseClick}
+                            >
+                                &times; Close
+                            </button>
+                            {text}
+                        </div>
+                    )}
+                </div>
+                <ImageComponent
+                    src={COOKIE}
+                    alt=''
+                    size='large'
+                    onClick={handleOnCookieClick}
+                />
             </div>
         </header>
     );
