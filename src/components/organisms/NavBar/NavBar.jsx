@@ -24,7 +24,7 @@ export const NavBar = () => {
                     src={COOKIE}
                     alt=''
                     size='large'
-                    onClick={() => console.log('tekst')}
+                    onClick
                 />
             </div>
         </div>
