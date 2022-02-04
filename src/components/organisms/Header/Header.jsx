@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useUserDetails } from '../../../hooks';
 import { routes } from '../../../routes/Routes';
 import { ReactComponent as Logo } from '../../../images/logo.svg';
 import { UserInfo } from '../../molecules/UserInfo/UserInfo';
@@ -16,16 +17,29 @@ export const Header = () => {
         []
     );
 
-    return (
-        <header className='nav__bar'>
-            <NavLink to={`${routes.Feed}`}>
-                <Logo className='nav__bar__logo' />
-            </NavLink>
-            <div className='nav__bar__section'>
-                <UserInfo onClick={handleOnImgClick} />
-                <Navigation isOpen={isNavigationOpen} />
-                <ImageComponent src={COOKIE} alt='' size='large' onClick />
-            </div>
-        </header>
-    );
+    const userDetails = useUserDetails();
+
+    if (userDetails.isSuccess && userDetails.data) {
+        const { displayName } = userDetails.data.data();
+
+        return (
+            <header className='nav__bar'>
+                <NavLink to={`${routes.Feed}`}>
+                    <Logo className='nav__bar__logo' />
+                </NavLink>
+                <div className='nav__bar__section'>
+                    <UserInfo onClick={handleOnImgClick}>
+                        {displayName}
+                    </UserInfo>
+                    <Navigation
+                        isOpen={isNavigationOpen}
+                        userName={displayName}
+                    />
+                    <ImageComponent src={COOKIE} alt='' size='large' />
+                </div>
+            </header>
+        );
+    }
+
+    return null;
 };
