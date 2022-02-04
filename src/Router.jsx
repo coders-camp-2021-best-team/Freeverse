@@ -10,6 +10,7 @@ import {
 } from './pages';
 import { ProtectedRoute } from './components';
 import { routes } from './routes/Routes';
+import { PostDetailsPage } from './pages/PostDetails/PostDetails';
 
 export const Router = () => {
     return (
@@ -44,7 +45,11 @@ export const Router = () => {
                         element={<ProfilePage />}
                     />
 
-                    <Route exact path={routes.Chat} element={<ChatPage />} />
+                    <Route
+                        exact
+                        path={`${routes.Post}/:id`}
+                        element={<PostDetailsPage />}
+                    />
 
                     <Route
                         exact
