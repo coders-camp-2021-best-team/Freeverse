@@ -26,7 +26,15 @@ export const App = () => {
 
                 <Route
                     exact
-                    path='/*'
+                    path={routes.Error}
+                    element={<Navigate to={routes.NotFound} />}
+                />
+
+                <Route exact path={routes.NotFound} element={<ErrorPage />} />
+
+                <Route
+                    exact
+                    path={`${routes.Feed}/*`}
                     element={
                         <BaseScreen>
                             <Routes>
@@ -82,13 +90,6 @@ export const App = () => {
                             </Routes>
                         </BaseScreen>
                     }
-                />
-                <Route exact path={routes.NotFound} element={<ErrorPage />} />
-
-                <Route
-                    exact
-                    path={routes.Error}
-                    element={<Navigate to={routes.NotFound} />}
                 />
             </Routes>
         </Router>
