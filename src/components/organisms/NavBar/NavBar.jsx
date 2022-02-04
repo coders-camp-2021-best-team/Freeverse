@@ -20,12 +20,7 @@ export const NavBar = () => {
             <div className='nav__bar__section'>
                 <UserInfo onClick={handleOnImgClick} />
                 <Navigation isOpen={isNavigationOpen} />
-                <ImageComponent
-                    src={COOKIE}
-                    alt=''
-                    size='large'
-                    onClick
-                />
+                <ImageComponent src={COOKIE} alt='' size='large' onClick />
             </div>
         </div>
     );

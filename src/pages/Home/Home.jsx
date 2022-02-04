@@ -8,10 +8,7 @@ export const HomePage = () => {
     return (
         <div className='home__page'>
             <Logo className='home__page__logo' />
-            <Button
-                text='LOG IN WITH GOOGLE'
-                onClick
-            />
+            <Button text='LOG IN WITH GOOGLE' onClick />
         </div>
     );
 };
