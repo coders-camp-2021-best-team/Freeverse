@@ -1,6 +1,6 @@
 import {
     useFirestoreCollectionMutation,
-    useFirestoreQuery
+    useFirestoreDocument
 } from '@react-query-firebase/firestore';
 import { apiService } from '../api';
 
@@ -9,7 +9,7 @@ export const usePost = (id = '') => {
     const mutation = useFirestoreCollectionMutation(apiService.posts);
 
     return {
-        ...useFirestoreQuery(['post', id], ref, {
+        ...useFirestoreDocument(['post', id], ref, {
             subscribe: true
         }),
         create: mutation.mutate

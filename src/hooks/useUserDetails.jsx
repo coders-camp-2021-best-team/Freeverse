@@ -4,6 +4,7 @@ import { useAuth } from '.';
 
 export const useUserDetails = (id = '') => {
     const { user } = useAuth();
+
     const userID = id || user.data?.uid;
 
     const ref = apiService.user(userID);
