@@ -7,7 +7,11 @@ import './UserInfo.scss';
 export const UserInfo = ({ children }) => {
     return (
         <div className='userinfo'>
-            <ImageComponent className='atom__image' src={PROFILE} size='medium' />
+            <ImageComponent
+                className='atom__image'
+                src={PROFILE}
+                size='medium'
+            />
             <Text type='primary' size='large'>
                 {children}
             </Text>
