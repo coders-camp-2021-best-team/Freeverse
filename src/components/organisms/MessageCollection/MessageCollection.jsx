@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { MessageComponent } from '../..';
+import { MessageComponent } from '../../molecules';
 
 export const MessageCollection = ({ usersMsgs }) => {
     return usersMsgs.map((user) => (

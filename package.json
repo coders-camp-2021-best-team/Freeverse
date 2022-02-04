@@ -54,5 +54,6 @@
     "engines": {
         "npm": "please-use-yarn",
         "yarn": ">= 1.19.1"
-    }
+    },
+    "proxy": "http://yerkee.com/api"
 }
