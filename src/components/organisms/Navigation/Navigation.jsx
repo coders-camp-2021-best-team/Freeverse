@@ -18,7 +18,7 @@ const NAV_ITEMS = [
         label: 'Chat room',
         path: routes.Chat
     },
-    { src: 'power', label: 'Log out', path: routes.Home } // change path to onClick for logout
+    { src: 'power', label: 'Log out', path: routes.Logout }
 ];
 
 export const Navigation = ({ isOpen, userName }) => {
@@ -31,7 +31,7 @@ export const Navigation = ({ isOpen, userName }) => {
             <Text customClass='navigation__username'>{userName}</Text>
             {NAV_ITEMS.map((navItem) => (
                 <NavLink
-                    to={`${routes.Feed}${navItem.path}`}
+                    to={navItem.path}
                     key={navItem.src}
                     className='navigation__link'
                 >

@@ -6,6 +6,7 @@ import {
     ErrorPage,
     FeedScreenPage,
     HomePage,
+    LogoutPage,
     ProfilePage
 } from './pages';
 import { ProtectedRoute } from './components';
@@ -23,7 +24,7 @@ export const Router = () => {
                 <Route
                     exact
                     path={routes.Error}
-                    element={<Navigate to={routes.NotFound} />}
+                    element={<Navigate to={routes.NotFound} replace />}
                 />
 
                 <Route
@@ -33,6 +34,12 @@ export const Router = () => {
                         </BaseScreen>
                     }
                 >
+                    <Route
+                        exact
+                        path={routes.Logout}
+                        element={<LogoutPage />}
+                    />
+
                     <Route
                         exact
                         path={routes.Feed}

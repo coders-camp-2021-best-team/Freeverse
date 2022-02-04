@@ -5,3 +5,4 @@ export * from './EditProfile/EditProfile';
 export * from './FeedScreen/FeedScreen';
 export * from './Error/Error';
 export * from './BaseScreen/BaseScreen';
+export * from './Logout/Logout';

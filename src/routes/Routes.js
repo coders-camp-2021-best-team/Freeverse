@@ -6,5 +6,6 @@ export const routes = {
     Post: '/post',
     EditProfile: '/edit-profile',
     NotFound: '/not-found',
+    Logout: '/logout',
     Error: '*'
 };
