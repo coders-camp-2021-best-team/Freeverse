@@ -3,8 +3,12 @@ import { Text } from '../../atoms/Text/Text';
 import { dateFormat } from '../../../utils/format';
 import '../../atoms/Text/Text.scss';
 import './Comment.scss';
+import { useUserDetails } from '../../../hooks';
 
-export const Comment = ({ username, date, children }) => {
+export const Comment = ({ authorID, date, children }) => {
+    const { data: authorDetails } = useUserDetails(authorID);
+    const { displayName: username } = authorDetails.data();
+
     return (
         <div className='comment'>
             <div className='comment__info'>
@@ -38,6 +42,6 @@ export const Comment = ({ username, date, children }) => {
 
 Comment.propTypes = {
     children: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
+    authorID: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date).isRequired
 };
