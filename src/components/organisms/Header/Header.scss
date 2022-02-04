@@ -1,9 +1,46 @@
 @import '../../../styles/variables.scss';
 @import '../../../styles/mixins.scss';
 
-header {
-    width: 15%;
+.nav__bar {
     display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    flex-direction: row;
+    align-items: center;
+    background-color: $secondary-backgroundColor;
+    padding: 1rem 0;
+    justify-content: space-between;
+    position: relative;
+
+    &__logo {
+        width: $image-width-large;
+        height: 70px;
+    }
+
+    &__section {
+        display: flex;
+        padding-right: 3rem;
+    }
+}
+
+@include for-tablet-landscape-up {
+    .nav__bar {
+        width: 8%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: 0 2.5rem;
+        justify-content: unset;
+
+        &__logo {
+            width: $image-width-medium;
+            height: 150px;
+            padding-bottom: 1rem;
+        }
+
+        &__section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-right: 0;
+        }
+    }
 }

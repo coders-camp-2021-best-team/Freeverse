@@ -30,7 +30,11 @@ export const Navigation = ({ isOpen, userName }) => {
         >
             <Text customClass='navigation__username'>{userName}</Text>
             {NAV_ITEMS.map((navItem) => (
-                <NavLink to={navItem.path} key={navItem.src}>
+                <NavLink
+                    to={`${routes.Feed}${navItem.path}`}
+                    key={navItem.src}
+                    className='navigation__link'
+                >
                     <InformationRow
                         iconName={navItem.src}
                         onClick={navItem.onClick}
