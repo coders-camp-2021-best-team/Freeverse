@@ -82,6 +82,17 @@ class ApiService {
     postComments(postID) {
         return collection(this.posts, `${postID}/comments`);
     }
+
+    /**
+     * @param {string} postID
+     * @returns {import('firebase/firestore').CollectionReference<import('./types').Post>}
+     */
+    postCommentsOrder(postID) {
+        return query(
+            collection(this.posts, `${postID}/comments`),
+            orderBy('createdOn', 'desc')
+        );
+    }
 }
 
 const apiService = new ApiService();
