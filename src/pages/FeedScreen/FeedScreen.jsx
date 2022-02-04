@@ -24,7 +24,8 @@ export const FeedScreenPage = () => {
                     avatar='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
                     profileID='1'
                 >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a blandit augue.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+                    a blandit augue.
                 </Post>
                 <div className='form__field'>
                     <Form placeholder='Add comment' type='comment' onSubmit />

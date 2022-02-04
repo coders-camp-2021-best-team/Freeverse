@@ -1,7 +1,6 @@
 import { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
-// import { Form } from 'formik';
 import { Text, ImageComponent } from '../..';
 import { routes } from '../../../routes/Routes';
 import { Icon } from '../../atoms/IconComponent/Icon';
@@ -51,7 +50,6 @@ export const Post = ({ children, date, name, avatar, profileID }) => {
                 size='medium'
                 className='comment_button'
             />
-            {/* <Form placeholder='Add comment' type='comment' onSubmit /> */}
         </div>
     );
 };

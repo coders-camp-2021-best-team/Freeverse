@@ -46,16 +46,16 @@
         grid-area: names;
     }
     .icon {
-        &__like_button{
+        &__like_button {
             grid-area: icons1;
             margin-left: 0.5rem;
             padding-left: 0.75rem;
         }
-        &__dislike_button{
+        &__dislike_button {
             grid-area: icons2;
             margin-left: 0.5rem;
         }
-        &__comment_button{
+        &__comment_button {
             grid-area: icons3;
         }
     }
