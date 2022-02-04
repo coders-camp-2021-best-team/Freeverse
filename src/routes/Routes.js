@@ -3,6 +3,7 @@ export const routes = {
     Feed: '/feed',
     Profile: '/profile',
     Chat: '/chat',
+    Post: '/post',
     EditProfile: '/edit-profile',
     NotFound: '/not-found',
     Error: '*'
