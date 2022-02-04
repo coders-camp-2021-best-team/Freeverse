@@ -16,6 +16,12 @@
     padding: 1.5rem 1rem;
     background-color: $comment-backgroundColor;
     border-radius: 10px;
+
+    &__username {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 1rem;
+    }
 }
 
 @include for-tablet-landscape-up {
@@ -25,5 +31,9 @@
         background-color: unset;
         padding: 0;
         border-radius: unset;
+
+        &__username {
+            display: none;
+        }
     }
 }

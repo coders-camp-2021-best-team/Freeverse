@@ -1,4 +1,3 @@
-// import PropTypes from 'prop-types';
 import { useState, useCallback } from 'react';
 import { ReactComponent as Logo } from '../../../images/logo.svg';
 import { UserInfo } from '../../molecules/UserInfo/UserInfo';

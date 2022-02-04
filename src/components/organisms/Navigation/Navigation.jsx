@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { InformationRow } from '../../molecules/InformationRow/InformationRow';
+import { InformationRow } from '../../molecules';
+import { Text } from '../../atoms';
 import { routes } from '../../../routes/Routes';
 import './Navigation.scss';
 
@@ -20,13 +21,14 @@ const NAV_ITEMS = [
     { src: 'power', label: 'Log out', path: routes.Home } // change path to onClick for logout
 ];
 
-export const Navigation = ({ isOpen }) => {
+export const Navigation = ({ isOpen, userName }) => {
     return (
         <div
             className={`navigation ${
                 isOpen ? 'dropdown__open' : 'dropdown__close'
             }`}
         >
+            <Text customClass='navigation__username'>{userName}</Text>
             {NAV_ITEMS.map((navItem) => (
                 <NavLink to={navItem.path} key={navItem.src}>
                     <InformationRow
@@ -42,5 +44,6 @@ export const Navigation = ({ isOpen }) => {
 };
 
 Navigation.propTypes = {
-    isOpen: PropTypes.bool.isRequired
+    isOpen: PropTypes.bool.isRequired,
+    userName: PropTypes.string.isRequired
 };

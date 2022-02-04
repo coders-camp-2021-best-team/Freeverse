@@ -4,7 +4,7 @@ import PROFILE from '../../../images/profile.png';
 
 import './UserInfo.scss';
 
-export const UserInfo = ({ onClick }) => {
+export const UserInfo = ({ onClick, children }) => {
     return (
         <div className='userinfo'>
             <ImageComponent
@@ -14,14 +14,14 @@ export const UserInfo = ({ onClick }) => {
                 onClick={onClick}
             />
             <Text type='primary' size='large' customClass='userinfo__text'>
-                Kamil Zawieszka
+                {children}
             </Text>
         </div>
     );
 };
 
 UserInfo.propTypes = {
-    // children: PropTypes.string.isRequired
+    children: PropTypes.string.isRequired,
     onClick: PropTypes.func
 };
 
