@@ -34,21 +34,9 @@ export const Post = ({ children, date, name, avatar, profileID }) => {
                 {children}
             </Text>
             <Form placeholder='Add comment' type='comment' onSubmit />
-            <Icon
-                iconName='like'
-                size='medium'
-                className='like_button'
-            />
-            <Icon
-                iconName='dislike'
-                size='medium'
-                className='dislike_button'
-            />
-            <Icon
-                iconName='comment'
-                size='medium'
-                className='comment_button'
-            />
+            <Icon iconName='like' size='medium' className='like_button' />
+            <Icon iconName='dislike' size='medium' className='dislike_button' />
+            <Icon iconName='comment' size='medium' className='comment_button' />
             <hr />
         </div>
     );
