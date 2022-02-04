@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import {
     BaseScreen,
     EditProfilePage,
+    ChatPage,
     ErrorPage,
     FeedScreenPage,
     HomePage,
@@ -55,6 +56,12 @@ export const Router = () => {
                         exact
                         path={`${routes.Post}/:id`}
                         element={<PostDetailsPage />}
+                    />
+
+                    <Route
+                        exact
+                        path={`${routes.Chat}/:id`}
+                        element={<ChatPage />}
                     />
 
                     <Route

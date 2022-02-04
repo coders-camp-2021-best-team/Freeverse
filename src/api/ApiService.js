@@ -68,6 +68,17 @@ class ApiService {
     }
 
     /**
+     * @param {string} chatRoomID
+     * @returns {import('firebase/firestore').Query<import('./types').Message>}
+     */
+    chatRoomMessagesOrder(chatRoomID) {
+        return query(
+            collection(this.chat_rooms, `${chatRoomID}/messages`),
+            orderBy('createdOn')
+        );
+    }
+
+    /**
      * @param {string} postID
      * @returns {import('firebase/firestore').DocumentReference<import('./types').Post>}
      */

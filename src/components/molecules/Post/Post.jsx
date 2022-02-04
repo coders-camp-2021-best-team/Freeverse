@@ -22,15 +22,13 @@ export const Post = ({ postID }) => {
         //  TODO: PASS AN PROFILEID
     }, [navigate]);
 
-    const {
-        user: { data: authData }
-    } = useAuth();
+    const { user: auth } = useAuth();
     const post = usePost(postID);
     const comments = usePostComments(postID);
     const author = useUserDetails(post.data?.data()?.authorID);
 
     return (
-        authData &&
+        auth.isSuccess &&
         post.isSuccess &&
         comments.isSuccess &&
         author.isSuccess && (
@@ -60,7 +58,7 @@ export const Post = ({ postID }) => {
                     type='comment'
                     onSubmit={(data) =>
                         comments.create({
-                            authorID: authData.uid,
+                            authorID: auth.data.uid,
                             createdOn: Timestamp.now(),
                             reactions: {},
                             text_content: data.comment

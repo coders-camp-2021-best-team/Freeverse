@@ -10,7 +10,7 @@ export const ProtectedRoute = ({ children }) => {
         return null;
     }
 
-    if (user.data?.uid) {
+    if (user.isSuccess && user.data) {
         return (
             <>
                 {children}
@@ -19,7 +19,7 @@ export const ProtectedRoute = ({ children }) => {
         );
     }
 
-    return <Navigate to={routes.Home} replace />;
+    return <Navigate to={routes.Home} />;
 };
 
 ProtectedRoute.propTypes = {

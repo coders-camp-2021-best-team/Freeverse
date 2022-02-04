@@ -6,37 +6,39 @@ import './Comment.scss';
 import { useUserDetails } from '../../../hooks';
 
 export const Comment = ({ authorID, date, children }) => {
-    const { data: authorDetails } = useUserDetails(authorID);
-    const { displayName: username } = authorDetails.data();
+    const author = useUserDetails(authorID);
 
     return (
-        <div className='comment'>
-            <div className='comment__info'>
-                <Text
-                    type='primary'
-                    size='small'
-                    customClass='comment__info__date'
-                >
-                    {dateFormat(date)}
-                </Text>
-                <Text
-                    type='accent'
-                    size='medium'
-                    customClass='comment__info__username'
-                >
-                    {username}
-                </Text>
+        author.isSuccess &&
+        author.data && (
+            <div className='comment'>
+                <div className='comment__info'>
+                    <Text
+                        type='primary'
+                        size='small'
+                        customClass='comment__info__date'
+                    >
+                        {dateFormat(date)}
+                    </Text>
+                    <Text
+                        type='accent'
+                        size='medium'
+                        customClass='comment__info__username'
+                    >
+                        {author.data.data().displayName}
+                    </Text>
+                </div>
+                <div className='comment__text'>
+                    <Text
+                        type='primary'
+                        size='medium'
+                        customClass='comment__text__p'
+                    >
+                        {children}
+                    </Text>
+                </div>
             </div>
-            <div className='comment__text'>
-                <Text
-                    type='primary'
-                    size='medium'
-                    customClass='comment__text__p'
-                >
-                    {children}
-                </Text>
-            </div>
-        </div>
+        )
     );
 };
 

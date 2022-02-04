@@ -7,13 +7,10 @@ import { ReactComponent as Logo } from '../../images/logo.svg';
 import './Home.scss';
 
 export const HomePage = () => {
-    const {
-        user: { data: user },
-        login
-    } = useAuth();
+    const { user, login } = useAuth();
 
-    return user ? (
-        <Navigate to={routes.Feed} />
+    return user.isSuccess && user.data ? (
+        <Navigate to={routes.Feed} replace />
     ) : (
         <div className='home__page'>
             <Logo className='home__page__logo' />

@@ -1,21 +1,28 @@
 import PropTypes from 'prop-types';
 import { MessageComponent } from '../..';
+import { useAuth } from '../../../hooks';
 
-export const MessageCollection = ({ usersMsgs }) => {
-    return usersMsgs.map((user) => (
-        <MessageComponent
-            date={user.date}
-            name={user.name}
-            avatar={user.avatar}
-            isYours={user.isYour}
-            profileID={user.profileId}
-            key={user.ID}
-        >
-            {user.message}
-        </MessageComponent>
-    ));
+/**
+ * @param {{ userMsgs: import('../../../api/types').Message[] }} param0
+ */
+export const MessageCollection = ({ userMsgs }) => {
+    const { user } = useAuth();
+
+    return (
+        user.isSuccess &&
+        userMsgs.map(({ authorID, createdOn, text_content }) => (
+            <MessageComponent
+                date={createdOn.toDate()}
+                isYours={user.data.uid === authorID}
+                profileID={authorID}
+                key={createdOn.toMillis()}
+            >
+                {text_content}
+            </MessageComponent>
+        ))
+    );
 };
 
 MessageCollection.propTypes = {
-    usersMsgs: PropTypes.arrayOf(Object).isRequired
+    userMsgs: PropTypes.arrayOf(Object).isRequired
 };
