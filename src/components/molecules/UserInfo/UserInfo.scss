@@ -7,6 +7,10 @@
     &__text {
         display: none;
     }
+
+    .atom__image {
+        cursor: pointer;
+    }
 }
 
 @include for-tablet-landscape-up {
@@ -24,6 +28,7 @@
 
         .atom__image {
             padding-bottom: 1.5rem;
+            cursor: unset;
         }
     }
 }
