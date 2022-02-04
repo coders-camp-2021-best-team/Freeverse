@@ -22,7 +22,7 @@ class ApiService {
      * @returns {import('firebase/firestore').DocumentReference<import('./types').User>}
      */
     user(userID) {
-        return doc(this.users, userID);
+        return userID ? doc(this.users, userID) : null;
     }
 
     /**

@@ -10,7 +10,7 @@ export const ProtectedRoute = ({ children }) => {
         return null;
     }
 
-    if (user.data) {
+    if (user.data?.uid) {
         return (
             <>
                 {children}
