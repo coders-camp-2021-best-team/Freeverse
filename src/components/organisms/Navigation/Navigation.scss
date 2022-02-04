@@ -1,0 +1,43 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.dropdown__open {
+    display: block;
+}
+
+.dropdown__close {
+    display: none;
+}
+
+.navigation {
+    position: absolute;
+    top: 10rem;
+    right: 1rem;
+    padding: 1.5rem 1rem;
+    background-color: $comment-backgroundColor;
+    border-radius: 10px;
+
+    &__username {
+        display: flex;
+        justify-content: center;
+        padding-bottom: 1rem;
+    }
+
+    &__link {
+        text-decoration: none;
+    }
+}
+
+@include for-tablet-landscape-up {
+    .navigation {
+        display: block;
+        position: unset;
+        background-color: unset;
+        padding: 0;
+        border-radius: unset;
+
+        &__username {
+            display: none;
+        }
+    }
+}
