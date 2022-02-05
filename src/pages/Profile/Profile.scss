@@ -1,0 +1,28 @@
+.profile__page {
+    width: 100%;
+
+    .background__image{
+        height: 429px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    &__user__info {
+        position: relative;
+        .user__info__image {
+            border-radius: 25px;
+            width:243px;
+            height: 238px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            -ms-border-radius: 25px;
+            -o-border-radius: 25px;
+            .atom__image{
+                border-radius: 25px;
+                object-fit: fill;
+                width: 100%;
+            }
+        }
+    }
+
+}
