@@ -4,7 +4,12 @@ import PROFILE from '../../../images/profile.png';
 
 import './UserInfo.scss';
 
-export const UserInfo = ({ onClick, displayName, profilePictureUrl, customClass }) => {
+export const UserInfo = ({
+    onClick,
+    displayName,
+    profilePictureUrl,
+    customClass
+}) => {
     return (
         <div className={`user__info ${customClass}`}>
             <div className='user__info__image'>

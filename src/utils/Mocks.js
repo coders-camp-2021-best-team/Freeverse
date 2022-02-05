@@ -85,6 +85,8 @@ export const usersMsgs = [
 export const userExample = {
     admin: false,
     displayName: 'NB to raper',
-    profile_picture_url: 'https://preview.redd.it/a3fqk03xi5k51.jpg?width=864&format=pjpg&auto=webp&s=919bb3ea625ed67410fc2d5d699868a1c17d2d68',
-    background_picture_url: 'https://img.ppe.pl/upload/images/encyklopedia/15/1/70/1920/1080/1501704068.jpg',
-}
+    profile_picture_url:
+        'https://preview.redd.it/a3fqk03xi5k51.jpg?width=864&format=pjpg&auto=webp&s=919bb3ea625ed67410fc2d5d699868a1c17d2d68',
+    background_picture_url:
+        'https://img.ppe.pl/upload/images/encyklopedia/15/1/70/1920/1080/1501704068.jpg'
+};
