@@ -6,7 +6,8 @@ import {
     ErrorPage,
     FeedScreenPage,
     HomePage,
-    LogoutPage
+    LogoutPage,
+    ProfilePage
 } from './pages';
 import { ProtectedRoute } from './components';
 import { routes } from './routes/Routes';
@@ -54,6 +55,12 @@ export const Router = () => {
                         exact
                         path={`${routes.Post}/:id`}
                         element={<PostDetailsPage />}
+                    />
+
+                    <Route
+                        exact
+                        path={`${routes.Profile}/:id`}
+                        element={<ProfilePage />}
                     />
 
                     <Route

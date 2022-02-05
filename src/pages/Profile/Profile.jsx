@@ -2,19 +2,17 @@ import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
 import { Text } from '../../components';
 
-import './Chat.scss';
-
-export const ChatPage = ({ id }) => {
+export const ProfilePage = ({ id }) => {
     const params = useParams();
-    const chatID = id || params.id;
+    const profileID = id || params.id;
 
-    return <Text>{chatID}</Text>;
+    return <Text>{profileID}</Text>;
 };
 
-ChatPage.propTypes = {
+ProfilePage.propTypes = {
     id: PropTypes.string
 };
 
-ChatPage.defaultProps = {
+ProfilePage.defaultProps = {
     id: null
 };
