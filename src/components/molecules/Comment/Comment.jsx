@@ -6,11 +6,10 @@ import './Comment.scss';
 import { useUserDetails } from '../../../hooks';
 
 export const Comment = ({ authorID, date, children }) => {
-    const author = useUserDetails(authorID);
+    const { data: authorData } = useUserDetails(authorID);
 
     return (
-        author.isSuccess &&
-        author.data && (
+        authorData && (
             <div className='comment'>
                 <div className='comment__info'>
                     <Text
@@ -25,7 +24,7 @@ export const Comment = ({ authorID, date, children }) => {
                         size='medium'
                         customClass='comment__info__username'
                     >
-                        {author.data.data().displayName}
+                        {authorData.data().displayName}
                     </Text>
                 </div>
                 <div className='comment__text'>

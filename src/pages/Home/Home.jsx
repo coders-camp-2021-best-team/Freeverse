@@ -12,9 +12,13 @@ export const HomePage = () => {
     const user = useUser();
     const login = useLogin();
 
-    if (user.isLoading) return null;
+    if (user.isLoading) {
+        return null;
+    }
 
-    if (user.data) return <Navigate to={routes.Feed} replace />;
+    if (user.data) {
+        return <Navigate to={routes.Feed} replace />;
+    }
 
     return (
         <div className='home__page'>

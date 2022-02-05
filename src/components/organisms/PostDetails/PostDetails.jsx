@@ -5,12 +5,14 @@ import { usePostComments } from '../../../hooks';
 import { routes } from '../../../routes/Routes';
 
 export const PostDetails = ({ postID }) => {
-    const comments = usePostComments(postID);
+    const { data: commentsData, isLoading } = usePostComments(postID);
 
-    if (comments.isLoading) return null;
+    if (isLoading) {
+        return null;
+    }
 
-    if (comments.data) {
-        const comments_arr = comments.data.docs.map((d) => ({
+    if (commentsData) {
+        const comments_arr = commentsData.docs.map((d) => ({
             id: d.id,
             data: d.data()
         }));

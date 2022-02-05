@@ -15,11 +15,14 @@ export const Post = ({ postID }) => {
     const post = usePost(postID);
     const createComment = useCreateComment(postID);
 
-    if (post.isLoading) return null;
+    if (post.isLoading) {
+        return null;
+    }
 
     if (post.data.data()) {
         const { authorID, createdOn, text_content } = post.data.data();
 
+        // TODO: render reaction counters
         // const { likes, dislikes } = countReactions(reactions);
 
         return (
