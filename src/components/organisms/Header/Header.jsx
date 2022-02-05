@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import axios from 'axios';
 import { NavLink } from 'react-router-dom';
 import { routes } from '../../../routes/Routes';
 import { ReactComponent as Logo } from '../../../images/logo.svg';
@@ -12,8 +13,8 @@ import './Header.scss';
 const getRandomFortune = async () => {
     let data;
     try {
-        const response = await fetch('/fortune/wisdom');
-        data = await response.json();
+        const response = await axios.get('/fortune/wisdom');
+        data = response.data;
     } catch (error) {
         // eslint-disable-next-line no-console
         console.error('error');
@@ -64,6 +65,7 @@ export const Header = () => {
                     src={COOKIE}
                     alt=''
                     size='large'
+                    customClass='nav__bar__section__imgcookie'
                     onClick={handleOnCookieClick}
                 />
             </div>

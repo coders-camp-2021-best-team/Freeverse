@@ -19,6 +19,10 @@
         display: flex;
         padding-right: 3rem;
 
+        &__imgcookie {
+            cursor: pointer;
+        }
+
         .cookie {
             &__popup {
                 position: absolute;
@@ -34,6 +38,7 @@
                 border-radius: 10px;
                 &__button {
                     margin: 0 1rem 1rem 0;
+                    cursor: pointer;
                 }
             }
         }
