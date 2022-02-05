@@ -1,20 +1,26 @@
 @import '../../../styles/variables.scss';
 @import '../../../styles/mixins.scss';
 
-.userinfo {
+.user__info {
     order: 1;
 
     &__text {
         display: none;
     }
 
-    .atom__image {
-        cursor: pointer;
+    &__image {
+
+        background-color: $secondary-backgroundColor;
+        .atom__image {
+            cursor: pointer;
+        }
     }
+
+
 }
 
 @include for-tablet-landscape-up {
-    .userinfo {
+    .user__info {
         display: flex;
         flex-direction: column;
         align-items: center;

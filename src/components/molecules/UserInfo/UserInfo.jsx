@@ -4,27 +4,33 @@ import PROFILE from '../../../images/profile.png';
 
 import './UserInfo.scss';
 
-export const UserInfo = ({ onClick, children }) => {
+export const UserInfo = ({ onClick, displayName, profilePictureUrl, customClass }) => {
     return (
-        <div className='userinfo'>
-            <ImageComponent
-                className='atom__image'
-                src={PROFILE}
-                size='medium'
-                onClick={onClick}
-            />
-            <Text type='primary' size='large' customClass='userinfo__text'>
-                {children}
+        <div className={`user__info ${customClass}`}>
+            <div className='user__info__image'>
+                <ImageComponent
+                    className='atom__image'
+                    src={profilePictureUrl}
+                    size='medium'
+                    onClick={onClick}
+                />
+            </div>
+            <Text type='primary' size='large' customClass='user__info__text'>
+                {displayName}
             </Text>
         </div>
     );
 };
 
 UserInfo.propTypes = {
-    children: PropTypes.string.isRequired,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    displayName: PropTypes.string.isRequired,
+    profilePictureUrl: PropTypes.string,
+    customClass: PropTypes.string
 };
 
 UserInfo.defaultProps = {
-    onClick: () => null
+    onClick: () => null,
+    profilePictureUrl: PROFILE,
+    customClass: ''
 };
