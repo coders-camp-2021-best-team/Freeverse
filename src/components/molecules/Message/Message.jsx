@@ -15,12 +15,12 @@ export const MessageComponent = ({ children, date, isYours, profileID }) => {
         userDetails.isSuccess && (
             <div className={`message__field ${isYours ? 'ownMessage' : ''}`}>
                 <ImageComponent
-                    src={userDetails.data?.data()?.profile_picture_url || ''}
+                    src={userDetails.data.data().profile_picture_url}
                     size='small'
                     onClick={() => redirect(`${routes.Profile}/${profileID}`)}
                 />
                 <Text size='small' customClass='name'>
-                    {userDetails.data?.data()?.displayName || '(deleted user)'}
+                    {userDetails.data.data().displayName}
                 </Text>
                 <Text size='small' customClass='date'>
                     {dateFormat(date)}
