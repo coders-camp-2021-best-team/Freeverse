@@ -88,7 +88,7 @@ class ApiService {
 
     /**
      * @param {string} postID
-     * @returns {import('firebase/firestore').CollectionReference<import('./types').Post>}
+     * @returns {import('firebase/firestore').CollectionReference<import('./types').Comment>}
      */
     postComments(postID) {
         return collection(this.posts, `${postID}/comments`);
@@ -96,7 +96,7 @@ class ApiService {
 
     /**
      * @param {string} postID
-     * @returns {import('firebase/firestore').CollectionReference<import('./types').Post>}
+     * @returns {import('firebase/firestore').CollectionReference<import('./types').Comment>}
      */
     postCommentsOrder(postID) {
         return query(

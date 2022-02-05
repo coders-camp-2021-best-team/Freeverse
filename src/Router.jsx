@@ -6,14 +6,18 @@ import {
     ErrorPage,
     FeedScreenPage,
     HomePage,
-    LogoutPage,
-    ProfilePage
+    LogoutPage
 } from './pages';
 import { ProtectedRoute } from './components';
 import { routes } from './routes/Routes';
 import { PostDetailsPage } from './pages/PostDetails/PostDetails';
+import { useUser } from './hooks';
 
 export const Router = () => {
+    const user = useUser();
+
+    if (user.isLoading) return null;
+
     return (
         <BrowserRouter>
             <Routes>
@@ -29,9 +33,9 @@ export const Router = () => {
 
                 <Route
                     element={
-                        <BaseScreen>
-                            <ProtectedRoute />
-                        </BaseScreen>
+                        <ProtectedRoute>
+                            <BaseScreen />
+                        </ProtectedRoute>
                     }
                 >
                     <Route
@@ -44,12 +48,6 @@ export const Router = () => {
                         exact
                         path={routes.Feed}
                         element={<FeedScreenPage />}
-                    />
-
-                    <Route
-                        exact
-                        path={`${routes.Profile}/:id`}
-                        element={<ProfilePage />}
                     />
 
                     <Route

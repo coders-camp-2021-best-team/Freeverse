@@ -17,6 +17,7 @@
         );
     }
     &__wrapper {
+        overflow: auto;
         height: 90%;
         width: 60%;
         background: $secondary-backgroundColor;

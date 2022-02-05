@@ -1,22 +1,14 @@
-import {
-    useFirestoreQuery,
-    useFirestoreCollectionMutation
-} from '@react-query-firebase/firestore';
+import { useFirestoreQuery } from '@react-query-firebase/firestore';
 import { apiService } from '../api';
-import { useAuth } from '.';
+import { useUser } from '.';
 
-export const useUserChatRooms = (id = '') => {
-    const { user } = useAuth();
+export const useUserChatRooms = (id) => {
+    const user = useUser();
     const userID = id || user.data?.uid;
 
     const ref = apiService.userChatRooms(userID);
-    const col_ref = apiService.chat_rooms;
-    const mutation = useFirestoreCollectionMutation(col_ref);
 
-    return {
-        ...useFirestoreQuery(['chat_rooms', userID], ref, {
-            subscribe: true
-        }),
-        create: mutation.mutate
-    };
+    return useFirestoreQuery(['chat_rooms', userID], ref, {
+        subscribe: true
+    });
 };

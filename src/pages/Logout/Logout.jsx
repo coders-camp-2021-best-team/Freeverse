@@ -1,18 +1,13 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router';
-import { useAuth } from '../../hooks';
+import { useLogout } from '../../hooks';
 import { Text } from '../../components';
-import { routes } from '../../routes/Routes';
 
 export const LogoutPage = () => {
-    const { logout } = useAuth();
-    const navigate = useNavigate();
+    const logout = useLogout();
 
     useEffect(() => {
-        logout().then(() => {
-            navigate(routes.Home, { replace: true });
-        });
-    }, [logout, navigate]);
+        logout();
+    }, [logout]);
 
     return (
         <div className='page__logout'>

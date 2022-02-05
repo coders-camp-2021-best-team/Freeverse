@@ -21,14 +21,14 @@ const NAV_ITEMS = [
     { src: 'power', label: 'Log out', path: routes.Logout }
 ];
 
-export const Navigation = ({ isOpen, userName }) => {
+export const Navigation = ({ isOpen, username }) => {
     return (
         <div
             className={`navigation ${
                 isOpen ? 'dropdown__open' : 'dropdown__close'
             }`}
         >
-            <Text customClass='navigation__username'>{userName}</Text>
+            <Text customClass='navigation__username'>{username}</Text>
             {NAV_ITEMS.map((navItem) => (
                 <NavLink
                     to={navItem.path}
@@ -49,5 +49,5 @@ export const Navigation = ({ isOpen, userName }) => {
 
 Navigation.propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    userName: PropTypes.string.isRequired
+    username: PropTypes.string.isRequired
 };

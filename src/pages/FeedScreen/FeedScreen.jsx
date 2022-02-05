@@ -1,13 +1,12 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { Modal } from '../../components';
 
 import './FeedScreen.scss';
 
 export const FeedScreenPage = () => {
     const [showModal, setShowModal] = useState(false);
-    const toggleModal = useCallback(() => {
-        setShowModal((prev) => !prev);
-    }, []);
+    const toggleModal = () => setShowModal((prev) => !prev);
+
     return (
         <>
             <div>This is feed screen</div>

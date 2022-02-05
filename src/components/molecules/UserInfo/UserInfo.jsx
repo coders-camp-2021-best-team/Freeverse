@@ -1,30 +1,50 @@
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router';
 import { Text, ImageComponent } from '../..';
-import PROFILE from '../../../images/profile.png';
+import { useUserDetails } from '../../../hooks';
+import { routes } from '../../../routes/Routes';
 
 import './UserInfo.scss';
 
-export const UserInfo = ({ onClick, children }) => {
-    return (
-        <div className='userinfo'>
-            <ImageComponent
-                className='atom__image'
-                src={PROFILE}
-                size='medium'
-                onClick={onClick}
-            />
-            <Text type='primary' size='large' customClass='userinfo__text'>
-                {children}
-            </Text>
-        </div>
-    );
+export const UserInfo = ({ userID, onClick, onPost }) => {
+    const user = useUserDetails(userID);
+    const navigate = useNavigate();
+
+    let redirectToProfile = () => navigate(`${routes.Profile}/${userID}`);
+    if (onClick) redirectToProfile = onClick;
+
+    if (user.data) {
+        const { profile_picture_url, displayName } = user.data.data();
+
+        return (
+            <div className={onPost ? '' : 'userinfo'}>
+                <ImageComponent
+                    className='atom__image'
+                    src={profile_picture_url}
+                    size='medium'
+                    onClick={redirectToProfile}
+                />
+                <Text
+                    type='primary'
+                    size='large'
+                    customClass='userinfo__text username'
+                >
+                    {displayName}
+                </Text>
+            </div>
+        );
+    }
+
+    return null;
 };
 
 UserInfo.propTypes = {
-    children: PropTypes.string.isRequired,
-    onClick: PropTypes.func
+    userID: PropTypes.string.isRequired,
+    onClick: PropTypes.func,
+    onPost: PropTypes.bool
 };
 
 UserInfo.defaultProps = {
-    onClick: () => null
+    onClick: null,
+    onPost: false
 };

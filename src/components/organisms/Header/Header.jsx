@@ -1,6 +1,6 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useUserDetails } from '../../../hooks';
+import { useUser, useUserDetails } from '../../../hooks';
 import { routes } from '../../../routes/Routes';
 import { ReactComponent as Logo } from '../../../images/logo.svg';
 import { UserInfo } from '../../molecules/UserInfo/UserInfo';
@@ -12,34 +12,31 @@ import './Header.scss';
 
 export const Header = () => {
     const [isNavigationOpen, setIsNavigationOpen] = useState(false);
-    const handleOnImgClick = useCallback(
-        () => setIsNavigationOpen((previousState) => !previousState),
-        []
-    );
+    const handleOnImgClick = () =>
+        setIsNavigationOpen((previousState) => !previousState);
 
-    const userDetails = useUserDetails();
+    const user = useUser();
+    const userDetails = useUserDetails(user.data.uid);
 
-    if (userDetails.isSuccess && userDetails.data) {
-        const { displayName } = userDetails.data.data();
-
+    if (userDetails.data?.data()) {
         return (
             <header className='nav__bar'>
                 <NavLink to={`${routes.Feed}`}>
                     <Logo className='nav__bar__logo' />
                 </NavLink>
                 <div className='nav__bar__section'>
-                    <UserInfo onClick={handleOnImgClick}>
-                        {displayName}
-                    </UserInfo>
+                    <UserInfo
+                        userID={user.data.uid}
+                        onClick={handleOnImgClick}
+                    />
                     <Navigation
                         isOpen={isNavigationOpen}
-                        userName={displayName}
+                        username={userDetails.data.data().displayName}
                     />
                     <ImageComponent src={COOKIE} alt='' size='large' />
                 </div>
             </header>
         );
     }
-
     return null;
 };
