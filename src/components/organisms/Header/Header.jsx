@@ -6,6 +6,7 @@ import { ReactComponent as Logo } from '../../../images/logo.svg';
 import { UserInfo } from '../../molecules/UserInfo/UserInfo';
 import { Navigation } from '../Navigation/Navigation';
 import { ImageComponent } from '../../atoms/ImageComponent/Image';
+import { Button } from '../../atoms';
 import COOKIE from '../../../images/cookie.png';
 
 import './Header.scss';
@@ -51,12 +52,12 @@ export const Header = () => {
                 <div className='cookie'>
                     {!!text && (
                         <div className='cookie__popup'>
-                            <button
-                                className='cookie__popup__button'
+                            <Button
+                                customClass='cookie__popup__button'
+                                variant='cancel'
+                                text='&times; Close'
                                 onClick={handleCloseClick}
-                            >
-                                &times; Close
-                            </button>
+                            />
                             {text}
                         </div>
                     )}
