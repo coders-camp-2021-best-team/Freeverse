@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 import { MessageComponent } from '../..';
-import { useAuth } from '../../../hooks';
 
 /**
  * @param {{ userMsgs: import('../../../api/types').Message[] }} param0
  */
 export const MessageCollection = ({ userMsgs }) => {
-    const { user } = useAuth();
-
+    const user = {};
     return (
         user.isSuccess &&
         userMsgs.map(({ authorID, createdOn, text_content }) => (
