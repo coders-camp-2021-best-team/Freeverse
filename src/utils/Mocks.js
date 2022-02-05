@@ -81,3 +81,30 @@ export const usersMsgs = [
             'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eius necessitatibus accusantium vero a maiores nobis fugit provident saepe, reiciendis sit assumenda iusto facilis voluptates cumque reprehenderit vel qui eaque?'
     }
 ];
+
+export const userPosts = [
+    {
+        ID: '1',
+        profileID: '1',
+        name: 'Mateusz',
+        avatar: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+        date: new Date(),
+        post: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eius necessitatibus accusantium vero a maiores nobis fugit provident saepe, reiciendis sit assumenda iusto facilis voluptates cumque reprehenderit vel qui eaque?'
+    },
+    {
+        ID: '2',
+        profileID: '2',
+        name: 'Wiktoria',
+        avatar: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+        date: new Date(),
+        post: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eius necessitatibus accusantium vero a maiores nobis fugit provident saepe, reiciendis sit assumenda iusto facilis voluptates cumque reprehenderit vel qui eaque?'
+    },
+    {
+        ID: '3',
+        profileID: '3',
+        name: 'Mariusz',
+        avatar: 'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png',
+        date: new Date(),
+        post: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea eius necessitatibus accusantium vero a maiores nobis fugit provident saepe, reiciendis sit assumenda iusto facilis voluptates cumque reprehenderit vel qui eaque?'
+    }
+];
