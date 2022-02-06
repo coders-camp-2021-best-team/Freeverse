@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { Modal, Form } from '../../components';
-
+import { Modal, Form, PostCollection } from '../../components';
 import './FeedScreen.scss';
+// TODO waiting for useLatestPosts hook
 
 export const FeedScreenPage = () => {
     const [showModal, setShowModal] = useState(false);
@@ -22,6 +22,7 @@ export const FeedScreenPage = () => {
                 type='post'
                 onSubmit={onSubmit}
             />
+            <PostCollection userPosts={[]} />
         </>
     );
 };
