@@ -9,18 +9,23 @@ import { useUser } from '../../../hooks';
 export const MessageCollection = ({ userMsgs }) => {
     const user = useUser();
 
-    const messageEl = useRef(null);
+    const messagesRef = useRef(null);
+
     useEffect(() => {
-        if (messageEl) {
-            messageEl.current.addEventListener('DOMNodeInserted', (event) => {
-                const target = event.currentTarget;
-                target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+        const scrollToBottom = () => {
+            messagesRef.current.scrollTo({
+                top: messagesRef.current.scrollHeight,
+                behavior: 'smooth'
             });
+        };
+
+        if (messagesRef) {
+            scrollToBottom();
         }
-    }, []);
+    }, [userMsgs]);
 
     return (
-        <div className='messages' ref={messageEl}>
+        <div className='messages' ref={messagesRef}>
             {userMsgs.map(({ authorID, createdOn, text_content }) => (
                 <MessageComponent
                     date={createdOn.toDate()}
