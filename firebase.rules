@@ -1,0 +1,131 @@
+rules_version = '2';
+service cloud.firestore {
+	match /databases/{database}/documents {
+		function getUserData() {
+			return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+		}
+
+		function isDefined(what) {
+			return what != null;
+		}
+
+		function isTimestamp(what) {
+			return isDefined(what) && what is timestamp;
+		}
+
+		function isString(what) {
+			return isDefined(what) && what is string;
+		}
+
+		function isList(what) {
+			return isDefined(what) && what is list;
+		}
+
+		function isMap(what) {
+			return isDefined(what) && what is map;
+		}
+
+		function isBool(what) {
+			return isDefined(what) && what is bool;
+		}
+
+		function isLoggedIn() {
+			return isDefined(request.auth);
+		}
+
+		function doesOwn(what) {
+			return isDefined(what) && isLoggedIn() && request.auth.uid == what.id;
+		}
+
+		function isAuthorOf(what) {
+			return isDefined(what) && isLoggedIn() && request.auth.uid == what.data.authorID;
+		}
+
+		function isMemberOf(what) {
+			return isDefined(what) && isLoggedIn() && (!isDefined(what.data.members) || request.auth.uid in what.data.members);
+		}
+
+		function isAdminOf(what) {
+			return 
+				(getUserData().admin == true)
+				|| (isDefined(what) && isMemberOf(what) && request.auth.uid in what.data.admins);
+		}
+
+		function isValidMessageOrComment(mc) {
+			return
+				(isString(mc.authorID))
+				&& (isTimestamp(mc.createdOn))
+				&& (isString(mc.text_content));
+		}
+
+		allow read, create, update, delete: if getUserData().admin == true;
+
+		match /chat_rooms/{chat_room} {
+			function isValidChatRoom(cr) {
+				return
+					(isString(cr.name))
+					&& (!isDefined(cr.members) || isList(cr.members))
+					&& (isList(cr.admins));
+			}
+
+			function getChatRoomData() {
+				return get (/databases/$(database)/documents/chat_rooms/$(chat_room));
+			}
+
+			allow read: if isMemberOf(resource);
+			allow create: if isAdminOf(request.resource) && isMemberOf(request.resource) && isValidChatRoom(request.resource.data);
+			allow update: if isAdminOf(resource) && isAdminOf(request.resource) && isValidChatRoom(request.resource.data);
+			allow delete: if isAdminOf(resource);
+
+			match /messages/{message} {
+				allow read: if isMemberOf(getChatRoomData());
+				allow create: if isMemberOf(getChatRoomData()) && isValidMessageOrComment(request.resource.data);
+				allow update: if isMemberOf(getChatRoomData()) && isAuthorOf(resource) && isAuthorOf(request.resource) && isValidMessageOrComment(request.resource.data);
+				allow delete: if isAdminOf(getChatRoomData()) || isAuthorOf(resource);
+			}
+		}
+
+		match /posts/{post} {
+			function isValidPost(post) {
+				return
+					(isString(post.authorID))
+					&& (isTimestamp(post.createdOn))
+					&& (!('media_url' in post) || !isDefined(post.media_url) || isString(post.media_url))
+					&& (!('text_content' in post) || !isDefined(post.text_content) || isString(post.text_content))
+					&& (isMap(post.reactions));
+			}
+
+			function getPostData() {
+				return get(/databases/$(database)/documents/posts/$(post)).data;
+			}
+
+			allow read: if isLoggedIn();
+			allow create: if isAuthorOf(request.resource) && isValidPost(request.resource.data);
+			allow update: if isAuthorOf(resource) && isAuthorOf(request.resource) && isValidPost(request.resource.data);
+			allow delete: if isAuthorOf(resource);
+
+			match /comments/{comment} {
+				allow read: if isLoggedIn();
+				allow create: if isAuthorOf(request.resource) && isValidMessageOrComment(request.resource.data);
+				allow update: if isAuthorOf(resource) && isAuthorOf(request.resource) && isValidMessageOrComment(request.resource.data);
+				allow delete: if isAuthorOf(resource) || isAuthorOf(getPostData());
+			}
+		}
+
+		match /users/{user} {
+			function isValidUser(user) {
+				return
+					(resource.data.admin == true || (isBool(user.admin) && user.admin == false))
+					&& (!('background_picture_url' in user) || !isDefined(user.background_picture_url) || isString(user.background_picture_url))
+					&& (!('birthday' in user) || !isDefined(user.birthday) || isTimestamp(user.birthday))
+					&& (isString(user.displayName))
+					&& (!('hobbies' in user) || !isDefined(user.hobbies) || isList(user.hobbies))
+					&& (isString(user.profile_picture_url));
+			}
+
+			allow read: if isLoggedIn();
+			allow create: if doesOwn(request.resource) && isValidUser(request.resource.data);
+			allow update: if doesOwn(resource) && doesOwn(request.resource) && isValidUser(request.resource.data);
+		}
+	}
+}

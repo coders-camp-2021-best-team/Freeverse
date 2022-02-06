@@ -1,12 +1,22 @@
 import PropTypes from 'prop-types';
 import { Navigate } from 'react-router-dom';
-
-const auth = true; // TODO: temporary
+import { useUser } from '../../../hooks';
+import { routes } from '../../../routes/Routes';
 
 export const ProtectedRoute = ({ children }) => {
-    return auth ? children : <Navigate to='/' />;
+    const user = useUser();
+
+    if (user.data) {
+        return children;
+    }
+
+    return <Navigate to={routes.Home} replace />;
 };
 
 ProtectedRoute.propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node
+};
+
+ProtectedRoute.defaultProps = {
+    children: null
 };

@@ -11,6 +11,7 @@ export const useResponsive = () => {
             window.removeEventListener('resize', () => changeRes());
         };
     }, []);
+
     return {
         isDesktop: res >= 1501,
         isTablet: res >= 600 && res < 1501,

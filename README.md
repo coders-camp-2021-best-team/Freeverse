@@ -2,6 +2,8 @@
 
 This project was made due to the **[CodersCamp2021](https://www.coderscamp.edu.pl/)**
 
+[Deploy on Netlify](https://freeverse-network.netlify.app/)
+
 ## Important Notices
 
 ### VSCode Recommended Extensions
