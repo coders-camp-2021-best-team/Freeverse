@@ -23,7 +23,7 @@ export const MessageComponent = ({ children, date, isYours, profileID }) => {
                     onClick={() => redirect(`${routes.Profile}/${profileID}`)}
                 />
                 <Text size='small' customClass='name'>
-                    {displayName}
+                    {displayName || 'deleted user'}
                 </Text>
                 <Text size='small' customClass='date'>
                     {dateFormat(date)}
