@@ -4,5 +4,5 @@ import { apiService } from '../api';
 export const useCreateChatRoom = () => {
     const ref = apiService.chat_rooms;
     const mutation = useFirestoreCollectionMutation(ref);
-    return mutation.mutate;
+    return mutation.mutateAsync;
 };

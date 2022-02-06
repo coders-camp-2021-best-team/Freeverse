@@ -1,0 +1,10 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.page__chat_selector {
+    padding: 20px;
+
+    &__rooms {
+        margin-bottom: 30px;
+    }
+}
