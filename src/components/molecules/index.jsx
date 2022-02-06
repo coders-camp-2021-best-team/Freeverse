@@ -1,3 +1,4 @@
+export * from './ChatRoomTile/ChatRoomTile';
 export * from './Post/Post';
 export * from './InformationRow/InformationRow';
 export * from './Modal/Modal';

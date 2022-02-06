@@ -1,23 +1,42 @@
 import PropTypes from 'prop-types';
+import { useEffect, useRef } from 'react';
 import { MessageComponent } from '../..';
+import { useUser } from '../../../hooks';
 
 /**
  * @param {{ userMsgs: import('../../../api/types').Message[] }} param0
  */
 export const MessageCollection = ({ userMsgs }) => {
-    const user = {};
+    const user = useUser();
+
+    const messagesRef = useRef(null);
+
+    useEffect(() => {
+        const scrollToBottom = () => {
+            messagesRef.current.scrollTo({
+                top: messagesRef.current.scrollHeight,
+                behavior: 'smooth'
+            });
+        };
+
+        if (messagesRef) {
+            scrollToBottom();
+        }
+    }, [userMsgs]);
+
     return (
-        user.isSuccess &&
-        userMsgs.map(({ authorID, createdOn, text_content }) => (
-            <MessageComponent
-                date={createdOn.toDate()}
-                isYours={user.data.uid === authorID}
-                profileID={authorID}
-                key={createdOn.toMillis()}
-            >
-                {text_content}
-            </MessageComponent>
-        ))
+        <div className='messages' ref={messagesRef}>
+            {userMsgs.map(({ authorID, createdOn, text_content }) => (
+                <MessageComponent
+                    date={createdOn.toDate()}
+                    isYours={user.data.uid === authorID}
+                    profileID={authorID}
+                    key={createdOn.toMillis()}
+                >
+                    {text_content}
+                </MessageComponent>
+            ))}
+        </div>
     );
 };
 
