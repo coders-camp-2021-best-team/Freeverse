@@ -12,7 +12,7 @@ export const ChatSelectorPage = () => {
 
     const navigate = useNavigate();
     const redirectToCreateRoomForm = () =>
-        navigate(routes.CreateRoomForm, { replace: true });
+        navigate(routes.ChatCreator, { replace: true });
 
     if (!userChatRoomsData || !publicChatRoomsData) {
         return null;
