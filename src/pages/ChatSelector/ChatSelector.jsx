@@ -7,48 +7,48 @@ import { routes } from '../../routes/Routes';
 
 export const ChatSelectorPage = () => {
     const user = useUser();
-    const userChatRooms = useUserChatRooms(user.data.uid);
-    const publicChatRooms = usePublicChatRooms();
+    const { data: userChatRoomsData } = useUserChatRooms(user.data.uid);
+    const { data: publicChatRoomsData } = usePublicChatRooms();
 
     const navigate = useNavigate();
     const redirectToCreateRoomForm = () =>
         navigate(routes.CreateRoomForm, { replace: true });
 
-    if (userChatRooms.data && publicChatRooms.data) {
-        return (
-            <div className='page__chat_selector'>
-                <div className='page__chat_selector__rooms'>
-                    <Text type='primary' size='large'>
-                        Your Chat Rooms
-                    </Text>
-
-                    {userChatRooms.data.docs.map(({ id }) => (
-                        <ChatRoomTile chatRoomID={id} key={id} />
-                    ))}
-
-                    <Button
-                        text='+ Create New'
-                        onClick={redirectToCreateRoomForm}
-                    />
-                </div>
-
-                <div className='page__chat_selector__rooms'>
-                    <Text type='primary' size='large'>
-                        Public Chat Rooms
-                    </Text>
-
-                    {publicChatRooms.data.docs.map(({ id }) => (
-                        <ChatRoomTile chatRoomID={id} key={id} />
-                    ))}
-
-                    <Button
-                        text='+ Create New'
-                        onClick={redirectToCreateRoomForm}
-                    />
-                </div>
-            </div>
-        );
+    if (!userChatRoomsData || !publicChatRoomsData) {
+        return null;
     }
 
-    return null;
+    return (
+        <div className='page__chat_selector'>
+            <div className='page__chat_selector__rooms'>
+                <Text type='primary' size='large'>
+                    Your Chat Rooms
+                </Text>
+
+                {userChatRoomsData.docs.map(({ id }) => (
+                    <ChatRoomTile chatRoomID={id} key={id} />
+                ))}
+
+                <Button
+                    text='+ Create New'
+                    onClick={redirectToCreateRoomForm}
+                />
+            </div>
+
+            <div className='page__chat_selector__rooms'>
+                <Text type='primary' size='large'>
+                    Public Chat Rooms
+                </Text>
+
+                {publicChatRoomsData.docs.map(({ id }) => (
+                    <ChatRoomTile chatRoomID={id} key={id} />
+                ))}
+
+                <Button
+                    text='+ Create New'
+                    onClick={redirectToCreateRoomForm}
+                />
+            </div>
+        </div>
+    );
 };
