@@ -21,7 +21,9 @@ export const ChatPage = ({ id }) => {
     const messages = useMessages(chatID);
     const createMessage = useCreateMessage(chatID);
 
-    if (chatRoom.isLoading || messages.isLoading) return null;
+    if (chatRoom.isLoading || messages.isLoading) {
+        return null;
+    }
 
     if (chatRoom.data && messages.data) {
         return (

@@ -12,31 +12,30 @@ export const MessageComponent = ({ children, date, isYours, profileID }) => {
     const redirect = useNavigate();
     const userDetails = useUserDetails(profileID);
 
-    if (userDetails.data) {
-        const { profile_picture_url, displayName } =
-            userDetails.data.data() || {};
-
-        return (
-            <div className={`message__field ${isYours ? 'ownMessage' : ''}`}>
-                <ImageComponent
-                    src={profile_picture_url || DefaultAvatar}
-                    size='small'
-                    onClick={() => redirect(`${routes.Profile}/${profileID}`)}
-                />
-                <Text size='small' customClass='name'>
-                    {displayName || 'deleted user'}
-                </Text>
-                <Text size='small' customClass='date'>
-                    {dateFormat(date)}
-                </Text>
-                <Text type='primary' customClass='message'>
-                    {children}
-                </Text>
-            </div>
-        );
+    if (!userDetails.data) {
+        return null;
     }
 
-    return null;
+    const { profile_picture_url, displayName } = userDetails.data.data() || {};
+
+    return (
+        <div className={`message__field ${isYours ? 'ownMessage' : ''}`}>
+            <ImageComponent
+                src={profile_picture_url || DefaultAvatar}
+                size='small'
+                onClick={() => redirect(`${routes.Profile}/${profileID}`)}
+            />
+            <Text size='small' customClass='name'>
+                {displayName || 'deleted user'}
+            </Text>
+            <Text size='small' customClass='date'>
+                {dateFormat(date)}
+            </Text>
+            <Text type='primary' customClass='message'>
+                {children}
+            </Text>
+        </div>
+    );
 };
 
 MessageComponent.propTypes = {
