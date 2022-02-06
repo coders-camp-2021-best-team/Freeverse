@@ -11,7 +11,8 @@ export const ChatSelectorPage = () => {
     const publicChatRooms = usePublicChatRooms();
 
     const navigate = useNavigate();
-    const redirectToCreateRoomForm = () => navigate(routes.CreateRoomForm);
+    const redirectToCreateRoomForm = () =>
+        navigate(routes.CreateRoomForm, { replace: true });
 
     if (userChatRooms.data && publicChatRooms.data) {
         return (
