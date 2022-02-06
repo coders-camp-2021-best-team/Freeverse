@@ -6,7 +6,7 @@ import { dateFormat } from '../../../utils/format';
 import { useUserDetails } from '../../../hooks';
 
 import './Message.scss';
-import DefaultAvatar from '../../../images/avatar.png';
+import DefaultAvatar from '../../../images/avatar.jpg';
 
 export const MessageComponent = ({ children, date, isYours, profileID }) => {
     const redirect = useNavigate();
