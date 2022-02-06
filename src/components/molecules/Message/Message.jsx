@@ -11,16 +11,19 @@ export const MessageComponent = ({ children, date, isYours, profileID }) => {
     const redirect = useNavigate();
     const userDetails = useUserDetails(profileID);
 
-    return (
-        userDetails.isSuccess && (
+    if (userDetails.data) {
+        const { profile_picture_url, displayName } =
+            userDetails.data.data() || {};
+
+        return (
             <div className={`message__field ${isYours ? 'ownMessage' : ''}`}>
                 <ImageComponent
-                    src={userDetails.data.data().profile_picture_url}
+                    src={profile_picture_url || ''}
                     size='small'
                     onClick={() => redirect(`${routes.Profile}/${profileID}`)}
                 />
                 <Text size='small' customClass='name'>
-                    {userDetails.data.data().displayName}
+                    {displayName}
                 </Text>
                 <Text size='small' customClass='date'>
                     {dateFormat(date)}
@@ -29,8 +32,10 @@ export const MessageComponent = ({ children, date, isYours, profileID }) => {
                     {children}
                 </Text>
             </div>
-        )
-    );
+        );
+    }
+
+    return null;
 };
 
 MessageComponent.propTypes = {
