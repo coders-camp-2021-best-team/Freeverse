@@ -2,15 +2,8 @@ import PropTypes from 'prop-types';
 import { Post } from '../..';
 
 export const PostCollection = ({ userPosts }) => {
-    return userPosts.map((user) => (
-        <Post
-            date={user.date}
-            name={user.name}
-            avatar={user.avatar}
-            profileID={user.profileID}
-        >
-            {user.post}
-        </Post>
+    return userPosts.map(({ postID, text_content }) => (
+        <Post postID={postID}>{text_content}</Post>
     ));
 };
 
