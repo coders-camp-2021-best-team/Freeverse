@@ -4,6 +4,7 @@ export const routes = {
     Post: '/post',
     Profile: '/profile',
     Chat: '/chat',
+    ChatCreator: '/create-chat-room',
     ChatSelector: '/chat-selector',
     EditProfile: '/edit-profile',
     NotFound: '/not-found',
