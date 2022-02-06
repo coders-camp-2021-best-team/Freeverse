@@ -1,5 +1,6 @@
 export * from './Home/Home';
 export * from './Chat/Chat';
+export * from './ChatSelector/ChatSelector';
 export * from './EditProfile/EditProfile';
 export * from './FeedScreen/FeedScreen';
 export * from './Error/Error';
