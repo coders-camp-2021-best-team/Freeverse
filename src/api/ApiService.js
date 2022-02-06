@@ -1,4 +1,4 @@
-import { collection, doc, query, where } from 'firebase/firestore';
+import { collection, doc, query, where, orderBy } from 'firebase/firestore';
 import { db } from './Firebase';
 
 class ApiService {
@@ -68,6 +68,17 @@ class ApiService {
     }
 
     /**
+     * @param {string} chatRoomID
+     * @returns {import('firebase/firestore').Query<import('./types').Message>}
+     */
+    chatRoomMessagesOrder(chatRoomID) {
+        return query(
+            collection(this.chat_rooms, `${chatRoomID}/messages`),
+            orderBy('createdOn')
+        );
+    }
+
+    /**
      * @param {string} postID
      * @returns {import('firebase/firestore').DocumentReference<import('./types').Post>}
      */
@@ -77,10 +88,21 @@ class ApiService {
 
     /**
      * @param {string} postID
-     * @returns {import('firebase/firestore').CollectionReference<import('./types').Post>}
+     * @returns {import('firebase/firestore').CollectionReference<import('./types').Comment>}
      */
     postComments(postID) {
         return collection(this.posts, `${postID}/comments`);
+    }
+
+    /**
+     * @param {string} postID
+     * @returns {import('firebase/firestore').CollectionReference<import('./types').Comment>}
+     */
+    postCommentsOrder(postID) {
+        return query(
+            collection(this.posts, `${postID}/comments`),
+            orderBy('createdOn', 'desc')
+        );
     }
 }
 
