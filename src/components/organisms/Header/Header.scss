@@ -29,8 +29,9 @@
                 top: 100%;
                 right: 16%;
                 background: $cookie-background;
+                color: $btn-color;
                 width: 30vh;
-                max-height: 200px;
+                height: auto;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 z-index: 999;

@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
-import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import { getRandomFortune } from '../../../utils/fortune';
 import { routes } from '../../../routes/Routes';
 import { ReactComponent as Logo } from '../../../images/logo.svg';
 import { UserInfo } from '../../molecules/UserInfo/UserInfo';
@@ -10,18 +10,6 @@ import { Button } from '../../atoms';
 import COOKIE from '../../../images/cookie.png';
 
 import './Header.scss';
-
-const getRandomFortune = async () => {
-    let data;
-    try {
-        const response = await axios.get('/fortune/wisdom');
-        data = response.data;
-    } catch (error) {
-        // eslint-disable-next-line no-console
-        console.error('error');
-    }
-    return data;
-};
 
 export const Header = () => {
     const [isNavigationOpen, setIsNavigationOpen] = useState(false);
