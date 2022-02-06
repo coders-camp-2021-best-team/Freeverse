@@ -1,0 +1,16 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.molecule__chat_room_tile {
+    background-color: $comment-backgroundColor;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 0 5px 0 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &__name {
+        flex-grow: 1;
+    }
+}

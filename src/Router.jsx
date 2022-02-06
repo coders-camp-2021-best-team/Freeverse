@@ -8,7 +8,8 @@ import {
     HomePage,
     LogoutPage,
     ProfilePage,
-    ChatCreatorFormPage
+    ChatCreatorFormPage,
+    ChatSelectorPage
 } from './pages';
 import { ProtectedRoute } from './components';
 import { routes } from './routes/Routes';
@@ -68,6 +69,12 @@ export const Router = () => {
                         exact
                         path={routes.ChatCreator}
                         element={<ChatCreatorFormPage />}
+                    />
+
+                    <Route
+                        exact
+                        path={routes.ChatSelector}
+                        element={<ChatSelectorPage />}
                     />
 
                     <Route
