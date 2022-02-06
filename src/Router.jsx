@@ -7,7 +7,8 @@ import {
     FeedScreenPage,
     HomePage,
     LogoutPage,
-    ProfilePage
+    ProfilePage,
+    ChatSelectorPage
 } from './pages';
 import { ProtectedRoute } from './components';
 import { routes } from './routes/Routes';
@@ -61,6 +62,12 @@ export const Router = () => {
                         exact
                         path={`${routes.Profile}/:id`}
                         element={<ProfilePage />}
+                    />
+
+                    <Route
+                        exact
+                        path={routes.ChatSelector}
+                        element={<ChatSelectorPage />}
                     />
 
                     <Route
