@@ -15,8 +15,8 @@ const NAV_ITEMS = [
     },
     {
         src: 'comment',
-        label: 'Chat room',
-        path: `${routes.Chat}/public`
+        label: 'Chat Rooms',
+        path: routes.ChatSelector
     },
     { src: 'power', label: 'Log out', path: routes.Logout }
 ];
