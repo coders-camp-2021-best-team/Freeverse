@@ -1,20 +1,20 @@
-import { MessageCollection, Form, Text } from '../../components';
-import { usersMsgs } from '../../utils/Mocks';
+import PropTypes from 'prop-types';
+import { useParams } from 'react-router';
+import { Text } from '../../components';
 
 import './Chat.scss';
 
-export const ChatPage = () => {
-    return (
-        <div className='page__chat'>
-            <div className='chat'>
-                <Text size='extraLarge' customClass='title'>
-                    Public chat room
-                </Text>
-                <div className='messages'>
-                    <MessageCollection usersMsgs={usersMsgs} />
-                </div>
-            </div>
-            <Form placeholder='Write message...' type='chat' onSubmit />
-        </div>
-    );
+export const ChatPage = ({ id }) => {
+    const params = useParams();
+    const chatID = id || params.id;
+
+    return <Text>{chatID}</Text>;
+};
+
+ChatPage.propTypes = {
+    id: PropTypes.string
+};
+
+ChatPage.defaultProps = {
+    id: null
 };

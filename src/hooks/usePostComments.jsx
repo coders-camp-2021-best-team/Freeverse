@@ -1,17 +1,10 @@
-import {
-    useFirestoreCollectionMutation,
-    useFirestoreQuery
-} from '@react-query-firebase/firestore';
+import { useFirestoreQuery } from '@react-query-firebase/firestore';
 import { apiService } from '../api';
 
-export const usePostComments = (id = '') => {
-    const ref = apiService.postComments(id);
-    const mutation = useFirestoreCollectionMutation(ref);
+export const usePostComments = (id) => {
+    const ref_ord = apiService.postCommentsOrder(id);
 
-    return {
-        ...useFirestoreQuery(['post_comments', id], ref, {
-            subscribe: true
-        }),
-        create: mutation.mutate
-    };
+    return useFirestoreQuery(['post_comments', id], ref_ord, {
+        subscribe: true
+    });
 };

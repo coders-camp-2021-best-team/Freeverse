@@ -1,13 +1,10 @@
-/**
- * @param {import('../api/types').Post} post
- */
-export const countReactions = (post) => {
+export const countReactions = (reactions) => {
     return {
-        likes: Object.values(post.reactions).reduce(
+        likes: Object.values(reactions).reduce(
             (count, r) => (r === 'LIKE' ? count + 1 : count),
             0
         ),
-        dislikes: Object.values(post.reactions).reduce(
+        dislikes: Object.values(reactions).reduce(
             (count, r) => (r === 'DISLIKE' ? count + 1 : count),
             0
         )
