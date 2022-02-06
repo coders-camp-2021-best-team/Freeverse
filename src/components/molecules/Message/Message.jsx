@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { ImageComponent, Text } from '../..';
 import { routes } from '../../../routes/Routes';
 import { dateFormat } from '../../../utils/format';
+import { useUserDetails } from '../../../hooks';
 
 import './Message.scss';
-import { useUserDetails } from '../../../hooks';
+import DefaultAvatar from '../../../images/avatar.png';
 
 export const MessageComponent = ({ children, date, isYours, profileID }) => {
     const redirect = useNavigate();
@@ -18,7 +19,7 @@ export const MessageComponent = ({ children, date, isYours, profileID }) => {
         return (
             <div className={`message__field ${isYours ? 'ownMessage' : ''}`}>
                 <ImageComponent
-                    src={profile_picture_url || ''}
+                    src={profile_picture_url || DefaultAvatar}
                     size='small'
                     onClick={() => redirect(`${routes.Profile}/${profileID}`)}
                 />
