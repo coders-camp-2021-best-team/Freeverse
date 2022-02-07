@@ -18,8 +18,6 @@ export const UserInfo = ({ userID, onClick, onPost }) => {
     if (userData?.data()) {
         const { profile_picture_url, displayName, admin } = userData.data();
 
-        console.log({ admin });
-
         return (
             <div className={onPost ? '' : 'userinfo'}>
                 <ImageComponent
