@@ -22,7 +22,7 @@ export const ProfilePage = () => {
                 />
             </div>
             <UserInfo userID={userID} customClass='profile__page__user__info' />
-            <UserDetails />
+            <UserDetails userID={userID} />
         </div>
     );
 };
