@@ -12,6 +12,8 @@ class ApiService {
      */
     posts = collection(db, 'posts');
 
+    postsOrder = query(this.posts, orderBy('createdOn', 'desc'));
+
     /**
      * @type {import('firebase/firestore').CollectionReference<import('./types').User>}
      */
@@ -49,6 +51,13 @@ class ApiService {
             this.chat_rooms,
             where('members', 'array-contains', userID)
         );
+    }
+
+    /**
+     * @returns {import('firebase/firestore').Query<import('./types').ChatRoom>}
+     */
+    privateChatRooms() {
+        return query(this.chat_rooms, where('members', '!=', null));
     }
 
     /**
@@ -103,6 +112,23 @@ class ApiService {
             collection(this.posts, `${postID}/comments`),
             orderBy('createdOn', 'desc')
         );
+    }
+
+    /**
+     * @param {string} postID
+     * @returns {import('firebase/firestore').CollectionReference<import('./types').Reaction>}
+     */
+    postReactions(postID) {
+        return collection(this.posts, `${postID}/reactions`);
+    }
+
+    /**
+     * @param {string} postID
+     * @param {string} userID
+     * @returns {import('firebase/firestore').DocumentReference<import('./types').Reaction>}
+     */
+    postReaction(postID, userID) {
+        return doc(this.postReactions(postID), userID);
     }
 }
 
