@@ -23,7 +23,7 @@ export const Header = () => {
 
     const handleOnCookieClick = useCallback(async () => {
         const data = await getRandomFortune();
-        setText(data.fortune);
+        setText(data.fact);
         setIsCookieModalOpen(true);
     }, []);
 

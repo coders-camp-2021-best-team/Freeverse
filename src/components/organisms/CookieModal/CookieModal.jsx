@@ -17,7 +17,7 @@ export const CookieModal = ({ text, isOpen, setIsOpen, searchAgain }) => {
                             size='medium'
                             customClass='cookie__modal__top__text'
                         >
-                            Your fortune-telling for today:
+                            Your fact for today:
                         </Text>
                     </h2>
                 </header>
