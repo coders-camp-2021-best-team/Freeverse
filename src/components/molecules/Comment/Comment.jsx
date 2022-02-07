@@ -3,10 +3,13 @@ import { Text } from '../../atoms/Text/Text';
 import { dateFormat } from '../../../utils/format';
 import '../../atoms/Text/Text.scss';
 import './Comment.scss';
-import { useUserDetails } from '../../../hooks';
+import { useRemoveComment, useUserDetails } from '../../../hooks';
+import { Icon } from '../..';
 
-export const Comment = ({ authorID, date, children }) => {
+export const Comment = ({ id, postID, authorID, date, children }) => {
+    const { data: udData } = useUserDetails();
     const { data: authorData } = useUserDetails(authorID);
+    const removeComment = useRemoveComment(postID, id);
 
     return (
         authorData && (
@@ -26,6 +29,15 @@ export const Comment = ({ authorID, date, children }) => {
                     >
                         {authorData.data().displayName}
                     </Text>
+
+                    {(udData?.id === authorID || udData?.data()?.admin) && (
+                        <Icon
+                            iconName='remove'
+                            size='medium'
+                            className='remove_button'
+                            onClick={() => removeComment()}
+                        />
+                    )}
                 </div>
                 <div className='comment__text'>
                     <Text
@@ -43,6 +55,8 @@ export const Comment = ({ authorID, date, children }) => {
 
 Comment.propTypes = {
     children: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    postID: PropTypes.string.isRequired,
     authorID: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date).isRequired
 };
