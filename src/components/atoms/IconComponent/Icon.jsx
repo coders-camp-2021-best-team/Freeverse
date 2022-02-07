@@ -14,6 +14,7 @@ import { ReactComponent as Logo } from './icons/logo.svg';
 import { ReactComponent as Power } from './icons/power.svg';
 import { ReactComponent as Send } from './icons/send.svg';
 import { ReactComponent as User } from './icons/user.svg';
+import { ReactComponent as Remove } from './icons/remove.svg';
 
 export const icons = {
     like: Like,
@@ -28,7 +29,8 @@ export const icons = {
     logo: Logo,
     power: Power,
     send: Send,
-    user: User
+    user: User,
+    remove: Remove
 };
 
 export const Icon = ({ iconName, size, className, onClick }) => {
