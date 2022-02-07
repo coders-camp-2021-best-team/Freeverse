@@ -70,7 +70,6 @@ export const Post = ({ postID }) => {
                     createComment({
                         authorID: user.data.uid,
                         createdOn: Timestamp.now(),
-                        reactions: {},
                         text_content: data.comment
                     })
                 }

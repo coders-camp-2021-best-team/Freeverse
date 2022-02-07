@@ -19,7 +19,6 @@ export const FeedScreenPage = () => {
                     createPost({
                         authorID: user.data.uid,
                         createdOn: Timestamp.now(),
-                        reactions: {},
                         text_content: data.post
                     })
                 }
