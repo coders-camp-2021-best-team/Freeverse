@@ -1,13 +1,19 @@
 import { useNavigate } from 'react-router';
-import { usePublicChatRooms, useUser, useUserChatRooms } from '../../hooks';
+import {
+    useAdminChatRooms,
+    usePublicChatRooms,
+    useUserChatRooms,
+    useUserDetails
+} from '../../hooks';
 import { Button, ChatRoomTile, Text } from '../../components';
 
 import './ChatSelector.scss';
 import { routes } from '../../routes/Routes';
 
 export const ChatSelectorPage = () => {
-    const user = useUser();
-    const { data: userChatRoomsData } = useUserChatRooms(user.data.uid);
+    const { data: udData } = useUserDetails();
+    const { data: userChatRoomsData } = useUserChatRooms();
+    const { data: adminChatRoomsData } = useAdminChatRooms();
     const { data: publicChatRoomsData } = usePublicChatRooms();
 
     const navigate = useNavigate();
@@ -25,9 +31,13 @@ export const ChatSelectorPage = () => {
                     Your Chat Rooms
                 </Text>
 
-                {userChatRoomsData.docs.map(({ id }) => (
-                    <ChatRoomTile chatRoomID={id} key={id} />
-                ))}
+                {udData?.data()?.admin
+                    ? adminChatRoomsData.docs.map(({ id }) => (
+                          <ChatRoomTile chatRoomID={id} key={id} />
+                      ))
+                    : userChatRoomsData.docs.map(({ id }) => (
+                          <ChatRoomTile chatRoomID={id} key={id} />
+                      ))}
 
                 <Button
                     text='+ Create New'
