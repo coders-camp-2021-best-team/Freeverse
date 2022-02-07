@@ -1,4 +1,11 @@
-import { collection, doc, query, where, orderBy } from 'firebase/firestore';
+import {
+    collection,
+    doc,
+    query,
+    where,
+    orderBy,
+    limit
+} from 'firebase/firestore';
 import { db } from './Firebase';
 
 class ApiService {
@@ -12,7 +19,7 @@ class ApiService {
      */
     posts = collection(db, 'posts');
 
-    postsOrder = query(this.posts, orderBy('createdOn', 'desc'));
+    postsOrder = query(this.posts, orderBy('createdOn', 'desc'), limit(30));
 
     /**
      * @type {import('firebase/firestore').CollectionReference<import('./types').User>}
