@@ -3,7 +3,7 @@ import { useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Icon } from '../../atoms/IconComponent/Icon';
 
-export const Modal = ({ showModal, setShowModal, children }) => {
+export const Modal = ({ showModal, setShowModal, children, customClass }) => {
     const keyPress = useCallback(
         (e) => {
             if (e.key === 'Escape' && showModal) {
@@ -25,7 +25,7 @@ export const Modal = ({ showModal, setShowModal, children }) => {
     return (
         showModal && (
             <div className='modal__background'>
-                <div className='modal__wrapper'>
+                <div className={`modal__wrapper ${customClass}`}>
                     <div className='modal__button'>
                         <Icon
                             iconName='circleX'
@@ -44,5 +44,10 @@ export const Modal = ({ showModal, setShowModal, children }) => {
 Modal.propTypes = {
     showModal: PropTypes.bool.isRequired,
     setShowModal: PropTypes.func.isRequired,
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
+    customClass: PropTypes.string
+};
+
+Modal.defaultProps = {
+    customClass: ''
 };

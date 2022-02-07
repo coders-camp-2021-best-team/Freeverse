@@ -22,40 +22,6 @@
         &__imgcookie {
             cursor: pointer;
         }
-
-        .cookie {
-            &__popup {
-                position: absolute;
-                top: 100%;
-                right: 16%;
-                background: $cookie-background;
-                color: $btn-color;
-                width: 30vh;
-                height: auto;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                z-index: 999;
-                padding: 1rem 1rem;
-                border-radius: 10px;
-                &__button {
-                    cursor: pointer;
-                    padding: 2px 5px;
-                    color: $primary-color;
-                }
-            }
-        }
-    }
-}
-
-@include for-phone-and-tablet {
-    .nav__bar {
-        &__section {
-            .cookie {
-                &__popup {
-                    right: 25%;
-                }
-            }
-        }
     }
 }
 
@@ -79,15 +45,6 @@
             flex-direction: column;
             align-items: center;
             padding-right: 0;
-
-            .cookie {
-                position: relative;
-
-                &__popup {
-                    left: 6rem;
-                    width: 50vh;
-                }
-            }
         }
     }
 }
