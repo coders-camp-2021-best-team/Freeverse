@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
 import { Post } from '../..';
 
-export const PostCollection = ({ userPosts }) => {
-    return userPosts.map((postID) => <Post postID={postID} />);
+/**
+ * @param {{ posts: import('firebase/firestore').QueryDocumentSnapshot<import('../../../api/types').Post>[] }} param0
+ */
+export const PostCollection = ({ posts }) => {
+    return posts.map((post) => <Post key={post.id} postID={post.id} />);
 };
 
 PostCollection.propTypes = {
-    userPosts: PropTypes.arrayOf(Object).isRequired
+    posts: PropTypes.arrayOf(Object).isRequired
 };
