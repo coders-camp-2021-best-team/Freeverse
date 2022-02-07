@@ -15,8 +15,10 @@ export const UserInfo = ({ userID, onClick, onPost }) => {
         redirectToProfile = onClick;
     }
 
-    if (userData) {
-        const { profile_picture_url, displayName } = userData.data();
+    if (userData?.data()) {
+        const { profile_picture_url, displayName, admin } = userData.data();
+
+        console.log({ admin });
 
         return (
             <div className={onPost ? '' : 'userinfo'}>
@@ -29,7 +31,9 @@ export const UserInfo = ({ userID, onClick, onPost }) => {
                 <Text
                     type='primary'
                     size='large'
-                    customClass='userinfo__text username'
+                    customClass={`userinfo__text username ${
+                        admin && 'username_admin'
+                    }`}
                 >
                     {displayName}
                 </Text>

@@ -8,6 +8,10 @@
         display: none;
     }
 
+    .username_admin {
+        color: red;
+    }
+
     .atom__image {
         cursor: pointer;
     }
@@ -24,6 +28,10 @@
 
         &__text {
             display: block;
+        }
+
+        .username_admin {
+            color: red;
         }
 
         .atom__image {
