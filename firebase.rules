@@ -58,7 +58,9 @@ service cloud.firestore {
 				&& (isString(mc.text_content));
 		}
 
-		allow read, create, update, delete: if getUserData().admin == true;
+		match /{document=**} {
+			allow read, create, update, delete: if getUserData().admin;
+		}
 
 		match /chat_rooms/{chat_room} {
 			function isValidChatRoom(cr) {
