@@ -1,74 +1,113 @@
 import PropTypes from 'prop-types';
 import { Timestamp } from 'firebase/firestore';
-import { Navigate } from 'react-router';
-import { Text, Form } from '../..';
-import { Icon } from '../../atoms/IconComponent/Icon';
-import { dateFormat } from '../../../utils';
-import { useCreateComment, usePost, useUser } from '../../../hooks';
+import { useNavigate } from 'react-router';
+import { Text, Form, Icon } from '../..';
+import { countReactions, dateFormat } from '../../../utils';
+import {
+    useCreateComment,
+    usePost,
+    usePostReactions,
+    useReactOnPost,
+    useRemovePost,
+    useUser,
+    useUserDetails
+} from '../../../hooks';
 import { UserInfo } from '..';
 import { routes } from '../../../routes/Routes';
 
 import './Post.scss';
 
+/**
+ *
+ * @param {{ postID: string, postData: import('../../../api/types').Post }} param0
+ * @returns
+ */
 export const Post = ({ postID }) => {
+    const navigate = useNavigate();
     const user = useUser();
-    const post = usePost(postID);
-    const createComment = useCreateComment(postID);
+    const { data: udData } = useUserDetails();
 
-    if (post.isLoading) {
+    const createComment = useCreateComment(postID);
+    const { data: postData } = usePost(postID);
+    const removePost = useRemovePost(postID);
+    const { data: reactionsData } = usePostReactions(postID);
+    const react = useReactOnPost(postID);
+
+    if (!postData?.data() || !reactionsData || !udData.data()) {
         return null;
     }
 
-    if (post.data.data()) {
-        const { authorID, createdOn, text_content } = post.data.data();
+    const { authorID, createdOn, text_content } = postData.data();
 
-        // TODO: render reaction counters
-        // const { likes, dislikes } = countReactions(reactions);
+    const { likes, dislikes } = countReactions(
+        reactionsData.docs.map((d) => d.data())
+    );
 
-        return (
-            <div className='post__field'>
-                <UserInfo userID={authorID} onPost />
+    return (
+        <div className='post__field'>
+            <UserInfo userID={authorID} onPost />
 
-                <Text size='small' customClass='date' type='primary'>
-                    {dateFormat(createdOn.toDate())}
-                </Text>
+            <Text size='small' customClass='date' type='primary'>
+                {dateFormat(createdOn.toDate())}
+            </Text>
 
-                <Text type='primary' customClass='message' size='medium'>
-                    {text_content}
-                </Text>
+            <Text type='primary' customClass='message' size='medium'>
+                {text_content}
+            </Text>
 
-                <Form
-                    placeholder='Add comment'
-                    type='comment'
-                    onSubmit={(data) =>
-                        createComment({
-                            authorID: user.data.uid,
-                            createdOn: Timestamp.now(),
-                            reactions: {},
-                            text_content: data.comment
-                        })
-                    }
-                />
+            <Text type='secondary' size='small'>
+                {`Likes: ${likes}`}
+            </Text>
 
-                <Icon iconName='like' size='medium' className='like_button' />
+            <Text type='secondary' size='small'>
+                {`Dislikes: ${dislikes}`}
+            </Text>
 
+            <Form
+                placeholder='Add comment'
+                type='comment'
+                onSubmit={(data) =>
+                    createComment({
+                        authorID: user.data.uid,
+                        createdOn: Timestamp.now(),
+                        reactions: {},
+                        text_content: data.comment
+                    })
+                }
+            />
+
+            <Icon
+                iconName='like'
+                size='medium'
+                className='like_button'
+                onClick={() => react({ type: 'LIKE' })}
+            />
+
+            <Icon
+                iconName='dislike'
+                size='medium'
+                className='dislike_button'
+                onClick={() => react({ type: 'DISLIKE' })}
+            />
+
+            <Icon
+                iconName='comment'
+                size='medium'
+                className='comment_button'
+                onClick={() => navigate(`${routes.Post}/${postID}`)}
+            />
+
+            {(authorID === user.data.uid || udData.data().admin) && (
                 <Icon
-                    iconName='dislike'
+                    iconName='remove'
                     size='medium'
-                    className='dislike_button'
+                    className='remove_button'
+                    onClick={() => removePost()}
                 />
-
-                <Icon
-                    iconName='comment'
-                    size='medium'
-                    className='comment_button'
-                />
-                <hr />
-            </div>
-        );
-    }
-
-    return <Navigate to={routes.NotFound} replace />;
+            )}
+            <hr />
+        </div>
+    );
 };
 
 Post.propTypes = {
