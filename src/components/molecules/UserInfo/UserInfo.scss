@@ -10,6 +10,7 @@
 
     .atom__image {
         cursor: pointer;
+        border-radius: 50%;
     }
 }
 
@@ -27,7 +28,7 @@
         }
 
         .atom__image {
-            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
             cursor: unset;
         }
     }

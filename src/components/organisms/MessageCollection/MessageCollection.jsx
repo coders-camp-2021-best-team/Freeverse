@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useRef } from 'react';
-import { MessageComponent } from '../..';
 import { useUser } from '../../../hooks';
+import { MessageComponent } from '../../molecules';
 
 /**
  * @param {{ userMsgs: import('../../../api/types').Message[] }} param0

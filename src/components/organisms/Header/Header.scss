@@ -18,6 +18,10 @@
     &__section {
         display: flex;
         padding-right: 3rem;
+
+        &__imgcookie {
+            cursor: pointer;
+        }
     }
 }
 
