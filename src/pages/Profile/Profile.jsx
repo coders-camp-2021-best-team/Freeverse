@@ -1,27 +1,23 @@
-// import { useParams } from 'react-router';
-import { userExample } from '../../utils/Mocks';
+import { useParams } from 'react-router';
 import { ImageComponent, UserInfo } from '../../components';
+import { useUserDetails } from '../../hooks';
+
 import './Profile.scss';
 
 export const ProfilePage = () => {
-    // const params = useParams();
-    // const userID = params.id;
-
-    const user = userExample;
+    const params = useParams();
+    const userID = params.id;
+    const { data: userData } = useUserDetails(userID);
 
     return (
         <div className='profile__page'>
             <div>
                 <ImageComponent
                     customClass='background__image'
-                    src={user.background_picture_url}
+                    src={userData.background_picture_url}
                 />
             </div>
-            <UserInfo
-                customClass='profile__page__user__info'
-                displayName={user.displayName}
-                profilePictureUrl={user.profile_picture_url}
-            />
+            <UserInfo userID={userID} customClass='profile__page__user__info' />
         </div>
     );
 };
