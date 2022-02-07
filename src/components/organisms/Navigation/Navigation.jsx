@@ -5,8 +5,6 @@ import { Text } from '../../atoms';
 import { routes } from '../../../routes/Routes';
 import './Navigation.scss';
 
-// Add onClick function (log out function)
-
 const NAV_ITEMS = [
     {
         src: 'user',
@@ -21,7 +19,7 @@ const NAV_ITEMS = [
     { src: 'power', label: 'Log out', path: routes.Logout }
 ];
 
-export const Navigation = ({ isOpen, username }) => {
+export const Navigation = ({ isOpen, username, navItemCallback }) => {
     return (
         <div
             className={`navigation ${
@@ -37,7 +35,7 @@ export const Navigation = ({ isOpen, username }) => {
                 >
                     <InformationRow
                         iconName={navItem.src}
-                        onClick={navItem.onClick}
+                        onClick={navItemCallback}
                     >
                         {navItem.label}
                     </InformationRow>
@@ -49,5 +47,6 @@ export const Navigation = ({ isOpen, username }) => {
 
 Navigation.propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    username: PropTypes.string.isRequired
+    username: PropTypes.string.isRequired,
+    navItemCallback: PropTypes.func.isRequired
 };
