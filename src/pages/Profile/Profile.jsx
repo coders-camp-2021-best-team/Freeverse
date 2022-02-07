@@ -1,5 +1,11 @@
 import { useParams } from 'react-router';
-import { ImageComponent, UserInfo, UserDetails } from '../../components';
+import {
+    ImageComponent,
+    UserInfo,
+    UserDetails,
+    PostCollection,
+    Text
+} from '../../components';
 import { useUserDetails } from '../../hooks';
 import DEFAULT_BACKGROUND from '../../images/background.png';
 
@@ -23,6 +29,10 @@ export const ProfilePage = () => {
             </div>
             <UserInfo userID={userID} customClass='profile__page__user__info' />
             <UserDetails userID={userID} />
+            <div>
+                <Text size='medium'>Posts</Text>
+                <PostCollection userPosts={[]} />
+            </div>
         </div>
     );
 };
