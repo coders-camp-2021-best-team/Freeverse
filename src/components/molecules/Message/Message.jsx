@@ -1,34 +1,32 @@
 import PropTypes from 'prop-types';
-import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ImageComponent, Text } from '../..';
 import { routes } from '../../../routes/Routes';
-import chatAvatar from '../../../images/avatar.png';
 import { dateFormat } from '../../../utils/format';
+import { useUserDetails } from '../../../hooks';
 
 import './Message.scss';
+import DefaultAvatar from '../../../images/avatar.jpg';
 
-export const MessageComponent = ({
-    children,
-    date,
-    name,
-    avatar,
-    isYours,
-    profileID
-}) => {
+export const MessageComponent = ({ children, date, isYours, profileID }) => {
     const redirect = useNavigate();
+    const userDetails = useUserDetails(profileID);
+
+    if (!userDetails.data) {
+        return null;
+    }
+
+    const { profile_picture_url, displayName } = userDetails.data.data() || {};
 
     return (
         <div className={`message__field ${isYours ? 'ownMessage' : ''}`}>
             <ImageComponent
-                src={avatar}
+                src={profile_picture_url || DefaultAvatar}
                 size='small'
-                onClick={useCallback(() => {
-                    redirect(`${routes.Feed}${routes.Profile}/${profileID}`);
-                }, [profileID, redirect])}
+                onClick={() => redirect(`${routes.Profile}/${profileID}`)}
             />
             <Text size='small' customClass='name'>
-                {name}
+                {displayName || 'deleted user'}
             </Text>
             <Text size='small' customClass='date'>
                 {dateFormat(date)}
@@ -43,13 +41,10 @@ export const MessageComponent = ({
 MessageComponent.propTypes = {
     children: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date).isRequired,
-    name: PropTypes.string.isRequired,
-    avatar: PropTypes.string,
     isYours: PropTypes.bool,
     profileID: PropTypes.string.isRequired
 };
 
 MessageComponent.defaultProps = {
-    avatar: chatAvatar,
     isYours: false
 };

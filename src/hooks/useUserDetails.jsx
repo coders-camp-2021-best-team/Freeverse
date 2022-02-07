@@ -1,9 +1,10 @@
 import { useFirestoreDocument } from '@react-query-firebase/firestore';
 import { apiService } from '../api';
-import { useAuth } from '.';
+import { useUser } from '.';
 
-export const useUserDetails = (id = '') => {
-    const { user } = useAuth();
+export const useUserDetails = (id) => {
+    const user = useUser();
+
     const userID = id || user.data?.uid;
 
     const ref = apiService.user(userID);

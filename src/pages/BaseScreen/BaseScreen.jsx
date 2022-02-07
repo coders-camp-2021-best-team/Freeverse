@@ -1,17 +1,15 @@
-import PropTypes from 'prop-types';
+import { Outlet } from 'react-router';
 import { Header } from '../../components';
 
 import './BaseScreen.scss';
 
-export const BaseScreen = ({ children }) => {
+export const BaseScreen = () => {
     return (
         <div className='baseScreen'>
             <Header />
-            <main>{children}</main>
+            <main>
+                <Outlet />
+            </main>
         </div>
     );
-};
-
-BaseScreen.propTypes = {
-    children: PropTypes.node.isRequired
 };

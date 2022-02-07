@@ -15,23 +15,23 @@ const NAV_ITEMS = [
     },
     {
         src: 'comment',
-        label: 'Chat room',
-        path: routes.Chat
+        label: 'Chat Rooms',
+        path: routes.ChatSelector
     },
-    { src: 'power', label: 'Log out', path: routes.Home } // change path to onClick for logout
+    { src: 'power', label: 'Log out', path: routes.Logout }
 ];
 
-export const Navigation = ({ isOpen, userName }) => {
+export const Navigation = ({ isOpen, username }) => {
     return (
         <div
             className={`navigation ${
                 isOpen ? 'dropdown__open' : 'dropdown__close'
             }`}
         >
-            <Text customClass='navigation__username'>{userName}</Text>
+            <Text customClass='navigation__username'>{username}</Text>
             {NAV_ITEMS.map((navItem) => (
                 <NavLink
-                    to={`${routes.Feed}${navItem.path}`}
+                    to={navItem.path}
                     key={navItem.src}
                     className='navigation__link'
                 >
@@ -49,5 +49,5 @@ export const Navigation = ({ isOpen, userName }) => {
 
 Navigation.propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    userName: PropTypes.string.isRequired
+    username: PropTypes.string.isRequired
 };
