@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.page__edit_post {
+    padding: 20px;
+
+    form {
+        flex-direction: column;
+        margin-top: 20px;
+
+        textarea {
+            padding: 10px;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+    }
+}

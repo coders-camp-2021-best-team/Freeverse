@@ -2,6 +2,7 @@ export const routes = {
     Home: '/',
     Feed: '/feed',
     Post: '/post',
+    EditPost: '/edit-post',
     Profile: '/profile',
     Chat: '/chat',
     ChatCreator: '/create-chat-room',

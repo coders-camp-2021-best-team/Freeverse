@@ -2,13 +2,13 @@ import { useFirestoreQuery } from '@react-query-firebase/firestore';
 import { apiService } from '../api';
 import { useUser } from '.';
 
-export const useUserChatRooms = () => {
+export const useAdminChatRooms = () => {
     const user = useUser();
     const userID = user.data?.uid;
 
-    const ref = apiService.userChatRooms(userID);
+    const ref = apiService.privateChatRooms();
 
-    return useFirestoreQuery(['chat_rooms', userID], ref, {
+    return useFirestoreQuery(['admin_chat_rooms', userID], ref, {
         subscribe: true
     });
 };

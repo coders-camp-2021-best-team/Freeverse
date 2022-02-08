@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "preinstall": "cp -n .env.example .env",
+        "preinstall": "test -f .env || cp -n .env.example .env",
         "postinstall": "husky install",
         "start": "react-scripts start",
         "build": "react-scripts build",

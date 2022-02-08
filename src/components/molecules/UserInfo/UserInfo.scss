@@ -1,19 +1,20 @@
 @import '../../../styles/variables.scss';
 @import '../../../styles/mixins.scss';
 
-.user__info {
+.userinfo {
     order: 1;
 
     &__text {
         display: none;
     }
 
-    &__image {
-        background-color: $secondary-backgroundColor;
-        .atom__image {
-            cursor: pointer;
-            border-radius: 50%;
-        }
+    .username_admin {
+        color: red;
+    }
+
+    .atom__image {
+        cursor: pointer;
+        border-radius: 50%;
     }
 }
 
@@ -28,6 +29,10 @@
 
         &__text {
             display: block;
+        }
+
+        .username_admin {
+            color: red;
         }
 
         .atom__image {
