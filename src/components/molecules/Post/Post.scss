@@ -8,12 +8,12 @@
     grid-template-columns: repeat(7, auto);
     grid-template-rows: repeat(5, auto);
     grid-template-areas:
-        'avatar names names names date date options'
+        'avatar names names names names date options'
         'avatar message message message message message message'
-        'avatar iinput icons1 text1 icons2 text2 icons3'
+        'avatar iinput iinput iinput likes dislikes icons3'
         'comment comment comment comment comment comment comment'
         'line line line line line line line';
-    gap: 10px 0px;
+    gap: 5px;
 
     img {
         border-radius: 50%;
@@ -58,14 +58,20 @@
         grid-area: names;
     }
 
-    .like_count {
-        grid-area: text1;
-        align-self: center;
+    .likes {
+        grid-area: likes;
+        display: flex;
+        align-items: center;
     }
 
-    .dislike_count {
-        grid-area: text2;
-        align-self: center;
+    .dislikes {
+        grid-area: dislikes;
+        display: flex;
+        align-items: center;
+    }
+
+    .counter {
+        margin-left: 10px;
     }
 
     hr {

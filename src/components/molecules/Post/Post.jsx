@@ -73,27 +73,31 @@ export const Post = ({ postID }) => {
                 }
             />
 
-            <Icon
-                iconName='like'
-                size='medium'
-                className={`like_button${likedBy ? '_active' : ''}`}
-                onClick={() => react({ type: 'LIKE' })}
-            />
+            <div className='likes'>
+                <Icon
+                    iconName='like'
+                    size='medium'
+                    className={`like_button${likedBy ? '_active' : ''}`}
+                    onClick={() => react({ type: 'LIKE' })}
+                />
 
-            <Text type='secondary' size='medium' customClass='like_count'>
-                {likes.toString()}
-            </Text>
+                <Text type='secondary' size='medium' customClass='counter'>
+                    {likes.toString()}
+                </Text>
+            </div>
 
-            <Icon
-                iconName='dislike'
-                size='medium'
-                className={`dislike_button${dislikedBy ? '_active' : ''}`}
-                onClick={() => react({ type: 'DISLIKE' })}
-            />
+            <div className='dislikes'>
+                <Icon
+                    iconName='dislike'
+                    size='medium'
+                    className={`dislike_button${dislikedBy ? '_active' : ''}`}
+                    onClick={() => react({ type: 'DISLIKE' })}
+                />
 
-            <Text type='secondary' size='medium' customClass='dislike_count'>
-                {dislikes.toString()}
-            </Text>
+                <Text type='secondary' size='medium' customClass='counter'>
+                    {dislikes.toString()}
+                </Text>
+            </div>
 
             <Icon
                 iconName='comment'
