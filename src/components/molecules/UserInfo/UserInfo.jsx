@@ -18,8 +18,8 @@ export const UserInfo = ({ userID, onClick, onPost }) => {
     if (userData?.data()) {
         const { profile_picture_url, displayName, admin } = userData.data();
 
-        return (
-            <div className={onPost ? '' : 'userinfo'}>
+        const inside = (
+            <>
                 <ImageComponent
                     className='atom__image'
                     src={profile_picture_url}
@@ -35,8 +35,11 @@ export const UserInfo = ({ userID, onClick, onPost }) => {
                 >
                     {displayName}
                 </Text>
-            </div>
+            </>
         );
+
+        if (onPost) return inside;
+        return <div className='userinfo'>{inside}</div>;
     }
 
     return null;
