@@ -6,7 +6,7 @@ import {
     PostCollection,
     Text
 } from '../../components';
-import { useUserDetails } from '../../hooks';
+import { useUserDetails, useUserPosts } from '../../hooks';
 import DEFAULT_BACKGROUND from '../../images/background.png';
 
 import './Profile.scss';
@@ -16,11 +16,12 @@ export const ProfilePage = () => {
     const userID = params.id;
 
     const { data: userData } = useUserDetails(userID);
+    const { data: postsData } = useUserPosts(userID);
 
     // TODO: wait for hooks at PR #82
     // const { data: postsData } = useUserPosts(userID);
 
-    if (!userData?.data()) {
+    if (!userData?.data() || !postsData) {
         return null;
     }
 
@@ -47,7 +48,7 @@ export const ProfilePage = () => {
                 <Text size='medium'>Posts</Text>
 
                 {/* TODO: posts */}
-                <PostCollection posts={[]} />
+                <PostCollection posts={postsData.docs} />
             </div>
         </div>
     );
