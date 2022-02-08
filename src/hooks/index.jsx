@@ -10,6 +10,7 @@ export * from './usePost';
 export * from './usePostComments';
 export * from './usePublicChatRooms';
 export * from './useResponsive';
+export * from './useUpdatePost';
 export * from './useUser';
 export * from './useUserChatRooms';
 export * from './useUserDetails';
