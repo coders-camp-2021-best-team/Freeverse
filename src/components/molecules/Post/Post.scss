@@ -51,20 +51,30 @@
         grid-area: names;
     }
     .icon {
-        &__like_button {
+        fill: $primary-color;
+        align-self: center;
+
+        &__like_button,
+        &__like_button_active {
             grid-area: icons1;
             margin-left: 0.5rem;
             padding-left: 0.75rem;
-            align-self: center;
         }
-        &__dislike_button {
+
+        &__dislike_button,
+        &__dislike_button_active {
+            fill: $primary-color;
             grid-area: icons2;
             margin-left: 0.5rem;
-            align-self: center;
         }
+
+        &__like_button_active,
+        &__dislike_button_active {
+            fill: $accent-color;
+        }
+
         &__comment_button {
             grid-area: icons3;
-            align-self: center;
         }
     }
     hr {
