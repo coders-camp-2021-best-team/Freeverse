@@ -24,7 +24,7 @@
 @include for-tablet-landscape-up {
     .nav__bar {
         width: 8%;
-        height: 100vh;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         padding: 0 2.5rem;
