@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
-import { Text } from '../../atoms/Text/Text';
-import { dateFormat } from '../../../utils/format';
-import '../../atoms/Text/Text.scss';
-import './Comment.scss';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { useRemoveComment, useUserDetails } from '../../../hooks';
-import { Icon } from '../..';
+import { Text, Icon } from '../..';
+
+import './Comment.scss';
+import '../../atoms/Text/Text.scss';
+
+dayjs.extend(relativeTime);
 
 export const Comment = ({ id, postID, authorID, date, children }) => {
     const { data: udData } = useUserDetails();
@@ -16,18 +19,19 @@ export const Comment = ({ id, postID, authorID, date, children }) => {
             <div className='comment'>
                 <div className='comment__info'>
                     <Text
-                        type='primary'
-                        size='small'
-                        customClass='comment__info__date'
-                    >
-                        {dateFormat(date)}
-                    </Text>
-                    <Text
                         type='accent'
                         size='medium'
                         customClass='comment__info__username'
                     >
                         {authorData.data().displayName}
+                    </Text>
+
+                    <Text
+                        type='secondary'
+                        size='small'
+                        customClass='comment__info__date'
+                    >
+                        {dayjs(date).fromNow()}
                     </Text>
 
                     {(udData?.id === authorID || udData?.data()?.admin) && (

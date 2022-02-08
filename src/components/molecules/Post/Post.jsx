@@ -2,8 +2,10 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { Timestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { Text, Form, Icon } from '../..';
-import { countReactions, dateFormat } from '../../../utils';
+import { countReactions } from '../../../utils';
 import {
     useCreateComment,
     usePost,
@@ -17,6 +19,8 @@ import { InformationRow, UserInfo } from '..';
 import { routes } from '../../../routes/Routes';
 
 import './Post.scss';
+
+dayjs.extend(relativeTime);
 
 /**
  * @param {{ postID: string, postData: import('../../../api/types').Post }} param0
@@ -50,7 +54,7 @@ export const Post = ({ postID }) => {
             <UserInfo userID={authorID} onPost />
 
             <Text size='small' customClass='date' type='primary'>
-                {dateFormat(createdOn.toDate())}
+                {dayjs(createdOn.toDate()).fromNow()}
             </Text>
 
             <Text type='primary' customClass='message' size='large'>
