@@ -5,8 +5,6 @@ import { Text } from '../../atoms';
 import { routes } from '../../../routes/Routes';
 import './Navigation.scss';
 
-// Add onClick function (log out function)
-
 const NAV_ITEMS = [
     {
         src: 'user',
