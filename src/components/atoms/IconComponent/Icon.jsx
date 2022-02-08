@@ -16,6 +16,7 @@ import { ReactComponent as Send } from './icons/send.svg';
 import { ReactComponent as User } from './icons/user.svg';
 import { ReactComponent as Remove } from './icons/remove.svg';
 import { ReactComponent as ThreeDots } from './icons/threedots.svg';
+import { ReactComponent as Edit } from './icons/edit.svg';
 
 export const icons = {
     like: Like,
@@ -32,7 +33,8 @@ export const icons = {
     send: Send,
     user: User,
     remove: Remove,
-    threedots: ThreeDots
+    threedots: ThreeDots,
+    edit: Edit
 };
 
 export const Icon = ({ iconName, size, className, onClick }) => {
