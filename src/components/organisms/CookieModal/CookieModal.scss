@@ -1,0 +1,31 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.cookie {
+    height: auto;
+
+    &__modal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &__top {
+            display: flex;
+            align-items: center;
+            padding: 2rem 0;
+        }
+
+        &__bot {
+            margin: 0 2rem 2rem;
+            padding: 1rem;
+            border-radius: 10px;
+            color: $btn-color;
+            font-weight: bold;
+            background-color: $cookie-background;
+        }
+
+        &__button {
+            color: $btn-color;
+        }
+    }
+}

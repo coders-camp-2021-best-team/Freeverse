@@ -2,9 +2,9 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { InformationRow } from '../../molecules';
 import { Text } from '../../atoms';
+import { useUser } from '../../../hooks';
 import { routes } from '../../../routes/Routes';
 import './Navigation.scss';
-import { useUser } from '../../../hooks';
 
 const NAV_ITEMS = [
     {
@@ -20,7 +20,7 @@ const NAV_ITEMS = [
     { src: 'power', label: 'Log out', path: routes.Logout }
 ];
 
-export const Navigation = ({ isOpen, username }) => {
+export const Navigation = ({ isOpen, username, navItemCallback }) => {
     const user = useUser();
     return (
         <div
@@ -41,7 +41,7 @@ export const Navigation = ({ isOpen, username }) => {
                 >
                     <InformationRow
                         iconName={navItem.src}
-                        onClick={navItem.onClick}
+                        onClick={navItemCallback}
                     >
                         {navItem.label}
                     </InformationRow>
@@ -53,5 +53,6 @@ export const Navigation = ({ isOpen, username }) => {
 
 Navigation.propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    username: PropTypes.string.isRequired
+    username: PropTypes.string.isRequired,
+    navItemCallback: PropTypes.func.isRequired
 };
