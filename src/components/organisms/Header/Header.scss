@@ -33,6 +33,7 @@
         flex-direction: column;
         padding: 0 2.5rem;
         justify-content: unset;
+        position: fixed;
 
         &__logo {
             width: $image-width-medium;

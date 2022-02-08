@@ -12,6 +12,7 @@ import './Header.scss';
 
 export const Header = () => {
     const user = useUser();
+    const [spinnerOn, setSpinnerOn] = useState(false);
     const [isNavigationOpen, setIsNavigationOpen] = useState(false);
     const [text, setText] = useState('');
     const [isCookieModalOpen, setIsCookieModalOpen] = useState(false);
@@ -22,9 +23,11 @@ export const Header = () => {
     );
 
     const handleOnCookieClick = useCallback(async () => {
-        const data = await getRandomFortune();
-        setText(data.fact);
+        setSpinnerOn(true);
         setIsCookieModalOpen(true);
+        const data = await getRandomFortune();
+        setSpinnerOn(false);
+        setText(data.fact);
     }, []);
 
     return (
@@ -47,6 +50,7 @@ export const Header = () => {
                         isOpen={isCookieModalOpen}
                         setIsOpen={setIsCookieModalOpen}
                         searchAgain={handleOnCookieClick}
+                        isSpinnerOn={spinnerOn}
                     />
                 </div>
                 <ImageComponent
