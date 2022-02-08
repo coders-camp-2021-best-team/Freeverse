@@ -19,7 +19,7 @@
 }
 
 @include for-tablet-landscape-up {
-    .user__info {
+    .userinfo {
         display: flex;
         flex-direction: column;
         align-items: center;
