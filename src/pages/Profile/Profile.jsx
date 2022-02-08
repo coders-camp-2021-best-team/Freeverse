@@ -14,24 +14,40 @@ import './Profile.scss';
 export const ProfilePage = () => {
     const params = useParams();
     const userID = params.id;
+
     const { data: userData } = useUserDetails(userID);
-    const background = userData.background_image_url
-        ? userData.background_image_url
-        : DEFAULT_BACKGROUND;
+
+    // TODO: wait for hooks at PR #82
+    // const { data: postsData } = useUserPosts(userID);
+
+    if (!userData?.data()) {
+        return null;
+    }
+
+    const { background_picture_url } = userData.data();
 
     return (
         <div className='profile__page'>
             <div>
                 <ImageComponent
                     customClass='background__image'
-                    src={background}
+                    src={background_picture_url || DEFAULT_BACKGROUND}
                 />
             </div>
-            <UserInfo userID={userID} customClass='profile__page__user__info' />
+
+            <UserInfo
+                userID={userID}
+                onPost
+                customClass='profile__page__user__info'
+            />
+
             <UserDetails userID={userID} />
+
             <div>
                 <Text size='medium'>Posts</Text>
-                <PostCollection userPosts={[]} />
+
+                {/* TODO: posts */}
+                <PostCollection posts={[]} />
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-// import { Timestamp } from 'firebase/firestore'; TODAY'S DATE
+import { Timestamp } from 'firebase/firestore';
 import PropTypes from 'prop-types';
 import { InformationRow, Text } from '../..';
 import { useUserDetails } from '../../../hooks';
@@ -9,23 +9,33 @@ import './UserDetails.scss';
 export const UserDetails = ({ userID }) => {
     const { data: userData } = useUserDetails(userID);
 
-    let birthday = 'Not available';
-    // userData.birthday = Timestamp.now(); TODAY'S DATE
-    if (userData.birthday) {
-        const date = userData.birthday.toDate();
-        birthday = dateFormat(date, 'DD.MM.YYYY');
+    if (!userData?.data()) {
+        return null;
     }
 
-    const hobbies = userData.hobbies ? userData.hobbies.join(', ') : '';
+    const { birthday, hobbies, city } = userData.data();
+
+    let birthday_str = dateFormat(birthday?.toDate(), 'DD.MM.YYYY');
+    const age = Timestamp.now() - birthday;
+    const years_old = Math.floor(age / 60 / 60 / 24 / 365);
+    birthday_str += ` (${years_old} yo)`;
+
+    const hobbies_str = hobbies.join(', ');
 
     return (
         <div>
             <Text size='medium'>User Details</Text>
-            <InformationRow iconName='birthday'>{birthday}</InformationRow>
-            {/* TODO when city data will be available */}
-            <InformationRow iconName='home'>Not available</InformationRow>
+
+            <InformationRow iconName='birthday'>
+                {birthday_str || 'Not available'}
+            </InformationRow>
+
+            <InformationRow iconName='home'>
+                {city || 'Not available'}
+            </InformationRow>
+
             <InformationRow iconName='googleController'>
-                {hobbies}
+                {hobbies_str || 'Not available'}
             </InformationRow>
         </div>
     );
