@@ -14,46 +14,48 @@ export const Comment = ({ id, postID, authorID, date, children }) => {
     const { data: authorData } = useUserDetails(authorID);
     const removeComment = useRemoveComment(postID, id);
 
+    if (!udData || !authorData) {
+        return null;
+    }
+
     return (
-        authorData && (
-            <div className='comment'>
-                <div className='comment__info'>
-                    <Text
-                        type='accent'
-                        size='medium'
-                        customClass='comment__info__username'
-                    >
-                        {authorData.data().displayName}
-                    </Text>
+        <div className='comment'>
+            <div className='comment__info'>
+                <Text
+                    type='accent'
+                    size='medium'
+                    customClass='comment__info__username'
+                >
+                    {authorData.data().displayName}
+                </Text>
 
-                    <Text
-                        type='secondary'
-                        size='small'
-                        customClass='comment__info__date'
-                    >
-                        {dayjs(date).fromNow()}
-                    </Text>
+                <Text
+                    type='secondary'
+                    size='small'
+                    customClass='comment__info__date'
+                >
+                    {dayjs(date).fromNow()}
+                </Text>
 
-                    {(udData?.id === authorID || udData?.data()?.admin) && (
-                        <Icon
-                            iconName='remove'
-                            size='medium'
-                            className='remove_button'
-                            onClick={() => removeComment()}
-                        />
-                    )}
-                </div>
-                <div className='comment__text'>
-                    <Text
-                        type='primary'
+                {(udData?.id === authorID || udData?.data()?.admin) && (
+                    <Icon
+                        iconName='remove'
                         size='medium'
-                        customClass='comment__text__p'
-                    >
-                        {children}
-                    </Text>
-                </div>
+                        className='remove_button'
+                        onClick={() => removeComment()}
+                    />
+                )}
             </div>
-        )
+            <div className='comment__text'>
+                <Text
+                    type='primary'
+                    size='medium'
+                    customClass='comment__text__p'
+                >
+                    {children}
+                </Text>
+            </div>
+        </div>
     );
 };
 
