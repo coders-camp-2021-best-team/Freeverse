@@ -106,21 +106,21 @@ export const Post = ({ postID }) => {
                 onClick={() => navigate(`${routes.Post}/${postID}`)}
             />
 
-            <div className='dropdown'>
-                <Icon
-                    iconName='threedots'
-                    className='dropdown__toggle'
-                    onClick={() => setIsOpen((open) => !open)}
-                />
+            {(authorID === user.data.uid || udData.data().admin) && (
+                <div className='dropdown'>
+                    <Icon
+                        iconName='threedots'
+                        className='dropdown__toggle'
+                        onClick={() => setIsOpen((open) => !open)}
+                    />
 
-                <div
-                    className={`dropdown__content ${
-                        optionsDropdownIsOpen
-                            ? 'dropdown__open'
-                            : 'dropdown__closed'
-                    }`}
-                >
-                    {(authorID === user.data.uid || udData.data().admin) && (
+                    <div
+                        className={`dropdown__content ${
+                            optionsDropdownIsOpen
+                                ? 'dropdown__open'
+                                : 'dropdown__closed'
+                        }`}
+                    >
                         <InformationRow
                             iconName='edit'
                             onClick={() =>
@@ -134,9 +134,7 @@ export const Post = ({ postID }) => {
                                     : ''
                             }`}
                         </InformationRow>
-                    )}
 
-                    {(authorID === user.data.uid || udData.data().admin) && (
                         <InformationRow
                             iconName='remove'
                             onClick={() => removePost()}
@@ -148,9 +146,9 @@ export const Post = ({ postID }) => {
                                     : ''
                             }`}
                         </InformationRow>
-                    )}
+                    </div>
                 </div>
-            </div>
+            )}
             <hr />
         </div>
     );
