@@ -2,14 +2,15 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { InformationRow } from '../../molecules';
 import { Text } from '../../atoms';
+import { useUser } from '../../../hooks';
 import { routes } from '../../../routes/Routes';
 import './Navigation.scss';
 
 const NAV_ITEMS = [
     {
         src: 'user',
-        label: 'Profile',
-        path: routes.EditProfile
+        label: 'My Profile',
+        path: (id) => `${routes.Profile}/${id}`
     },
     {
         src: 'comment',
@@ -20,6 +21,7 @@ const NAV_ITEMS = [
 ];
 
 export const Navigation = ({ isOpen, username, navItemCallback }) => {
+    const user = useUser();
     return (
         <div
             className={`navigation ${
@@ -29,7 +31,11 @@ export const Navigation = ({ isOpen, username, navItemCallback }) => {
             <Text customClass='navigation__username'>{username}</Text>
             {NAV_ITEMS.map((navItem) => (
                 <NavLink
-                    to={navItem.path}
+                    to={
+                        typeof navItem.path === 'function'
+                            ? navItem.path(user.data.uid)
+                            : navItem.path
+                    }
                     key={navItem.src}
                     className='navigation__link'
                 >

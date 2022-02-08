@@ -1,2 +1,12 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
+
+.page__feed {
+    padding: 20px;
+
+    .form__post {
+        margin: auto;
+        margin-bottom: 50px;
+        width: 100%;
+    }
+}

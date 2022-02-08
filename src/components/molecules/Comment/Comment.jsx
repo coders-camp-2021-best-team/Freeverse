@@ -1,24 +1,23 @@
 import PropTypes from 'prop-types';
-import { Text } from '../../atoms/Text/Text';
-import { dateFormat } from '../../../utils/format';
-import '../../atoms/Text/Text.scss';
-import './Comment.scss';
-import { useUserDetails } from '../../../hooks';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { useRemoveComment, useUserDetails } from '../../../hooks';
+import { Text, Icon } from '../..';
 
-export const Comment = ({ authorID, date, children }) => {
+import './Comment.scss';
+import '../../atoms/Text/Text.scss';
+
+dayjs.extend(relativeTime);
+
+export const Comment = ({ id, postID, authorID, date, children }) => {
+    const { data: udData } = useUserDetails();
     const { data: authorData } = useUserDetails(authorID);
+    const removeComment = useRemoveComment(postID, id);
 
     return (
         authorData && (
             <div className='comment'>
                 <div className='comment__info'>
-                    <Text
-                        type='primary'
-                        size='small'
-                        customClass='comment__info__date'
-                    >
-                        {dateFormat(date)}
-                    </Text>
                     <Text
                         type='accent'
                         size='medium'
@@ -26,6 +25,23 @@ export const Comment = ({ authorID, date, children }) => {
                     >
                         {authorData.data().displayName}
                     </Text>
+
+                    <Text
+                        type='secondary'
+                        size='small'
+                        customClass='comment__info__date'
+                    >
+                        {dayjs(date).fromNow()}
+                    </Text>
+
+                    {(udData?.id === authorID || udData?.data()?.admin) && (
+                        <Icon
+                            iconName='remove'
+                            size='medium'
+                            className='remove_button'
+                            onClick={() => removeComment()}
+                        />
+                    )}
                 </div>
                 <div className='comment__text'>
                     <Text
@@ -43,6 +59,8 @@ export const Comment = ({ authorID, date, children }) => {
 
 Comment.propTypes = {
     children: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+    postID: PropTypes.string.isRequired,
     authorID: PropTypes.string.isRequired,
     date: PropTypes.instanceOf(Date).isRequired
 };

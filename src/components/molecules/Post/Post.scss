@@ -5,13 +5,16 @@
     margin: 1rem 3rem 0 3rem;
     height: auto;
     display: grid;
-    grid-template-columns: 7.5rem 35rem 6rem 6rem 6rem;
-    grid-template-rows: 1.5rem 6rem auto auto;
+    grid-template-columns: repeat(7, auto);
+    grid-template-rows: repeat(5, auto);
     grid-template-areas:
-        'avatar names names date date'
-        'avatar message message message message'
-        'avatar iinput icons1 icons2 icons3'
-        'line line line line line';
+        'avatar names names names names date options'
+        'avatar message message message message message message'
+        'avatar iinput iinput iinput likes dislikes icons3'
+        'comment comment comment comment comment comment comment'
+        'line line line line line line line';
+    gap: 5px;
+
     img {
         border-radius: 50%;
         width: 7.5rem;
@@ -19,6 +22,7 @@
         align-self: start;
         cursor: pointer;
     }
+
     .message {
         font-size: 1rem;
         max-width: 50rem;
@@ -31,18 +35,21 @@
         border-radius: 10px;
         background-color: $primary-backgroundColor;
     }
+
     .date {
         font-size: 1rem;
         grid-area: date;
         justify-self: start;
-        align-self: flex-end;
         opacity: 0.6;
     }
+
     .form {
         &__comment {
             width: 100% !important;
+            grid-area: comment;
         }
     }
+
     .username {
         font-size: 1.5rem;
         border-radius: 10px;
@@ -50,27 +57,86 @@
         padding-left: 0.75rem;
         grid-area: names;
     }
-    .icon {
-        &__like_button {
-            grid-area: icons1;
-            margin-left: 0.5rem;
-            padding-left: 0.75rem;
-            align-self: center;
-        }
-        &__dislike_button {
-            grid-area: icons2;
-            margin-left: 0.5rem;
-            align-self: center;
-        }
-        &__comment_button {
-            grid-area: icons3;
-            align-self: center;
-        }
+
+    .likes {
+        grid-area: likes;
+        display: flex;
+        align-items: center;
     }
+
+    .dislikes {
+        grid-area: dislikes;
+        display: flex;
+        align-items: center;
+    }
+
+    .counter {
+        margin-left: 10px;
+    }
+
     hr {
         margin: 1rem 0 2rem;
         grid-area: line;
         width: 100%;
         opacity: 0.1;
+    }
+
+    .icon {
+        fill: $primary-color;
+        align-self: center;
+        cursor: pointer;
+
+        &__dropdown_toggle {
+            grid-area: options;
+        }
+
+        &__like_button,
+        &__like_button_active {
+            grid-area: icons1;
+            margin-left: 0.5rem;
+            padding-left: 0.75rem;
+        }
+
+        &__dislike_button,
+        &__dislike_button_active {
+            fill: $primary-color;
+            grid-area: icons2;
+            margin-left: 0.5rem;
+        }
+
+        &__like_button_active,
+        &__dislike_button_active {
+            fill: $accent-color;
+        }
+
+        &__comment_button {
+            grid-area: icons3;
+        }
+
+        &__remove_button {
+            grid-area: remove;
+        }
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+
+        &__content {
+            display: none;
+            position: absolute;
+            padding: 1.5rem 1rem;
+            background-color: $comment-backgroundColor;
+            border-radius: 10px;
+            z-index: 900;
+        }
+
+        &__open {
+            display: block;
+        }
+
+        &__close {
+            display: none;
+        }
     }
 }

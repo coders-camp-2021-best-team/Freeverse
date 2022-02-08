@@ -19,10 +19,10 @@ export interface Post {
 
     media_url?: string;
     text_content?: string;
+}
 
-    reactions: {
-        [key: string]: ReactionType;
-    };
+export interface Reaction {
+    type: ReactionType;
 }
 
 export type ReactionType = 'LIKE' | 'DISLIKE';

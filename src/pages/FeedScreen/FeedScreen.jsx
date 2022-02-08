@@ -1,22 +1,17 @@
 import { Timestamp } from 'firebase/firestore';
-import { useState } from 'react';
-import { useCreatePost, useUser } from '../../hooks';
-import { Modal, Form, PostCollection } from '../../components';
+import { useCreatePost, usePosts, useUser } from '../../hooks';
+import { Form, PostCollection } from '../../components';
 import './FeedScreen.scss';
-// TODO waiting for useLatestPosts hook
 
 export const FeedScreenPage = () => {
     const user = useUser();
+    const { data: postsData } = usePosts();
     const createPost = useCreatePost();
-    const [showModal, setShowModal] = useState(false);
-    const toggleModal = () => setShowModal((prev) => !prev);
+
+    if (!postsData) return null;
+
     return (
-        <>
-            <div>This is feed screen</div>
-            <button onClick={toggleModal}>Modal Button</button>
-            <Modal showModal={showModal} setShowModal={setShowModal}>
-                <div>Children element</div>
-            </Modal>
+        <div className='page__feed'>
             <Form
                 placeholder='Write something...'
                 type='post'
@@ -24,12 +19,11 @@ export const FeedScreenPage = () => {
                     createPost({
                         authorID: user.data.uid,
                         createdOn: Timestamp.now(),
-                        reactions: {},
                         text_content: data.post
                     })
                 }
             />
-            <PostCollection userPosts={[]} />
-        </>
+            <PostCollection posts={postsData.docs} />
+        </div>
     );
 };

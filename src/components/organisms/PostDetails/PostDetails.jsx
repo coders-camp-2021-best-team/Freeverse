@@ -24,6 +24,8 @@ export const PostDetails = ({ postID }) => {
                 <div className='molecule__post_details__comments'>
                     {comments_arr.map(({ id, data }) => (
                         <Comment
+                            id={id}
+                            postID={postID}
                             authorID={data.authorID}
                             date={data.createdOn.toDate()}
                             key={id}

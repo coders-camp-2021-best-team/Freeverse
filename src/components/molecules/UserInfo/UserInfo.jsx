@@ -15,11 +15,11 @@ export const UserInfo = ({ userID, onClick, onPost }) => {
         redirectToProfile = onClick;
     }
 
-    if (userData) {
-        const { profile_picture_url, displayName } = userData.data();
+    if (userData?.data()) {
+        const { profile_picture_url, displayName, admin } = userData.data();
 
-        return (
-            <div className={onPost ? '' : 'userinfo'}>
+        const inside = (
+            <>
                 <ImageComponent
                     className='atom__image'
                     src={profile_picture_url}
@@ -29,12 +29,17 @@ export const UserInfo = ({ userID, onClick, onPost }) => {
                 <Text
                     type='primary'
                     size='large'
-                    customClass='userinfo__text username'
+                    customClass={`${onPost ? '' : 'userinfo__text'} username ${
+                        admin && 'username_admin'
+                    }`}
                 >
                     {displayName}
                 </Text>
-            </div>
+            </>
         );
+
+        if (onPost) return inside;
+        return <div className='userinfo'>{inside}</div>;
     }
 
     return null;

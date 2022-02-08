@@ -58,7 +58,9 @@ service cloud.firestore {
 				&& (isString(mc.text_content));
 		}
 
-		allow read, create, update, delete: if getUserData().admin == true;
+		match /{document=**} {
+			allow read, create, update, delete: if getUserData().admin;
+		}
 
 		match /chat_rooms/{chat_room} {
 			function isValidChatRoom(cr) {
@@ -91,8 +93,7 @@ service cloud.firestore {
 					(isString(post.authorID))
 					&& (isTimestamp(post.createdOn))
 					&& (!('media_url' in post) || !isDefined(post.media_url) || isString(post.media_url))
-					&& (!('text_content' in post) || !isDefined(post.text_content) || isString(post.text_content))
-					&& (isMap(post.reactions));
+					&& (!('text_content' in post) || !isDefined(post.text_content) || isString(post.text_content));
 			}
 
 			function getPostData() {
@@ -109,6 +110,19 @@ service cloud.firestore {
 				allow create: if isAuthorOf(request.resource) && isValidMessageOrComment(request.resource.data);
 				allow update: if isAuthorOf(resource) && isAuthorOf(request.resource) && isValidMessageOrComment(request.resource.data);
 				allow delete: if isAuthorOf(resource) || isAuthorOf(getPostData());
+			}
+
+			match /reactions/{reaction} {
+				function isValidReaction(reaction) {
+					return
+						(isString(reaction.type))
+						&& (reaction.type in ['LIKE', 'DISLIKE']);
+				}
+
+				allow read: if isLoggedIn();
+				allow create: if doesOwn(request.resource);
+				allow update: if doesOwn(request.resource) && doesOwn(resource);
+				allow delete: if doesOwn(resource);
 			}
 		}
 
