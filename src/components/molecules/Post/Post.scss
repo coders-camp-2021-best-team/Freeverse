@@ -9,7 +9,7 @@
     grid-template-rows: repeat(5, auto);
     gap: 10px 0px;
     grid-template-areas:
-        'avatar names names names remove date date'
+        'avatar names names names date date options'
         'avatar message message message message message message'
         'avatar iinput icons1 text1 icons2 text2 icons3'
         'comment comment comment comment comment comment comment'
@@ -73,6 +73,10 @@
     fill: $primary-color;
     align-self: center;
     cursor: pointer;
+
+    &__dropdown_toggle {
+        grid-area: options;
+    }
 
     &__like_button,
     &__like_button_active {

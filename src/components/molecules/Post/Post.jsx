@@ -120,7 +120,23 @@ export const Post = ({ postID }) => {
                         iconName='remove'
                         onClick={() => removePost()}
                     >
-                        Remove Post
+                        {`Remove Post ${
+                            udData.data().admin && authorID !== user.data.uid
+                                ? '(as admin)'
+                                : ''
+                        }`}
+                    </InformationRow>
+                )}
+                {(authorID === user.data.uid || udData.data().admin) && (
+                    <InformationRow
+                        iconName='edit'
+                        onClick={() => navigate(`${routes.EditPost}/${postID}`)}
+                    >
+                        {`Edit Post ${
+                            udData.data().admin && authorID !== user.data.uid
+                                ? '(as admin)'
+                                : ''
+                        }`}
                     </InformationRow>
                 )}
             </div>
