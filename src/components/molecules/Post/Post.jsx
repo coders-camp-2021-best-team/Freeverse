@@ -39,8 +39,9 @@ export const Post = ({ postID }) => {
 
     const { authorID, createdOn, text_content } = postData.data();
 
-    const { likes, dislikes } = countReactions(
-        reactionsData.docs.map((d) => d.data())
+    const { likes, likedBy, dislikes, dislikedBy } = countReactions(
+        reactionsData.docs.map((d) => ({ id: d.id, data: d.data() })),
+        user.data.uid
     );
 
     return (
@@ -78,14 +79,14 @@ export const Post = ({ postID }) => {
             <Icon
                 iconName='like'
                 size='medium'
-                className='like_button'
+                className={`like_button${likedBy ? '_active' : ''}`}
                 onClick={() => react({ type: 'LIKE' })}
             />
 
             <Icon
                 iconName='dislike'
                 size='medium'
-                className='dislike_button'
+                className={`dislike_button${dislikedBy ? '_active' : ''}`}
                 onClick={() => react({ type: 'DISLIKE' })}
             />
 
