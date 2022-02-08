@@ -46,101 +46,105 @@ export const Post = ({ postID }) => {
     );
 
     return (
-        <>
-            <div className='post__field'>
-                <UserInfo userID={authorID} onPost />
+        <div className='post__field'>
+            <UserInfo userID={authorID} onPost />
 
-                <Text size='small' customClass='date' type='primary'>
-                    {dateFormat(createdOn.toDate())}
-                </Text>
+            <Text size='small' customClass='date' type='primary'>
+                {dateFormat(createdOn.toDate())}
+            </Text>
 
-                <Text type='primary' customClass='message' size='large'>
-                    {text_content}
-                </Text>
+            <Text type='primary' customClass='message' size='large'>
+                {text_content}
+            </Text>
 
-                <Form
-                    placeholder='Add comment'
-                    type='comment'
-                    onSubmit={(data) =>
-                        createComment({
-                            authorID: user.data.uid,
-                            createdOn: Timestamp.now(),
-                            text_content: data.comment
-                        })
-                    }
-                />
+            <Form
+                placeholder='Add comment'
+                type='comment'
+                onSubmit={(data) =>
+                    createComment({
+                        authorID: user.data.uid,
+                        createdOn: Timestamp.now(),
+                        text_content: data.comment
+                    })
+                }
+            />
 
-                <Icon
-                    iconName='like'
-                    size='medium'
-                    className={`like_button${likedBy ? '_active' : ''}`}
-                    onClick={() => react({ type: 'LIKE' })}
-                />
+            <Icon
+                iconName='like'
+                size='medium'
+                className={`like_button${likedBy ? '_active' : ''}`}
+                onClick={() => react({ type: 'LIKE' })}
+            />
 
-                <Text type='secondary' size='medium' customClass='like_count'>
-                    {likes.toString()}
-                </Text>
+            <Text type='secondary' size='medium' customClass='like_count'>
+                {likes.toString()}
+            </Text>
 
-                <Icon
-                    iconName='dislike'
-                    size='medium'
-                    className={`dislike_button${dislikedBy ? '_active' : ''}`}
-                    onClick={() => react({ type: 'DISLIKE' })}
-                />
+            <Icon
+                iconName='dislike'
+                size='medium'
+                className={`dislike_button${dislikedBy ? '_active' : ''}`}
+                onClick={() => react({ type: 'DISLIKE' })}
+            />
 
-                <Text
-                    type='secondary'
-                    size='medium'
-                    customClass='dislike_count'
-                >
-                    {dislikes.toString()}
-                </Text>
+            <Text type='secondary' size='medium' customClass='dislike_count'>
+                {dislikes.toString()}
+            </Text>
 
-                <Icon
-                    iconName='comment'
-                    size='medium'
-                    className='comment_button'
-                    onClick={() => navigate(`${routes.Post}/${postID}`)}
-                />
+            <Icon
+                iconName='comment'
+                size='medium'
+                className='comment_button'
+                onClick={() => navigate(`${routes.Post}/${postID}`)}
+            />
 
+            <div className='dropdown'>
                 <Icon
                     iconName='threedots'
-                    className='dropdown_toggle'
+                    className='dropdown__toggle'
                     onClick={() => setIsOpen((open) => !open)}
                 />
-                <hr />
+
+                <div
+                    className={`dropdown__content ${
+                        optionsDropdownIsOpen
+                            ? 'dropdown__open'
+                            : 'dropdown__closed'
+                    }`}
+                >
+                    {(authorID === user.data.uid || udData.data().admin) && (
+                        <InformationRow
+                            iconName='edit'
+                            onClick={() =>
+                                navigate(`${routes.EditPost}/${postID}`)
+                            }
+                        >
+                            {`Edit Post ${
+                                udData.data().admin &&
+                                authorID !== user.data.uid
+                                    ? '(as admin)'
+                                    : ''
+                            }`}
+                        </InformationRow>
+                    )}
+
+                    {(authorID === user.data.uid || udData.data().admin) && (
+                        <InformationRow
+                            iconName='remove'
+                            onClick={() => removePost()}
+                        >
+                            {`Remove Post ${
+                                udData.data().admin &&
+                                authorID !== user.data.uid
+                                    ? '(as admin)'
+                                    : ''
+                            }`}
+                        </InformationRow>
+                    )}
+                </div>
             </div>
-            <div
-                className={`dropdown ${
-                    optionsDropdownIsOpen ? 'dropdown__open' : 'dropdown__close'
-                }`}
-            >
-                {(authorID === user.data.uid || udData.data().admin) && (
-                    <InformationRow
-                        iconName='remove'
-                        onClick={() => removePost()}
-                    >
-                        {`Remove Post ${
-                            udData.data().admin && authorID !== user.data.uid
-                                ? '(as admin)'
-                                : ''
-                        }`}
-                    </InformationRow>
-                )}
-                {(authorID === user.data.uid || udData.data().admin) && (
-                    <InformationRow
-                        iconName='edit'
-                        onClick={() => navigate(`${routes.EditPost}/${postID}`)}
-                    >
-                        {`Edit Post ${
-                            udData.data().admin && authorID !== user.data.uid
-                                ? '(as admin)'
-                                : ''
-                        }`}
-                    </InformationRow>
-                )}
-            </div>
-        </>
+            <hr />
+        </div>
     );
 };
 
