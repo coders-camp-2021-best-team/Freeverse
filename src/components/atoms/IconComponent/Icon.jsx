@@ -15,6 +15,7 @@ import { ReactComponent as Power } from './icons/power.svg';
 import { ReactComponent as Send } from './icons/send.svg';
 import { ReactComponent as User } from './icons/user.svg';
 import { ReactComponent as Remove } from './icons/remove.svg';
+import { ReactComponent as ThreeDots } from './icons/threedots.svg';
 
 export const icons = {
     like: Like,
@@ -30,7 +31,8 @@ export const icons = {
     power: Power,
     send: Send,
     user: User,
-    remove: Remove
+    remove: Remove,
+    threedots: ThreeDots
 };
 
 export const Icon = ({ iconName, size, className, onClick }) => {
