@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { Timestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router';
 import { Text, Form, Icon } from '../..';
@@ -12,7 +13,7 @@ import {
     useUser,
     useUserDetails
 } from '../../../hooks';
-import { UserInfo } from '..';
+import { InformationRow, UserInfo } from '..';
 import { routes } from '../../../routes/Routes';
 
 import './Post.scss';
@@ -24,6 +25,8 @@ export const Post = ({ postID }) => {
     const navigate = useNavigate();
     const user = useUser();
     const { data: udData } = useUserDetails();
+
+    const [optionsDropdownIsOpen, setIsOpen] = useState(false);
 
     const createComment = useCreateComment(postID);
     const { data: postData } = usePost(postID);
@@ -43,68 +46,85 @@ export const Post = ({ postID }) => {
     );
 
     return (
-        <div className='post__field'>
-            <UserInfo userID={authorID} onPost />
+        <>
+            <div className='post__field'>
+                <UserInfo userID={authorID} onPost />
 
-            <Text size='small' customClass='date' type='primary'>
-                {dateFormat(createdOn.toDate())}
-            </Text>
+                <Text size='small' customClass='date' type='primary'>
+                    {dateFormat(createdOn.toDate())}
+                </Text>
 
-            <Text type='primary' customClass='message' size='large'>
-                {text_content}
-            </Text>
+                <Text type='primary' customClass='message' size='large'>
+                    {text_content}
+                </Text>
 
-            <Form
-                placeholder='Add comment'
-                type='comment'
-                onSubmit={(data) =>
-                    createComment({
-                        authorID: user.data.uid,
-                        createdOn: Timestamp.now(),
-                        text_content: data.comment
-                    })
-                }
-            />
-
-            <Icon
-                iconName='like'
-                size='medium'
-                className={`like_button${likedBy ? '_active' : ''}`}
-                onClick={() => react({ type: 'LIKE' })}
-            />
-
-            <Text type='secondary' size='medium' customClass='like_count'>
-                {likes.toString()}
-            </Text>
-
-            <Icon
-                iconName='dislike'
-                size='medium'
-                className={`dislike_button${dislikedBy ? '_active' : ''}`}
-                onClick={() => react({ type: 'DISLIKE' })}
-            />
-
-            <Text type='secondary' size='medium' customClass='dislike_count'>
-                {dislikes.toString()}
-            </Text>
-
-            <Icon
-                iconName='comment'
-                size='medium'
-                className='comment_button'
-                onClick={() => navigate(`${routes.Post}/${postID}`)}
-            />
-
-            {(authorID === user.data.uid || udData.data().admin) && (
-                <Icon
-                    iconName='remove'
-                    size='medium'
-                    className='remove_button'
-                    onClick={() => removePost()}
+                <Form
+                    placeholder='Add comment'
+                    type='comment'
+                    onSubmit={(data) =>
+                        createComment({
+                            authorID: user.data.uid,
+                            createdOn: Timestamp.now(),
+                            text_content: data.comment
+                        })
+                    }
                 />
-            )}
-            <hr />
-        </div>
+
+                <Icon
+                    iconName='like'
+                    size='medium'
+                    className={`like_button${likedBy ? '_active' : ''}`}
+                    onClick={() => react({ type: 'LIKE' })}
+                />
+
+                <Text type='secondary' size='medium' customClass='like_count'>
+                    {likes.toString()}
+                </Text>
+
+                <Icon
+                    iconName='dislike'
+                    size='medium'
+                    className={`dislike_button${dislikedBy ? '_active' : ''}`}
+                    onClick={() => react({ type: 'DISLIKE' })}
+                />
+
+                <Text
+                    type='secondary'
+                    size='medium'
+                    customClass='dislike_count'
+                >
+                    {dislikes.toString()}
+                </Text>
+
+                <Icon
+                    iconName='comment'
+                    size='medium'
+                    className='comment_button'
+                    onClick={() => navigate(`${routes.Post}/${postID}`)}
+                />
+
+                <Icon
+                    iconName='threedots'
+                    className='dropdown_toggle'
+                    onClick={() => setIsOpen((open) => !open)}
+                />
+                <hr />
+            </div>
+            <div
+                className={`dropdown ${
+                    optionsDropdownIsOpen ? 'dropdown__open' : 'dropdown__close'
+                }`}
+            >
+                {(authorID === user.data.uid || udData.data().admin) && (
+                    <InformationRow
+                        iconName='remove'
+                        onClick={() => removePost()}
+                    >
+                        Remove Post
+                    </InformationRow>
+                )}
+            </div>
+        </>
     );
 };
 

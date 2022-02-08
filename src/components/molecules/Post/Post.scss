@@ -61,42 +61,61 @@
         grid-area: text2;
         align-self: center;
     }
-    .icon {
-        fill: $primary-color;
-        align-self: center;
-        cursor: pointer;
-
-        &__like_button,
-        &__like_button_active {
-            grid-area: icons1;
-            margin-left: 0.5rem;
-            padding-left: 0.75rem;
-        }
-
-        &__dislike_button,
-        &__dislike_button_active {
-            fill: $primary-color;
-            grid-area: icons2;
-            margin-left: 0.5rem;
-        }
-
-        &__like_button_active,
-        &__dislike_button_active {
-            fill: $accent-color;
-        }
-
-        &__comment_button {
-            grid-area: icons3;
-        }
-
-        &__remove_button {
-            grid-area: remove;
-        }
-    }
     hr {
         margin: 1rem 0 2rem;
         grid-area: line;
         width: 100%;
         opacity: 0.1;
     }
+}
+
+.icon {
+    fill: $primary-color;
+    align-self: center;
+    cursor: pointer;
+
+    &__like_button,
+    &__like_button_active {
+        grid-area: icons1;
+        margin-left: 0.5rem;
+        padding-left: 0.75rem;
+    }
+
+    &__dislike_button,
+    &__dislike_button_active {
+        fill: $primary-color;
+        grid-area: icons2;
+        margin-left: 0.5rem;
+    }
+
+    &__like_button_active,
+    &__dislike_button_active {
+        fill: $accent-color;
+    }
+
+    &__comment_button {
+        grid-area: icons3;
+    }
+
+    &__remove_button {
+        grid-area: remove;
+    }
+}
+
+.dropdown__open {
+    display: block;
+}
+
+.dropdown__close {
+    display: none;
+}
+
+.dropdown {
+    position: relative;
+    top: -20rem;
+    left: 60vw;
+    width: 20%;
+    padding: 1.5rem 1rem;
+    background-color: $comment-backgroundColor;
+    border-radius: 10px;
 }
