@@ -4,7 +4,7 @@ import { Timestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { Text, Form, Icon } from '../..';
+import { Text, Form, Icon, InformationRow, UserInfo } from '../..';
 import { countReactions } from '../../../utils';
 import {
     useCreateComment,
@@ -15,7 +15,6 @@ import {
     useUser,
     useUserDetails
 } from '../../../hooks';
-import { InformationRow, UserInfo } from '..';
 import { routes } from '../../../routes/Routes';
 
 import './Post.scss';
