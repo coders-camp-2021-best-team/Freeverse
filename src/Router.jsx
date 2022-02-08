@@ -15,6 +15,7 @@ import { ProtectedRoute } from './components';
 import { routes } from './routes/Routes';
 import { PostDetailsPage } from './pages/PostDetails/PostDetails';
 import { useUser } from './hooks';
+import { EditPostPage } from './pages/EditPost/EditPost';
 
 export const Router = () => {
     const user = useUser();
@@ -57,6 +58,12 @@ export const Router = () => {
                         exact
                         path={`${routes.Post}/:id`}
                         element={<PostDetailsPage />}
+                    />
+
+                    <Route
+                        exact
+                        path={`${routes.EditPost}/:id`}
+                        element={<EditPostPage />}
                     />
 
                     <Route

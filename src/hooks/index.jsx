@@ -16,6 +16,7 @@ export * from './useReactOnPost';
 export * from './useRemoveComment';
 export * from './useRemovePost';
 export * from './useResponsive';
+export * from './useUpdatePost';
 export * from './useUser';
 export * from './useUserChatRooms';
 export * from './useUserDetails';
