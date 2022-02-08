@@ -29,7 +29,7 @@ export const UserInfo = ({ userID, onClick, onPost }) => {
                 <Text
                     type='primary'
                     size='large'
-                    customClass={`userinfo__text username ${
+                    customClass={`${onPost ? '' : 'userinfo__text'} username ${
                         admin && 'username_admin'
                     }`}
                 >
