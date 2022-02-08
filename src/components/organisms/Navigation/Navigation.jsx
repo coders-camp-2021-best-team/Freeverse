@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { InformationRow } from '../../molecules';
 import { Text } from '../../atoms';
-import { useUser } from '../../../hooks';
+import { useUser, useUserDetails } from '../../../hooks';
 import { routes } from '../../../routes/Routes';
 import './Navigation.scss';
 
@@ -20,15 +20,23 @@ const NAV_ITEMS = [
     { src: 'power', label: 'Log out', path: routes.Logout }
 ];
 
-export const Navigation = ({ isOpen, username, navItemCallback }) => {
+export const Navigation = ({ isOpen, navItemCallback }) => {
     const user = useUser();
+    const { data: udData } = useUserDetails();
+
+    if (!udData?.data()) {
+        return null;
+    }
+
+    const { displayName } = udData.data();
+
     return (
         <div
             className={`navigation ${
                 isOpen ? 'dropdown__open' : 'dropdown__close'
             }`}
         >
-            <Text customClass='navigation__username'>{username}</Text>
+            <Text customClass='navigation__username'>{displayName}</Text>
             {NAV_ITEMS.map((navItem) => (
                 <NavLink
                     to={
@@ -53,6 +61,5 @@ export const Navigation = ({ isOpen, username, navItemCallback }) => {
 
 Navigation.propTypes = {
     isOpen: PropTypes.bool.isRequired,
-    username: PropTypes.string.isRequired,
     navItemCallback: PropTypes.func.isRequired
 };

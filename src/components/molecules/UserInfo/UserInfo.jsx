@@ -16,7 +16,8 @@ export const UserInfo = ({ userID, onClick, onPost }) => {
     }
 
     if (userData?.data()) {
-        const { profile_picture_url, displayName, admin } = userData.data();
+        const { profile_picture_url, displayName, admin } =
+            userData.data() || {};
 
         const inside = (
             <>
@@ -33,7 +34,7 @@ export const UserInfo = ({ userID, onClick, onPost }) => {
                         admin && 'username_admin'
                     }`}
                 >
-                    {displayName}
+                    {displayName || 'deleted user'}
                 </Text>
             </>
         );
