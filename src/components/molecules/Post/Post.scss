@@ -5,13 +5,15 @@
     margin: 1rem 3rem 0 3rem;
     height: auto;
     display: grid;
-    grid-template-columns: 7.5rem 35rem 6rem 6rem 6rem;
-    grid-template-rows: 1.5rem 6rem auto auto;
+    grid-template-columns: repeat(7, auto);
+    grid-template-rows: repeat(5, auto);
+    gap: 10px 0px;
     grid-template-areas:
-        'avatar names names date date'
-        'avatar message message message message'
-        'avatar iinput icons1 icons2 icons3'
-        'line line line line line';
+        'avatar names names names remove date date'
+        'avatar message message message message message message'
+        'avatar iinput icons1 text1 icons2 text2 icons3'
+        'comment comment comment comment comment comment comment'
+        'line line line line line line line';
     img {
         border-radius: 50%;
         width: 7.5rem;
@@ -41,6 +43,7 @@
     .form {
         &__comment {
             width: 100% !important;
+            grid-area: comment;
         }
     }
     .username {
@@ -50,9 +53,18 @@
         padding-left: 0.75rem;
         grid-area: names;
     }
+    .like_count {
+        grid-area: text1;
+        align-self: center;
+    }
+    .dislike_count {
+        grid-area: text2;
+        align-self: center;
+    }
     .icon {
         fill: $primary-color;
         align-self: center;
+        cursor: pointer;
 
         &__like_button,
         &__like_button_active {
@@ -75,6 +87,10 @@
 
         &__comment_button {
             grid-area: icons3;
+        }
+
+        &__remove_button {
+            grid-area: remove;
         }
     }
     hr {

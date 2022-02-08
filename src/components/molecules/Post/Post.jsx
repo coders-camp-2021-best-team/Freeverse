@@ -18,9 +18,7 @@ import { routes } from '../../../routes/Routes';
 import './Post.scss';
 
 /**
- *
  * @param {{ postID: string, postData: import('../../../api/types').Post }} param0
- * @returns
  */
 export const Post = ({ postID }) => {
     const navigate = useNavigate();
@@ -52,16 +50,8 @@ export const Post = ({ postID }) => {
                 {dateFormat(createdOn.toDate())}
             </Text>
 
-            <Text type='primary' customClass='message' size='medium'>
+            <Text type='primary' customClass='message' size='large'>
                 {text_content}
-            </Text>
-
-            <Text type='secondary' size='small'>
-                {`Likes: ${likes}`}
-            </Text>
-
-            <Text type='secondary' size='small'>
-                {`Dislikes: ${dislikes}`}
             </Text>
 
             <Form
@@ -83,12 +73,20 @@ export const Post = ({ postID }) => {
                 onClick={() => react({ type: 'LIKE' })}
             />
 
+            <Text type='secondary' size='medium' customClass='like_count'>
+                {likes.toString()}
+            </Text>
+
             <Icon
                 iconName='dislike'
                 size='medium'
                 className={`dislike_button${dislikedBy ? '_active' : ''}`}
                 onClick={() => react({ type: 'DISLIKE' })}
             />
+
+            <Text type='secondary' size='medium' customClass='dislike_count'>
+                {dislikes.toString()}
+            </Text>
 
             <Icon
                 iconName='comment'
