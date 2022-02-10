@@ -1,0 +1,26 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles/mixins.scss';
+
+.userdetails {
+    justify-content: center;
+    align-items: center;
+    background-color: $secondary-backgroundColor;
+    border-radius: 3rem;
+    height: 19rem;
+    width: 15rem;
+    display: flex;
+    flex-direction: column;
+    // 
+    margin-left: 2rem;
+
+    .textdetails {
+        align-self: center;
+        margin-top: 2rem;
+        margin-left: -1.5rem;
+    }
+
+    .details {
+        margin-top: 1rem;
+        align-self: left;
+    }
+}

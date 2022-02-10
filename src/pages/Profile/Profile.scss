@@ -1,26 +1,96 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+
+
 .profile__page {
-    width: 100%;
-
-    .background__image {
-        height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .background {
         width: 100%;
-        object-fit: cover;
+        .atom__image {
+            object-fit: cover;
+            height: 19rem;
+            width: 100%;
+            margin-bottom: -2rem;
+        }
     }
+    .userinfo {
+        margin-bottom: 2.5rem;
+        flex-basis: 100%;
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .atom__image {
+            order: 1;
+        }
+        .atom__text {
+            order: 2;
+        }
+    }
+    .userdetails {
+        order: 3;
+        width: 30rem;
+    }
+    .posts {
+        align-self: center;
+        justify-content: center;
+        width:90%;
+        order: 4;
+        display: flex;
+        flex-direction: column;
+        span {
+            align-self: center;
+            margin-top: 2rem;
+        }
+    }
+}
 
-    &__user__info {
-        position: relative;
-        .user__info__image {
-            border-radius: 25px;
-            width: 243px;
-            height: 238px;
-            -webkit-border-radius: 25px;
-            -moz-border-radius: 25px;
-            -ms-border-radius: 25px;
-            -o-border-radius: 25px;
+@include for-tablet-landscape-up {
+    .profile__page {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        
+        .background {
+            flex-basis: 100%;
+            display: flex;
             .atom__image {
-                border-radius: 25px;
-                object-fit: fill;
+                order: 1;
+                object-fit: cover;
+                height: 20rem;
                 width: 100%;
+                margin-bottom: -4rem;
+            }
+        }
+        .userinfo {
+            margin-bottom: 2.5rem;
+            flex-basis: 100%;
+            order: 2;
+            display: flex;
+            flex-direction: wrap;
+            .atom__image {
+                order: 1;
+            }
+            .atom__text {
+                order: 2;
+            }
+        }
+        .userdetails {
+            order: 3;
+            flex-basis: 25%;
+            align-self: baseline;
+        }
+        .posts {
+            flex-basis: 70%;
+            order: 3;
+            display: flex;
+            flex-direction: column;
+            span {
+                align-self: center;
             }
         }
     }

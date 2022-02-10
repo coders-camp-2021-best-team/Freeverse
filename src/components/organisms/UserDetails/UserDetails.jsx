@@ -23,20 +23,23 @@ export const UserDetails = ({ userID }) => {
     const hobbies_str = hobbies.join(', ');
 
     return (
-        <div>
-            <Text size='medium'>User Details</Text>
+        <div className='userdetails'>
+            <Text customClass='textdetails' size='medium'>
+                User Details
+            </Text>
+            <div className='details'>
+                <InformationRow iconName='birthday'>
+                    {birthday_str || 'Not available'}
+                </InformationRow>
 
-            <InformationRow iconName='birthday'>
-                {birthday_str || 'Not available'}
-            </InformationRow>
+                <InformationRow iconName='home'>
+                    {city || 'Not available'}
+                </InformationRow>
 
-            <InformationRow iconName='home'>
-                {city || 'Not available'}
-            </InformationRow>
-
-            <InformationRow iconName='googleController'>
-                {hobbies_str || 'Not available'}
-            </InformationRow>
+                <InformationRow iconName='googleController'>
+                    {hobbies_str || 'Not available'}
+                </InformationRow>
+            </div>
         </div>
     );
 };

@@ -29,23 +29,27 @@ export const ProfilePage = () => {
 
     return (
         <div className='profile__page'>
-            <div>
+            <div className='background'>
                 <ImageComponent
                     customClass='background__image'
                     src={background_picture_url || DEFAULT_BACKGROUND}
                 />
             </div>
 
-            <UserInfo
-                userID={userID}
-                onPost
-                customClass='profile__page__user__info'
-            />
+            <div className='userinfo'>
+                <UserInfo
+                    userID={userID}
+                    onPost
+                    customClass='profile__page__user__info'
+                />
+            </div>
 
             <UserDetails userID={userID} />
 
-            <div>
-                <Text size='medium'>Posts</Text>
+            <div className='posts'>
+                <Text customClass='titleposts' size='large'>
+                    Posts
+                </Text>
 
                 {/* TODO: posts */}
                 <PostCollection posts={postsData.docs} />
