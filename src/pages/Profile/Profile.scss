@@ -1,0 +1,90 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.profile__page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .background {
+        width: 100%;
+        .atom__image {
+            object-fit: cover;
+            height: 19rem;
+            width: 100%;
+            margin-bottom: -2rem;
+        }
+    }
+    .userinfo {
+        margin-bottom: 2.5rem;
+        flex-basis: 100%;
+        order: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .atom__image {
+            order: 1;
+        }
+        .atom__text {
+            order: 2;
+        }
+    }
+    .userdetails {
+        order: 3;
+        width: 30rem;
+    }
+    .posts {
+        width: 90%;
+        order: 4;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@include for-tablet-landscape-up {
+    .profile__page {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .background {
+            flex-basis: 100%;
+            display: flex;
+            .atom__image {
+                order: 1;
+                object-fit: cover;
+                height: 20rem;
+                width: 100%;
+                margin-bottom: -4rem;
+            }
+        }
+        .userinfo {
+            margin-bottom: 2.5rem;
+            flex-basis: 100%;
+            order: 2;
+            display: flex;
+            flex-direction: wrap;
+            .atom__image {
+                order: 1;
+            }
+            .atom__text {
+                order: 2;
+            }
+        }
+        .userdetails {
+            order: 3;
+            flex-basis: 25%;
+            align-self: baseline;
+        }
+        .posts {
+            flex-basis: 70%;
+            order: 3;
+            display: flex;
+            flex-direction: column;
+
+            .titleposts {
+                align-self: center;
+            }
+        }
+    }
+}

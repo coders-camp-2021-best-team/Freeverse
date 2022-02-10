@@ -6,7 +6,7 @@ import { routes } from '../../../routes/Routes';
 
 import './UserInfo.scss';
 
-export const UserInfo = ({ userID, onClick, onPost }) => {
+export const UserInfo = ({ userID, onClick, onPost, customClass }) => {
     const { data: userData } = useUserDetails(userID);
     const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ export const UserInfo = ({ userID, onClick, onPost }) => {
         );
 
         if (onPost) return inside;
-        return <div className='userinfo'>{inside}</div>;
+        return <div className={`userinfo ${customClass}`}>{inside}</div>;
     }
 
     return null;
@@ -49,10 +49,12 @@ export const UserInfo = ({ userID, onClick, onPost }) => {
 UserInfo.propTypes = {
     userID: PropTypes.string.isRequired,
     onClick: PropTypes.func,
-    onPost: PropTypes.bool
+    onPost: PropTypes.bool,
+    customClass: PropTypes.string
 };
 
 UserInfo.defaultProps = {
     onClick: null,
-    onPost: false
+    onPost: false,
+    customClass: ''
 };

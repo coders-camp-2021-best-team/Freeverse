@@ -1,18 +1,59 @@
-import PropTypes from 'prop-types';
 import { useParams } from 'react-router';
-import { Text } from '../../components';
+import {
+    ImageComponent,
+    UserInfo,
+    UserDetails,
+    PostCollection,
+    Text
+} from '../../components';
+import { useUserDetails, useUserPosts } from '../../hooks';
+import DEFAULT_BACKGROUND from '../../images/background.png';
 
-export const ProfilePage = ({ id }) => {
+import './Profile.scss';
+
+export const ProfilePage = () => {
     const params = useParams();
-    const profileID = id || params.id;
+    const userID = params.id;
 
-    return <Text>{profileID}</Text>;
-};
+    const { data: userData } = useUserDetails(userID);
+    const { data: postsData } = useUserPosts(userID);
 
-ProfilePage.propTypes = {
-    id: PropTypes.string
-};
+    // TODO: wait for hooks at PR #82
+    // const { data: postsData } = useUserPosts(userID);
 
-ProfilePage.defaultProps = {
-    id: null
+    if (!userData?.data() || !postsData) {
+        return null;
+    }
+
+    const { background_picture_url } = userData.data();
+
+    return (
+        <div className='profile__page'>
+            <div className='background'>
+                <ImageComponent
+                    customClass='background__image'
+                    src={background_picture_url || DEFAULT_BACKGROUND}
+                />
+            </div>
+
+            <div className='userinfo'>
+                <UserInfo
+                    userID={userID}
+                    onPost
+                    customClass='profile__page__user__info'
+                />
+            </div>
+
+            <UserDetails userID={userID} />
+
+            <div className='posts'>
+                <Text customClass='titleposts' size='large'>
+                    Posts
+                </Text>
+
+                {/* TODO: posts */}
+                <PostCollection posts={postsData.docs} />
+            </div>
+        </div>
+    );
 };

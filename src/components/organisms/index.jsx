@@ -8,3 +8,4 @@ export * from './MessageCollection/MessageCollection';
 export * from './Form/Form';
 export * from './PostCollection/PostCollection';
 export * from './PostDetails/PostDetails';
+export * from './UserDetails/UserDetails';
