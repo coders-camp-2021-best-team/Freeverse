@@ -45,6 +45,7 @@ export const Icon = ({ iconName, size, className, onClick }) => {
         <TheIcon
             className={`icon icon__${size} icon__${className}`}
             onClick={handleClick}
+            data-testid='icon-element'
         />
     );
 };
