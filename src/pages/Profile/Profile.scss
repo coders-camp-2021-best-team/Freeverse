@@ -1,8 +1,6 @@
 @import '../../styles/variables.scss';
 @import '../../styles/mixins.scss';
 
-
-
 .profile__page {
     display: flex;
     flex-direction: column;
@@ -36,16 +34,10 @@
         width: 30rem;
     }
     .posts {
-        align-self: center;
-        justify-content: center;
-        width:90%;
+        width: 90%;
         order: 4;
         display: flex;
         flex-direction: column;
-        span {
-            align-self: center;
-            margin-top: 2rem;
-        }
     }
 }
 
@@ -54,7 +46,7 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        
+
         .background {
             flex-basis: 100%;
             display: flex;
@@ -89,7 +81,8 @@
             order: 3;
             display: flex;
             flex-direction: column;
-            span {
+
+            .titleposts {
                 align-self: center;
             }
         }
