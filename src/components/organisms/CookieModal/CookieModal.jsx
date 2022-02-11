@@ -1,15 +1,20 @@
 import PropTypes from 'prop-types';
-import { Modal } from '../../molecules';
-import { Button, Text, ImageComponent } from '../../atoms';
+import { Button, Text, ImageComponent, Modal, Spinner } from '../..';
 import COOKIE from '../../../images/cookie.png';
 
 import './CookieModal.scss';
 
-export const CookieModal = ({ text, isOpen, setIsOpen, searchAgain }) => {
+export const CookieModal = ({
+    text,
+    isOpen,
+    setIsOpen,
+    searchAgain,
+    isSpinnerOn
+}) => {
     return (
         <Modal showModal={isOpen} setShowModal={setIsOpen} customClass='cookie'>
             <div className='cookie__modal'>
-                <header className='cookie__modal__top'>
+                <div className='cookie__modal__top'>
                     <ImageComponent src={COOKIE} alt='' size='large' />
                     <h2>
                         <Text
@@ -20,8 +25,13 @@ export const CookieModal = ({ text, isOpen, setIsOpen, searchAgain }) => {
                             Your fact for today:
                         </Text>
                     </h2>
-                </header>
-                <div className='cookie__modal__bot'>{text}</div>
+                </div>
+                {isSpinnerOn ? (
+                    <Spinner isOn={isSpinnerOn} />
+                ) : (
+                    <div className='cookie__modal__bot'>{text}</div>
+                )}
+
                 <Button
                     text='Search again'
                     onClick={searchAgain}
@@ -36,5 +46,6 @@ CookieModal.propTypes = {
     text: PropTypes.string.isRequired,
     isOpen: PropTypes.bool.isRequired,
     setIsOpen: PropTypes.func.isRequired,
-    searchAgain: PropTypes.func.isRequired
+    searchAgain: PropTypes.func.isRequired,
+    isSpinnerOn: PropTypes.bool.isRequired
 };
